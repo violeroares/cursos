@@ -14,4 +14,6 @@ data class Course(
     val items: List<VideoItem>,
     val documents: List<CourseDocument> = emptyList(),
     val level: CourseLevel,
+    val includes: List<CourseIncludeItem>,
+    val requirements: String,
 )

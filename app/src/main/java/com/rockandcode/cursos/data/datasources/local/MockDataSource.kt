@@ -4,8 +4,10 @@ import com.rockandcode.cursos.data.models.CategoryDto
 import com.rockandcode.cursos.data.models.CertificateDto
 import com.rockandcode.cursos.data.models.CourseDocumentDto
 import com.rockandcode.cursos.data.models.CourseDto
+import com.rockandcode.cursos.data.models.CourseIncludeItemDto
 import com.rockandcode.cursos.data.models.CourseLevelDto
 import com.rockandcode.cursos.data.models.DocumentTypeDto
+import com.rockandcode.cursos.data.models.IncludeTypeDto
 import com.rockandcode.cursos.data.models.InstructorDto
 import com.rockandcode.cursos.data.models.RangeMedalDto
 import com.rockandcode.cursos.data.models.ScheduleDto
@@ -312,6 +314,46 @@ object MockDataSource {
                         ),
                     documents = documentsDto,
                     level = levelsDto[0],
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "7 horas 52 de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                    requirements = "Conocimientos básicos de programación en Kotlin",
                 ),
                 CourseDto(
                     id = 2,
@@ -405,6 +447,46 @@ object MockDataSource {
                         ),
                     documents = emptyList(),
                     level = levelsDto[2],
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                    requirements = "Conocimientos básicos de programación",
                 ),
                 CourseDto(
                     id = 3,
@@ -500,6 +582,46 @@ object MockDataSource {
                         ),
                     documents = emptyList(),
                     level = levelsDto[0],
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "15 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                    requirements = "No necesitas conocimientos previos",
                 ),
                 CourseDto(
                     id = 4,
@@ -570,6 +692,46 @@ object MockDataSource {
                         ),
                     documents = emptyList(),
                     level = levelsDto[0],
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                    requirements = "No necesitas conocimientos previos",
                 ),
             )
 
