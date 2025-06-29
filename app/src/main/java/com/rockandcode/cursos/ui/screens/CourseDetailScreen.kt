@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Button
@@ -58,6 +59,8 @@ fun CourseDetailScreen(
     onBack: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsState()
+    val certificate by viewModel.certificate.collectAsState()
+    val context = LocalContext.current
 
     LaunchedEffect(courseId) {
         viewModel.loadCourse(courseId)
@@ -176,10 +179,19 @@ fun CourseDetailScreen(
                                     Column {
                                         Text("¡Felicitaciones!", style = MaterialTheme.typography.titleMedium)
                                         Text("Completaste el curso y obtuviste un certificado 🎓")
-                                        // Optional future button
-                                        // Button(onClick = { /* Navegar al certificado */ }) {
-                                        //     Text("Ver certificado")
-                                        // }
+
+                                        Button(onClick = {
+                                            val intent =
+                                                Intent(
+                                                    Intent.ACTION_VIEW,
+                                                    certificate?.certificateUrl?.toUri(),
+                                                )
+                                            context.startActivity(intent)
+                                        }) {
+                                            Icon(Icons.Default.Description, contentDescription = null)
+                                            Spacer(Modifier.width(8.dp))
+                                            Text("Ver certificado")
+                                        }
                                     }
                                 }
                             }
