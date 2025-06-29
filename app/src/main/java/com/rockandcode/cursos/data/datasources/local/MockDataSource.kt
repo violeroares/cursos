@@ -22,16 +22,16 @@ object MockDataSource {
             InstructorDto(
                 id = 1,
                 name = "Juan Perez",
-                avatarUrl = "https://.../juan.png",
-                bio = "",
-                experience = "",
-                specialization = "",
+                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                bio = "Licenciado en Maquinarias Electrónicas - Jefe Sector Seguridad en Security Company S.A. - Buenos Aires",
+                experience = "Titular de Cátedra en la UBA. 20 años como jefe del sector de seguridad en una empresa multinacional",
+                specialization = "Técnico en Electrónica",
             ),
             InstructorDto(
                 id = 2,
                 name = "Maximiliano De Pietro",
                 avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
-                bio = "",
+                bio = "Desarrollador Senior - Escritor y divulgador de conocimientos informáticos.",
                 experience = "10 años en desarrollo móvil",
                 specialization = "Android & Kotlin",
             ),
@@ -39,8 +39,8 @@ object MockDataSource {
                 id = 3,
                 name = "Heliana Vera",
                 avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/29698686.jpg?1592002555",
-                bio = "",
-                experience = "10 años en desarrollo móvil",
+                bio = "Licenciada en Bellas Artes - Docente en Universidad de Bellas Artes - Artista Gráfica",
+                experience = "Coordinadora de grupos a cargo del desarrollo de interfaces",
                 specialization =
                     "Diseño de interfaces, Diseño gráfico, Community manager, " +
                         "Gestión en publicidad gráfica televisiva",
@@ -56,9 +56,18 @@ object MockDataSource {
                         "OwmGaQl_Nt8K6PN1bITIzMFIPUN_LmqU2-nkzTjb7NPpxw&_nc_zt=24&_nc_ht=scontent." +
                         "feze9-1.fna&_nc_gid=kQFpPqxKUxhoi93SwriHhA&oh=00_AfPrrq5odr6RG4hkSr1Z1PCX" +
                         "-nQFJ5O5HAlLHm_2IwAnVw&oe=68885ED2",
-                bio = "",
+                bio = "Escritor y compositor - Guitarrista y Manager de La Banda Del Fondo - Ganador de Carlos Gardel de Oro 2023",
                 experience = "Guitarrista y compositor",
                 specialization = "Guitarra, Lenguaje musical, Producción musical",
+            ),
+            InstructorDto(
+                id = 5,
+                name = "Federico Cipeli",
+                avatarUrl =
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZCtiyXTcBj5PVCAy_KeRF26uuwbWpybr_Jw&s",
+                bio = "Licenciado en Matemática - Desarrollador de Teoremas Físicos y Matemáticos",
+                experience = "Gerente del Laboratorio Matemático de la UnLaM",
+                specialization = "Teoría de Números y Álgebra",
             ),
         )
 
@@ -741,7 +750,7 @@ object MockDataSource {
                     thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiVyh8b7FBPv0486JEWFRHPuji-dRNpvBWw&s",
                     rating = 4.7,
                     price = 200.0,
-                    instructors = listOf(instructorsDto[1]),
+                    instructors = listOf(instructorsDto[5]),
                     categories = listOf(categoriesDto[3]),
                     schedule =
                         listOf(
