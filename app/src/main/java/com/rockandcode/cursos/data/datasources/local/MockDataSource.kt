@@ -16,9 +16,24 @@ import com.rockandcode.cursos.data.models.VideoItemDto
 object MockDataSource {
     val instructorsDto =
         listOf(
-            InstructorDto(id = 1, name = "Juan Perez", avatarUrl = "https://.../juan.png", bio = ""),
-            InstructorDto(id = 2, name = "Maria Lopez", avatarUrl = "https://.../maria.png", bio = ""),
-            InstructorDto(id = 3, name = "Vera Heliana Karen", avatarUrl = "https://.../maria.png", bio = ""),
+            InstructorDto(
+                id = 1,
+                name = "Juan Perez",
+                avatarUrl = "https://.../juan.png",
+                bio = "",
+            ),
+            InstructorDto(
+                id = 2,
+                name = "Maria Lopez",
+                avatarUrl = "https://.../maria.png",
+                bio = "",
+            ),
+            InstructorDto(
+                id = 3,
+                name = "Vera Heliana Karen",
+                avatarUrl = "https://.../maria.png",
+                bio = "",
+            ),
         )
 
     val categoriesDto =
@@ -27,7 +42,9 @@ object MockDataSource {
                 id = 1,
                 name = "Android",
                 imageUrl =
-                    "https://images.cults3d.com/veaKRfRlS0ejW7ZecLQIAX-712M=/516x516/filters:no_upscale():format(webp)/https://fbi.cults3d.com/uploaders/33634176/illustration-file/dfe3e06f-3b35-49c2-babe-e8705e9bdd52/ANDROID-LOGO-1.png",
+                    "https://images.cults3d.com/veaKRfRlS0ejW7ZecLQIAX-712M=/516x516/" +
+                        "filters:no_upscale():format(webp)/https://fbi.cults3d.com/uploaders" +
+                        "/33634176/illustration-file/dfe3e06f-3b35-49c2-babe-e8705e9bdd52/ANDROID-LOGO-1.png",
             ),
             CategoryDto(
                 id = 2,
@@ -111,9 +128,21 @@ object MockDataSource {
 
     val levelsDto =
         listOf(
-            CourseLevelDto(id = 11, name = "Principiante", description = "Curso para personas sin experiencia previa"),
-            CourseLevelDto(id = 12, name = "Intermedio", description = "Para quienes tienen conocimientos básicos"),
-            CourseLevelDto(id = 13, name = "Avanzado", description = "Curso para usuarios avanzados"),
+            CourseLevelDto(
+                id = 11,
+                name = "Principiante",
+                description = "Curso para personas sin experiencia previa",
+            ),
+            CourseLevelDto(
+                id = 12,
+                name = "Intermedio",
+                description = "Para quienes tienen conocimientos básicos",
+            ),
+            CourseLevelDto(
+                id = 13,
+                name = "Avanzado",
+                description = "Curso para usuarios avanzados",
+            ),
         )
 
     val coursesDto: List<CourseDto>
@@ -128,7 +157,8 @@ object MockDataSource {
                             "de la interfaz de usuario en Android. Dale vida rápidamente a tu app con " +
                             "menos código, herramientas poderosas y API de Kotlin intuitivas.",
                     thumbnailUrl =
-                        "https://dropinblog.net/cdn-cgi/image/fit=scale-down,width=1400/34249715/files/kotlin-y-jetpack-compose.png",
+                        "https://dropinblog.net/cdn-cgi/image/fit=scale-down,width=1400" +
+                            "/34249715/files/kotlin-y-jetpack-compose.png",
                     rating = 3.5,
                     price = 250.0,
                     instructors = instructorsDto,
@@ -515,36 +545,216 @@ object MockDataSource {
 
     val medalsDto =
         listOf(
-            RangeMedalDto(id = 11, name = "Nivel 1", description = "Completaste hasta 100 puntos", icon = "🏆", threshold = 0),
-            RangeMedalDto(id = 12, name = "Nivel 2", description = "Completaste más de 500 puntos", icon = "🏆", threshold = 500),
-            RangeMedalDto(id = 13, name = "Nivel 3", description = "Completaste más de 1000 puntos", icon = "🏆", threshold = 1000),
-            RangeMedalDto(id = 13, name = "Nivel 4", description = "Completaste más de 1500 puntos", icon = "🏆", threshold = 1500),
-            RangeMedalDto(id = 13, name = "Nivel 5", description = "Completaste más de 2000 puntos", icon = "🏆", threshold = 2000),
-            RangeMedalDto(id = 13, name = "Nivel 6", description = "Completaste más de 2500 puntos", icon = "🏆", threshold = 2500),
-            RangeMedalDto(id = 13, name = "Nivel 7", description = "Completaste más de 3000 puntos", icon = "🏆", threshold = 3000),
-            RangeMedalDto(id = 13, name = "Nivel 8", description = "Completaste más de 3500 puntos", icon = "🏆", threshold = 3500),
-            RangeMedalDto(id = 13, name = "Nivel 9", description = "Completaste más de 4000 puntos", icon = "🏆", threshold = 4000),
-            RangeMedalDto(id = 13, name = "Nivel 10", description = "Completaste más de 4500 puntos", icon = "🏆", threshold = 4500),
-            RangeMedalDto(id = 13, name = "Nivel 11", description = "Completaste más de 5000 puntos", icon = "🏆", threshold = 5000),
-            RangeMedalDto(id = 13, name = "Nivel 12", description = "Completaste más de 5500 puntos", icon = "🏆", threshold = 5500),
-            RangeMedalDto(id = 13, name = "Nivel 13", description = "Completaste más de 6000 puntos", icon = "🏆", threshold = 6000),
-            RangeMedalDto(id = 13, name = "Nivel 14", description = "Completaste más de 6500 puntos", icon = "🏆", threshold = 6500),
-            RangeMedalDto(id = 13, name = "Nivel 15", description = "Completaste más de 7000 puntos", icon = "🏆", threshold = 7000),
-            RangeMedalDto(id = 13, name = "Nivel 16", description = "Completaste más de 7500 puntos", icon = "🏆", threshold = 7500),
-            RangeMedalDto(id = 13, name = "Nivel 17", description = "Completaste más de 8000 puntos", icon = "🏆", threshold = 8000),
-            RangeMedalDto(id = 13, name = "Nivel 18", description = "Completaste más de 8500 puntos", icon = "🏆", threshold = 8500),
-            RangeMedalDto(id = 13, name = "Nivel 19", description = "Completaste más de 9000 puntos", icon = "🏆", threshold = 9000),
-            RangeMedalDto(id = 13, name = "Nivel 20", description = "Completaste más de 9500 puntos", icon = "🏆", threshold = 9500),
-            RangeMedalDto(id = 13, name = "Nivel 21", description = "Completaste más de 10000 puntos", icon = "🏆", threshold = 10000),
-            RangeMedalDto(id = 13, name = "Nivel 22", description = "Completaste más de 10500 puntos", icon = "🏆", threshold = 10500),
-            RangeMedalDto(id = 13, name = "Nivel 23", description = "Completaste más de 11000 puntos", icon = "🏆", threshold = 11000),
-            RangeMedalDto(id = 13, name = "Nivel 24", description = "Completaste más de 11500 puntos", icon = "🏆", threshold = 11500),
-            RangeMedalDto(id = 13, name = "Nivel 25", description = "Completaste más de 12000 puntos", icon = "🏆", threshold = 12000),
-            RangeMedalDto(id = 13, name = "Nivel 26", description = "Completaste más de 12500 puntos", icon = "🏆", threshold = 12500),
-            RangeMedalDto(id = 13, name = "Nivel 27", description = "Completaste más de 13000 puntos", icon = "🏆", threshold = 13000),
-            RangeMedalDto(id = 13, name = "Nivel 28", description = "Completaste más de 13500 puntos", icon = "🏆", threshold = 13500),
-            RangeMedalDto(id = 13, name = "Nivel 29", description = "Completaste más de 14000 puntos", icon = "🏆", threshold = 14000),
-            RangeMedalDto(id = 13, name = "Nivel 30", description = "Completaste más de 14500 puntos", icon = "🏆", threshold = 14500),
+            RangeMedalDto(
+                id = 11,
+                name = "Nivel 1",
+                description = "Completaste hasta 100 puntos",
+                icon = "🏆",
+                threshold = 0,
+            ),
+            RangeMedalDto(
+                id = 12,
+                name = "Nivel 2",
+                description = "Completaste más de 500 puntos",
+                icon = "🏆",
+                threshold = 500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 3",
+                description = "Completaste más de 1000 puntos",
+                icon = "🏆",
+                threshold = 1000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 4",
+                description = "Completaste más de 1500 puntos",
+                icon = "🏆",
+                threshold = 1500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 5",
+                description = "Completaste más de 2000 puntos",
+                icon = "🏆",
+                threshold = 2000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 6",
+                description = "Completaste más de 2500 puntos",
+                icon = "🏆",
+                threshold = 2500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 7",
+                description = "Completaste más de 3000 puntos",
+                icon = "🏆",
+                threshold = 3000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 8",
+                description = "Completaste más de 3500 puntos",
+                icon = "🏆",
+                threshold = 3500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 9",
+                description = "Completaste más de 4000 puntos",
+                icon = "🏆",
+                threshold = 4000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 10",
+                description = "Completaste más de 4500 puntos",
+                icon = "🏆",
+                threshold = 4500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 11",
+                description = "Completaste más de 5000 puntos",
+                icon = "🏆",
+                threshold = 5000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 12",
+                description = "Completaste más de 5500 puntos",
+                icon = "🏆",
+                threshold = 5500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 13",
+                description = "Completaste más de 6000 puntos",
+                icon = "🏆",
+                threshold = 6000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 14",
+                description = "Completaste más de 6500 puntos",
+                icon = "🏆",
+                threshold = 6500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 15",
+                description = "Completaste más de 7000 puntos",
+                icon = "🏆",
+                threshold = 7000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 16",
+                description = "Completaste más de 7500 puntos",
+                icon = "🏆",
+                threshold = 7500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 17",
+                description = "Completaste más de 8000 puntos",
+                icon = "🏆",
+                threshold = 8000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 18",
+                description = "Completaste más de 8500 puntos",
+                icon = "🏆",
+                threshold = 8500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 19",
+                description = "Completaste más de 9000 puntos",
+                icon = "🏆",
+                threshold = 9000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 20",
+                description = "Completaste más de 9500 puntos",
+                icon = "🏆",
+                threshold = 9500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 21",
+                description = "Completaste más de 10000 puntos",
+                icon = "🏆",
+                threshold = 10000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 22",
+                description = "Completaste más de 10500 puntos",
+                icon = "🏆",
+                threshold = 10500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 23",
+                description = "Completaste más de 11000 puntos",
+                icon = "🏆",
+                threshold = 11000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 24",
+                description = "Completaste más de 11500 puntos",
+                icon = "🏆",
+                threshold = 11500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 25",
+                description = "Completaste más de 12000 puntos",
+                icon = "🏆",
+                threshold = 12000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 26",
+                description = "Completaste más de 12500 puntos",
+                icon = "🏆",
+                threshold = 12500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 27",
+                description = "Completaste más de 13000 puntos",
+                icon = "🏆",
+                threshold = 13000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 28",
+                description = "Completaste más de 13500 puntos",
+                icon = "🏆",
+                threshold = 13500,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 29",
+                description = "Completaste más de 14000 puntos",
+                icon = "🏆",
+                threshold = 14000,
+            ),
+            RangeMedalDto(
+                id = 13,
+                name = "Nivel 30",
+                description = "Completaste más de 14500 puntos",
+                icon = "🏆",
+                threshold = 14500,
+            ),
         )
 
     var userDto =
