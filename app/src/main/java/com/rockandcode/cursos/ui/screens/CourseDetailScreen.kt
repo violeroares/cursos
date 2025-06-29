@@ -1,6 +1,6 @@
 package com.rockandcode.cursos.ui.screens
 
-import android.util.Log
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,12 +11,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -38,9 +42,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.rockandcode.cursos.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -97,6 +105,12 @@ fun CourseDetailScreen(
                 val course = uiState.course
                 val progress = uiState.userProgress?.percentCompleted(course) ?: 0.0
                 val watchedVideoIds = uiState.userProgress?.videoProgress?.map { it.videoId } ?: emptyList()
+                val videosToShow =
+                    if (uiState.isPurchased) {
+                        course.items
+                    } else {
+                        course.items.filter { it.isPreview }
+                    }.sortedBy { it.order }
 
                 Column(
                     modifier =
@@ -118,12 +132,18 @@ fun CourseDetailScreen(
                     )
                     Spacer(Modifier.height(8.dp))
                     Text(course.title, style = MaterialTheme.typography.headlineSmall)
+                    // Mostrar nivel del curso:
+                    Text(
+                        text = "Nivel: ${course.level.name}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(vertical = 4.dp),
+                    )
                     Spacer(Modifier.height(8.dp))
                     Text(course.description, style = MaterialTheme.typography.bodyMedium)
 
-                    Spacer(Modifier.height(16.dp))
-
                     if (uiState.isPurchased) {
+                        Spacer(Modifier.height(16.dp))
                         Text("Progreso: %.1f%%".format(progress))
                         LinearProgressIndicator(
                             progress = { (progress / 100f).toFloat() },
@@ -133,62 +153,185 @@ fun CourseDetailScreen(
                                     .padding(vertical = 8.dp),
                         )
 
-                        Spacer(Modifier.height(16.dp))
-                        Text("Videos", style = MaterialTheme.typography.titleMedium)
-                        Spacer(Modifier.height(8.dp))
-
-                        course.items.forEach { video ->
-                            val isWatched = watchedVideoIds.contains(video.id)
-                            Log.d("CourseDetailScreen", "Video ${video.id} isWatched=$isWatched")
+                        if (progress >= 100.0) {
+                            Spacer(Modifier.height(16.dp))
                             Card(
-                                modifier =
-                                    Modifier
-                                        .fillMaxWidth()
-                                        .padding(vertical = 4.dp)
-                                        .clickable {
-                                            viewModel.toggleWatched(course.id, video.id)
-                                        },
+                                modifier = Modifier.fillMaxWidth(),
                                 colors =
                                     CardDefaults.cardColors(
-                                        containerColor =
-                                            if (isWatched) {
-                                                MaterialTheme.colorScheme.primaryContainer
-                                            } else {
-                                                MaterialTheme.colorScheme.surfaceVariant
-                                            },
+                                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
                                     ),
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    AsyncImage(
-                                        model = course.thumbnailUrl,
-                                        contentDescription = course.title,
-                                        modifier =
-                                            Modifier
-                                                .width(100.dp)
-                                                .height(100.dp)
-                                                .clip(RoundedCornerShape(8.dp)),
-                                        contentScale = ContentScale.Crop,
+                                Row(
+                                    modifier = Modifier.padding(16.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.EmojiEvents,
+                                        contentDescription = "Certificado",
+                                        tint = MaterialTheme.colorScheme.primary,
+                                        modifier = Modifier.size(40.dp),
                                     )
-                                    Column(modifier = Modifier.padding(12.dp)) {
-                                        Text(
-                                            video.title,
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            modifier = Modifier.padding(vertical = 4.dp),
-                                        )
-                                        Text("Duración: ${video.durationSeconds} seg", style = MaterialTheme.typography.bodySmall)
-                                        if (isWatched) {
-                                            Text(
-                                                "✅  Visto",
-                                                color = Color.Green,
-                                                style = MaterialTheme.typography.bodySmall,
-                                                modifier = Modifier.padding(vertical = 8.dp),
-                                            )
-                                        }
+                                    Spacer(modifier = Modifier.width(12.dp))
+                                    Column {
+                                        Text("¡Felicitaciones!", style = MaterialTheme.typography.titleMedium)
+                                        Text("Completaste el curso y obtuviste un certificado 🎓")
+                                        // Optional future button
+                                        // Button(onClick = { /* Navegar al certificado */ }) {
+                                        //     Text("Ver certificado")
+                                        // }
                                     }
                                 }
                             }
                         }
-                    } else {
+                    }
+                    Spacer(Modifier.height(16.dp))
+                    Text("Videos", style = MaterialTheme.typography.titleMedium)
+                    Spacer(Modifier.height(8.dp))
+
+                    videosToShow.forEach { video ->
+                        val isWatched = watchedVideoIds.contains(video.id)
+
+                        Card(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp)
+                                    .clickable(
+                                        enabled = uiState.isPurchased,
+                                        onClick = { viewModel.toggleWatched(course.id, video.id) },
+                                    ),
+                            colors =
+                                CardDefaults.cardColors(
+                                    containerColor =
+                                        if (isWatched) {
+                                            MaterialTheme.colorScheme.primaryContainer
+                                        } else {
+                                            MaterialTheme.colorScheme.surfaceVariant
+                                        },
+                                ),
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                AsyncImage(
+                                    model = course.thumbnailUrl,
+                                    contentDescription = course.title,
+                                    modifier =
+                                        Modifier
+                                            .width(100.dp)
+                                            .height(100.dp)
+                                            .clip(RoundedCornerShape(8.dp)),
+                                    contentScale = ContentScale.Crop,
+                                )
+                                Column(modifier = Modifier.padding(12.dp)) {
+                                    Text(
+                                        video.title,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        modifier = Modifier.padding(vertical = 4.dp),
+                                    )
+                                    Text("Duración: ${video.durationSeconds} seg", style = MaterialTheme.typography.bodySmall)
+
+                                    if (uiState.isPurchased && isWatched) {
+                                        Text(
+                                            "✅  Visto",
+                                            color = Color.Green,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            modifier = Modifier.padding(vertical = 8.dp),
+                                        )
+                                    }
+
+                                    if (!uiState.isPurchased && video.isPreview) {
+                                        Text(
+                                            "🎬 Vista previa",
+                                            color = Color.Blue,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            modifier = Modifier.padding(top = 8.dp),
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (uiState.isPurchased && course.documents.isNotEmpty()) {
+                        Spacer(Modifier.height(24.dp))
+                        Text("Materiales del curso", style = MaterialTheme.typography.titleMedium)
+                        val context = LocalContext.current
+
+                        course.documents.forEach { doc ->
+                            val iconRes =
+                                when (doc.documentType.fileExtension?.lowercase()) {
+                                    "pdf" -> R.drawable.ic_pdf
+                                    "doc", "docx" -> R.drawable.ic_pdf
+                                    "xls", "xlsx" -> R.drawable.ic_pdf
+                                    "ppt", "pptx" -> R.drawable.ic_pdf
+                                    else -> R.drawable.ic_pdf
+                                }
+                            Row(
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            val intent = Intent(Intent.ACTION_VIEW, doc.url.toUri())
+                                            context.startActivity(intent)
+                                        }.padding(vertical = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                // Icon(Icons.Default.Description, contentDescription = null)
+                                Icon(painterResource(iconRes), contentDescription = doc.documentType.name)
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(doc.title, style = MaterialTheme.typography.bodyLarge)
+                                    // Text(doc.description, style = MaterialTheme.typography.bodySmall)
+                                }
+                                Icon(
+                                    imageVector = Icons.Default.Download, // o Icons.Outlined.Download
+                                    contentDescription = "Descargar",
+                                    tint = MaterialTheme.colorScheme.primary,
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(Modifier.height(16.dp))
+                    Text("Instructores", style = MaterialTheme.typography.titleMedium)
+                    Spacer(Modifier.height(8.dp))
+
+                    course.instructors.forEach { instructor ->
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(vertical = 4.dp),
+                        ) {
+                            AsyncImage(
+                                model = instructor.avatarUrl,
+                                contentDescription = instructor.name,
+                                modifier =
+                                    Modifier
+                                        .size(40.dp)
+                                        .clip(CircleShape),
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Column {
+                                Text(instructor.name, style = MaterialTheme.typography.bodyLarge)
+                                if (!instructor.bio.isNullOrEmpty()) {
+                                    Text(instructor.bio, style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+                                } else {
+                                    Text("Instructor experto", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+                                }
+                                instructor.specialization?.let {
+                                    Text(it, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.primary)
+                                }
+                            }
+                        }
+                    }
+
+                    if (!uiState.isPurchased) {
+                        Spacer(Modifier.height(24.dp))
+                        Text("Este curso incluye:", style = MaterialTheme.typography.titleMedium)
+                        Spacer(Modifier.height(8.dp))
+                        Text("✅ Acceso completo a todos los videos")
+                        Text("✅ Material descargable (PDF, ejercicios, guías)")
+                        Text("✅ Acceso de por vida al contenido")
+                        Text("✅ Certificado al finalizar")
                         Spacer(Modifier.height(24.dp))
                         Button(
                             onClick = { /* Comprar */ },
@@ -197,6 +340,8 @@ fun CourseDetailScreen(
                             Text("Comprar Curso - $${course.price}")
                         }
                     }
+
+                    Spacer(Modifier.height(48.dp))
                 }
             }
         }
