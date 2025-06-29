@@ -46,7 +46,7 @@ object MockDataSource {
                         "Gestión en publicidad gráfica televisiva",
             ),
             InstructorDto(
-                id = 3,
+                id = 4,
                 name = "Christian Olivera",
                 avatarUrl =
                     "https://scontent.feze9-1.fna.fbcdn.net/v/t1.6435-1" +
@@ -742,7 +742,7 @@ object MockDataSource {
                     rating = 4.7,
                     price = 200.0,
                     instructors = listOf(instructorsDto[1]),
-                    categories = listOf(categoriesDto[5]),
+                    categories = listOf(categoriesDto[3]),
                     schedule =
                         listOf(
                             ScheduleDto("Jueves", "17:00", "19:00"),
@@ -793,6 +793,341 @@ object MockDataSource {
                                 "Operaciones",
                                 "",
                                 1200,
+                                "https://video4.mp4",
+                                isPreview = false,
+                                order = 4,
+                            ),
+                        ),
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                ),
+                CourseDto(
+                    id = 6,
+                    title = "Base de Datos",
+                    description =
+                        "Curso donde aprenderás cómo armar tablas, insertar datos y hacer consultas",
+                    thumbnailUrl = "https://i.sstatic.net/OAcqg.png",
+                    rating = 3.2,
+                    price = 300.0,
+                    instructors = listOf(instructorsDto[3]),
+                    categories = listOf(categoriesDto[5]),
+                    schedule =
+                        listOf(
+                            ScheduleDto("Lunes", "20:00", "22:00"),
+                            ScheduleDto("Viernes", "20:00", "22:00"),
+                        ),
+                    totalStudents = 250,
+                    level = levelsDto[0],
+                    requirements = "No necesitas conocimientos previos",
+                    items =
+                        listOf(
+                            VideoItemDto(
+                                1,
+                                "Introducción a Base de Datos",
+                                "Componentes.",
+                                700,
+                                "https://video1.mp4",
+                                isPreview = true,
+                                order = 0,
+                            ),
+                            VideoItemDto(
+                                2,
+                                "Qué es una base de datos",
+                                "",
+                                1100,
+                                "https://video1.mp4",
+                                isPreview = false,
+                                order = 1,
+                            ),
+                            VideoItemDto(
+                                3,
+                                "Cómo guardar datos",
+                                "",
+                                1200,
+                                "https://video2.mp4",
+                                isPreview = false,
+                                order = 2,
+                            ),
+                            VideoItemDto(
+                                4,
+                                "Cómo modificar datos",
+                                "",
+                                900,
+                                "https://video3.mp4",
+                                isPreview = false,
+                                order = 3,
+                            ),
+                            VideoItemDto(
+                                5,
+                                "Realizar consultas",
+                                "",
+                                800,
+                                "https://video4.mp4",
+                                isPreview = false,
+                                order = 4,
+                            ),
+                            VideoItemDto(
+                                6,
+                                "Creación de tablas",
+                                "",
+                                200,
+                                "https://video5.mp4",
+                                isPreview = false,
+                                order = 5,
+                            ),
+                        ),
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                ),
+                CourseDto(
+                    id = 7,
+                    title = "Literatura clásica",
+                    description =
+                        "Una aventura por la historia de la literatura clásica y sus máximos exponentes",
+                    thumbnailUrl = "https://img.freepik.com/vector-premium/libro-viejo-blanco_87946-1711.jpg?w=360",
+                    rating = 4.2,
+                    price = 500.0,
+                    instructors = listOf(instructorsDto[2]),
+                    categories = listOf(categoriesDto[4]),
+                    schedule =
+                        listOf(
+                            ScheduleDto("Martes", "20:00", "22:00"),
+                            ScheduleDto("Jueves", "20:00", "22:00"),
+                        ),
+                    totalStudents = 250,
+                    level = levelsDto[1],
+                    requirements = "No necesitas conocimientos previos",
+                    items =
+                        listOf(
+                            VideoItemDto(
+                                1,
+                                "Los comienzos de la escrituras",
+                                "Primeros registros escritos.",
+                                800,
+                                "https://video1.mp4",
+                                isPreview = true,
+                                order = 0,
+                            ),
+                            VideoItemDto(
+                                2,
+                                "Recorrido por grandes obras",
+                                "",
+                                1100,
+                                "https://video1.mp4",
+                                isPreview = false,
+                                order = 1,
+                            ),
+                            VideoItemDto(
+                                3,
+                                "Autores influyentes",
+                                "",
+                                1500,
+                                "https://video2.mp4",
+                                isPreview = false,
+                                order = 2,
+                            ),
+                            VideoItemDto(
+                                4,
+                                "Herramientas y tips para una buena redacción",
+                                "",
+                                500,
+                                "https://video3.mp4",
+                                isPreview = false,
+                                order = 3,
+                            ),
+                            VideoItemDto(
+                                5,
+                                "El Quijote",
+                                "",
+                                700,
+                                "https://video4.mp4",
+                                isPreview = false,
+                                order = 4,
+                            ),
+                            VideoItemDto(
+                                6,
+                                "Capítulos y prólogos.",
+                                "",
+                                500,
+                                "https://video5.mp4",
+                                isPreview = false,
+                                order = 5,
+                            ),
+                        ),
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                ),
+                CourseDto(
+                    id = 8,
+                    title = "Diseño de Juegos",
+                    description =
+                        "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
+                    thumbnailUrl = "https://www.cokitos.com/wp-content/uploads/2022/12/pixel-art-pintar-ninos.jpg",
+                    rating = 4.8,
+                    price = 800.0,
+                    instructors = listOf(instructorsDto[3]),
+                    categories = listOf(categoriesDto[5]),
+                    schedule =
+                        listOf(
+                            ScheduleDto("Lunes", "18:00", "22:00"),
+                        ),
+                    totalStudents = 250,
+                    level = levelsDto[0],
+                    requirements = "No necesitas conocimientos previos",
+                    items =
+                        listOf(
+                            VideoItemDto(
+                                1,
+                                "Juegos clásicos",
+                                "Primeros registros escritos.",
+                                700,
+                                "https://video1.mp4",
+                                isPreview = true,
+                                order = 0,
+                            ),
+                            VideoItemDto(
+                                2,
+                                "Cómo crear un personaje",
+                                "",
+                                500,
+                                "https://video1.mp4",
+                                isPreview = false,
+                                order = 1,
+                            ),
+                            VideoItemDto(
+                                3,
+                                "Pantallas y escenarios",
+                                "",
+                                1500,
+                                "https://video2.mp4",
+                                isPreview = false,
+                                order = 2,
+                            ),
+                            VideoItemDto(
+                                4,
+                                "Crea una historia con una trama",
+                                "",
+                                900,
+                                "https://video3.mp4",
+                                isPreview = false,
+                                order = 3,
+                            ),
+                            VideoItemDto(
+                                5,
+                                "Cómo subir tu juego",
+                                "",
+                                450,
                                 "https://video4.mp4",
                                 isPreview = false,
                                 order = 4,
