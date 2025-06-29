@@ -733,6 +733,111 @@ object MockDataSource {
                         ),
                     requirements = "No necesitas conocimientos previos",
                 ),
+                CourseDto(
+                    id = 5,
+                    title = "Numeración",
+                    description =
+                        "Sistema de numeración decimal - Valor posicional - Ubicación en la recta numérica",
+                    thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiVyh8b7FBPv0486JEWFRHPuji-dRNpvBWw&s",
+                    rating = 4.7,
+                    price = 200.0,
+                    instructors = listOf(instructorsDto[1]),
+                    categories = listOf(categoriesDto[5]),
+                    schedule =
+                        listOf(
+                            ScheduleDto("Jueves", "17:00", "19:00"),
+                        ),
+                    totalStudents = 250,
+                    level = levelsDto[1],
+                    requirements = "No necesitas conocimientos previos",
+                    items =
+                        listOf(
+                            VideoItemDto(
+                                1,
+                                "Introducción a la Numeración",
+                                "Elementos numéricos.",
+                                400,
+                                "https://video1.mp4",
+                                isPreview = true,
+                                order = 0,
+                            ),
+                            VideoItemDto(
+                                2,
+                                "Valor del número de acuerdo a la posición",
+                                "",
+                                1000,
+                                "https://video1.mp4",
+                                isPreview = false,
+                                order = 1,
+                            ),
+                            VideoItemDto(
+                                3,
+                                "Cómo ubicar un número en la recta",
+                                "",
+                                1200,
+                                "https://video2.mp4",
+                                isPreview = false,
+                                order = 2,
+                            ),
+                            VideoItemDto(
+                                4,
+                                "Densidad de la recta numérica",
+                                "",
+                                1300,
+                                "https://video3.mp4",
+                                isPreview = false,
+                                order = 3,
+                            ),
+                            VideoItemDto(
+                                5,
+                                "Operaciones",
+                                "",
+                                1200,
+                                "https://video4.mp4",
+                                isPreview = false,
+                                order = 4,
+                            ),
+                        ),
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                ),
             )
 
     val medalsDto =
