@@ -21,18 +21,41 @@ object MockDataSource {
                 name = "Juan Perez",
                 avatarUrl = "https://.../juan.png",
                 bio = "",
+                experience = "",
+                specialization = "",
             ),
             InstructorDto(
                 id = 2,
-                name = "Maria Lopez",
-                avatarUrl = "https://.../maria.png",
+                name = "Maximiliano De Pietro",
+                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
                 bio = "",
+                experience = "10 años en desarrollo móvil",
+                specialization = "Android & Kotlin",
             ),
             InstructorDto(
                 id = 3,
-                name = "Vera Heliana Karen",
-                avatarUrl = "https://.../maria.png",
+                name = "Heliana Vera",
+                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/29698686.jpg?1592002555",
                 bio = "",
+                experience = "10 años en desarrollo móvil",
+                specialization =
+                    "Diseño de interfaces, Diseño gráfico, Community manager, " +
+                        "Gestión en publicidad gráfica televisiva",
+            ),
+            InstructorDto(
+                id = 3,
+                name = "Christian Olivera",
+                avatarUrl =
+                    "https://scontent.feze9-1.fna.fbcdn.net/v/t1.6435-1" +
+                        "/106390814_10221562122258462_2961036162880397966_n.jpg?" +
+                        "stp=dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=e99d92&_nc_ohc=" +
+                        "1kHK53hT0E4Q7kNvwE0uu74&_nc_oc=AdkYZAi4BLNO7I7tyJePK6fN_0IRqa8IWvWnNpd1zx" +
+                        "OwmGaQl_Nt8K6PN1bITIzMFIPUN_LmqU2-nkzTjb7NPpxw&_nc_zt=24&_nc_ht=scontent." +
+                        "feze9-1.fna&_nc_gid=kQFpPqxKUxhoi93SwriHhA&oh=00_AfPrrq5odr6RG4hkSr1Z1PCX" +
+                        "-nQFJ5O5HAlLHm_2IwAnVw&oe=68885ED2",
+                bio = "",
+                experience = "Guitarrista y compositor",
+                specialization = "Guitarra, Lenguaje musical, Producción musical",
             ),
         )
 
@@ -161,7 +184,7 @@ object MockDataSource {
                             "/34249715/files/kotlin-y-jetpack-compose.png",
                     rating = 3.5,
                     price = 250.0,
-                    instructors = instructorsDto,
+                    instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[0], categoriesDto[4]),
                     schedule =
                         listOf(
@@ -290,7 +313,7 @@ object MockDataSource {
                     thumbnailUrl = "https://compraco.com.br/cdn/shop/articles/O-que-e-SQL-Server.jpg?v=1716456631",
                     rating = 3.7,
                     price = 250.0,
-                    instructors = instructorsDto,
+                    instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[5]),
                     schedule =
                         listOf(
@@ -386,7 +409,7 @@ object MockDataSource {
                     thumbnailUrl = "https://www.fasabri.com/wp-content/uploads/diseno-de-interfaz-de-usuario.jpg",
                     rating = 4.8,
                     price = 250.0,
-                    instructors = instructorsDto,
+                    instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[5]),
                     schedule =
                         listOf(
@@ -483,7 +506,7 @@ object MockDataSource {
                             "/2019/12/solfeo_teoria_musica_III-portada-1.jpg?w=750&ssl=1",
                     rating = 5.0,
                     price = 250.0,
-                    instructors = instructorsDto,
+                    instructors = listOf(instructorsDto[3]),
                     categories = listOf(categoriesDto[5]),
                     schedule =
                         listOf(

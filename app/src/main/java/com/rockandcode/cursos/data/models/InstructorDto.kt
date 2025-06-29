@@ -7,6 +7,8 @@ data class InstructorDto(
     val name: String,
     val avatarUrl: String,
     val bio: String?,
+    val experience: String?,
+    val specialization: String?,
 ) {
-    fun toDomain() = Instructor(id, name, avatarUrl, bio)
+    fun toDomain() = Instructor(id, name, avatarUrl, bio, experience, specialization)
 }
