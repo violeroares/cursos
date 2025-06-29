@@ -50,6 +50,8 @@ import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.R
+import com.rockandcode.cursos.ui.components.CourseIncludes
+import com.rockandcode.cursos.ui.components.CourseRequirements
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -340,10 +342,13 @@ fun CourseDetailScreen(
                         Spacer(Modifier.height(24.dp))
                         Text("Este curso incluye:", style = MaterialTheme.typography.titleMedium)
                         Spacer(Modifier.height(8.dp))
-                        Text("✅ Acceso completo a todos los videos")
-                        Text("✅ Material descargable (PDF, ejercicios, guías)")
-                        Text("✅ Acceso de por vida al contenido")
-                        Text("✅ Certificado al finalizar")
+                        CourseIncludes(course.includes)
+//                        Text("✅ Acceso completo a todos los videos")
+//                        Text("✅ Material descargable (PDF, ejercicios, guías)")
+//                        Text("✅ Acceso de por vida al contenido")
+//                        Text("✅ Certificado al finalizar")
+                        Spacer(Modifier.height(8.dp))
+                        CourseRequirements(course.requirements)
                         Spacer(Modifier.height(24.dp))
                         Button(
                             onClick = { /* Comprar */ },
@@ -351,6 +356,7 @@ fun CourseDetailScreen(
                         ) {
                             Text("Comprar Curso - $${course.price}")
                         }
+                        Spacer(Modifier.height(24.dp))
                     }
 
                     Spacer(Modifier.height(48.dp))

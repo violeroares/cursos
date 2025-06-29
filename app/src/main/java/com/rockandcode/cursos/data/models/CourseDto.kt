@@ -1,6 +1,8 @@
 package com.rockandcode.cursos.data.models
 
 import com.rockandcode.cursos.domain.models.Course
+import com.rockandcode.cursos.domain.models.CourseIncludeItem
+import com.rockandcode.cursos.domain.models.IncludeType
 
 data class CourseDto(
     val id: Int,
@@ -16,6 +18,8 @@ data class CourseDto(
     val items: List<VideoItemDto>,
     val documents: List<CourseDocumentDto> = emptyList(),
     val level: CourseLevelDto,
+    val includes: List<CourseIncludeItemDto>,
+    val requirements: String,
 ) {
     fun toDomain() =
         Course(
@@ -32,5 +36,18 @@ data class CourseDto(
             items.map { it.toDomain() },
             documents.map { it.toDomain() },
             level = level.toDomain(),
+            includes =
+                includes.map {
+                    CourseIncludeItem(
+                        type =
+                            IncludeType(
+                                id = it.type.id,
+                                name = it.type.name,
+                                iconUrl = it.type.iconUrl,
+                            ),
+                        description = it.description,
+                    )
+                },
+            requirements = requirements,
         )
 }
