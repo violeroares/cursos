@@ -1,6 +1,7 @@
 package com.rockandcode.cursos.data.datasources.local
 
 import com.rockandcode.cursos.data.models.CategoryDto
+import com.rockandcode.cursos.data.models.CertificateDto
 import com.rockandcode.cursos.data.models.CourseDocumentDto
 import com.rockandcode.cursos.data.models.CourseDto
 import com.rockandcode.cursos.data.models.CourseLevelDto
@@ -166,6 +167,12 @@ object MockDataSource {
                 name = "Avanzado",
                 description = "Curso para usuarios avanzados",
             ),
+        )
+
+    val certificates =
+        listOf(
+            CertificateDto(courseId = 1, userId = 1, "https://example.com/certs/user1_course1.pdf"),
+            CertificateDto(courseId = 2, userId = 1, "https://example.com/certs/user1_course2.pdf"),
         )
 
     val coursesDto: List<CourseDto>
@@ -790,28 +797,30 @@ object MockDataSource {
                     "displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/" +
                     "1516975788273?e=1756339200&v=beta&t=dTJAHsnbk-fdLN3HAodYrenD14vPxwg2OYP0nlIyI3I",
             purchasedCourses = coursesDto.take(2),
-            progressByCourse =
-                listOf(
-                    UserCourseProgressDto(
-                        courseId = 1,
-                        videoProgress =
-                            listOf(
-                                UserProgressDto(1, 300), // completo video 1
-                                UserProgressDto(2, 600), // mitad video 2
-                            ),
-                    ),
-                    UserCourseProgressDto(
-                        courseId = 2,
-                        videoProgress =
-                            listOf(
-                                UserProgressDto(1, 300),
-                                UserProgressDto(2, 1200),
-                                UserProgressDto(3, 1500),
-                                UserProgressDto(4, 1500),
-                            ),
-                    ),
-                ),
-            score = 5400,
+//            progressByCourse =
+//                listOf(
+//                    UserCourseProgressDto(
+//                        courseId = 1,
+//                        videoProgress =
+//                            listOf(
+//                                UserProgressDto(1, 300), // completo video 1
+//                                UserProgressDto(2, 600), // mitad video 2
+//                            ),
+//                    ),
+//                    UserCourseProgressDto(
+//                        courseId = 2,
+//                        videoProgress =
+//                            listOf(
+//                                UserProgressDto(1, 300),
+//                                UserProgressDto(2, 1200),
+//                                UserProgressDto(3, 1500),
+//                                UserProgressDto(4, 1500),
+//                            ),
+//                    ),
+//                ),
+//            score = 5400,
+            progressByCourse = emptyList(),
+            score = 0,
             preferredCategories = categoriesDto.take(2),
         )
 
@@ -833,6 +842,24 @@ object MockDataSource {
             )
     }
 
+//    fun toggleVideoWatched(
+//        courseId: Int,
+//        videoId: Int,
+//    ) {
+//        val videoList = coursesDto.find { it.id == courseId }?.items ?: return
+//        val videoDuration = videoList.find { it.id == videoId }?.durationSeconds ?: return
+//
+//        val progressList = pprogressByCourse.getOrPut(courseId) { mutableListOf() }
+//        val existingIndex = progressList.indexOfFirst { it.videoId == videoId }
+//
+//        if (existingIndex >= 0) {
+//            progressList.removeAt(existingIndex)
+//        } else {
+//            progressList.add(UserProgressDto(videoId, videoDuration))
+//        }
+//        syncUserProgress()
+//    }
+
     fun toggleVideoWatched(
         courseId: Int,
         videoId: Int,
@@ -842,12 +869,25 @@ object MockDataSource {
 
         val progressList = pprogressByCourse.getOrPut(courseId) { mutableListOf() }
         val existingIndex = progressList.indexOfFirst { it.videoId == videoId }
+        val puntosPorSegundo = 1 // ejemplo: 1 punto por segundo
 
         if (existingIndex >= 0) {
+            // Si el video ya estaba marcado como visto, se desmarca
             progressList.removeAt(existingIndex)
+            // Opcional: restar puntos al desmarcar el video
+            val puntosRestados = videoDuration * puntosPorSegundo
+            userDto = userDto.copy(score = maxOf(0, userDto.score - puntosRestados))
         } else {
+            // Marcar el video como visto
             progressList.add(UserProgressDto(videoId, videoDuration))
+
+            // Sumar puntos
+            val puntosGanados = videoDuration * puntosPorSegundo
+
+            // Actualizar score del usuario
+            userDto = userDto.copy(score = userDto.score + puntosGanados)
         }
+
         syncUserProgress()
     }
 }

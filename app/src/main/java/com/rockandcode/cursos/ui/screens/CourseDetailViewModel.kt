@@ -2,8 +2,10 @@ package com.rockandcode.cursos.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rockandcode.cursos.domain.models.Certificate
 import com.rockandcode.cursos.domain.models.Course
 import com.rockandcode.cursos.domain.models.UserCourseProgress
+import com.rockandcode.cursos.domain.usecases.GetCertificateUseCase
 import com.rockandcode.cursos.domain.usecases.GetCourseByIdUseCase
 import com.rockandcode.cursos.domain.usecases.GetUserCourseProgressUseCase
 import com.rockandcode.cursos.domain.usecases.IsCoursePurchasedUseCase
@@ -15,6 +17,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -46,9 +49,13 @@ class CourseDetailViewModel
         private val getUserCourseProgressUseCase: GetUserCourseProgressUseCase,
         private val isCoursePurchasedUseCase: IsCoursePurchasedUseCase,
         private val toggleVideoWatchedUseCase: ToggleVideoWatchedUseCase,
+        private val getCertificateUseCase: GetCertificateUseCase,
     ) : ViewModel() {
         private val _uiState = MutableStateFlow(CourseDetailState(CourseDetailUiState.Loading))
         val uiState: StateFlow<CourseDetailState> = _uiState.asStateFlow()
+
+        private val _certificate = MutableStateFlow<Certificate?>(null)
+        val certificate: StateFlow<Certificate?> = _certificate.asStateFlow()
 
         fun loadCourse(courseId: Int) {
             viewModelScope.launch {
@@ -57,6 +64,10 @@ class CourseDetailViewModel
                     .combine(isCoursePurchasedUseCase(courseId)) { course, isPurchased ->
                         course to isPurchased
                     }.combine(getUserCourseProgressUseCase(courseId)) { (course, isPurchased), progress ->
+                        Triple(course, isPurchased, progress)
+                    }.combine(flow { emit(getCertificateUseCase(1, courseId)) }) { triple, certificate ->
+                        val (course, isPurchased, progress) = triple
+                        _certificate.value = certificate
                         CourseDetailUiState.Success(course, isPurchased, progress) as CourseDetailUiState
                     }.onStart { emit(CourseDetailUiState.Loading) }
                     .catch { e -> emit(CourseDetailUiState.Error("Error cargando el curso: ${e.message}")) }

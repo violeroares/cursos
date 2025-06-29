@@ -5,6 +5,7 @@ import com.rockandcode.cursos.domain.repositories.IUserRepository
 import com.rockandcode.cursos.domain.usecases.GetAllCategoriesUseCase
 import com.rockandcode.cursos.domain.usecases.GetAllMedalsUseCase
 import com.rockandcode.cursos.domain.usecases.GetBestRatedCoursesUseCase
+import com.rockandcode.cursos.domain.usecases.GetCertificateUseCase
 import com.rockandcode.cursos.domain.usecases.GetCourseByIdUseCase
 import com.rockandcode.cursos.domain.usecases.GetCurrentUserUseCase
 import com.rockandcode.cursos.domain.usecases.GetMostBoughtCoursesUseCase
@@ -56,4 +57,7 @@ object UseCaseModule {
     @Provides
     fun provideToggleVideoWatchedUseCase(userRepository: IUserRepository): ToggleVideoWatchedUseCase =
         ToggleVideoWatchedUseCase(userRepository)
+
+    @Provides
+    fun provideGetCertificateUseCase(courseRepository: ICourseRepository): GetCertificateUseCase = GetCertificateUseCase(courseRepository)
 }

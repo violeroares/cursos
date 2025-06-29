@@ -2,6 +2,7 @@ package com.rockandcode.cursos.data.repositories
 
 import com.rockandcode.cursos.data.datasources.local.MockDataSource
 import com.rockandcode.cursos.domain.models.Category
+import com.rockandcode.cursos.domain.models.Certificate
 import com.rockandcode.cursos.domain.models.Course
 import com.rockandcode.cursos.domain.models.RangeMedal
 import com.rockandcode.cursos.domain.repositories.ICourseRepository
@@ -22,6 +23,15 @@ class CourseRepositoryMock : ICourseRepository {
     override fun getAllCategories(): Flow<List<Category>> = flowOf(MockDataSource.categoriesDto.map { it.toDomain() })
 
     override fun getAllMedals(): Flow<List<RangeMedal>> = flowOf(MockDataSource.medalsDto.map { it.toDomain() })
+
+    override suspend fun getCertificateForCourse(
+        userId: Int,
+        courseId: Int,
+    ): Certificate? =
+        MockDataSource.certificates
+            .find {
+                it.userId == userId && it.courseId == courseId
+            }?.toDomain()
 
 //    private val _courses = MutableStateFlow(MockDataSource.coursesDto.map { it.toDomain() })
 //
