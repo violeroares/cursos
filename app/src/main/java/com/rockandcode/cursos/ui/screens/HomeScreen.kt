@@ -10,13 +10,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -24,7 +22,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -37,6 +34,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.CategoryChip
 import com.rockandcode.cursos.ui.components.CourseCard
+import com.rockandcode.cursos.ui.components.HomeSearchBar
 
 @Composable
 fun HomeScreen(
@@ -73,10 +71,9 @@ fun HomeScreen(
                             .padding(horizontal = 16.dp),
                     contentPadding = paddingValues,
                 ) {
+                    // Top bar: avatar + notificación
                     item {
                         Spacer(modifier = Modifier.height(16.dp))
-
-                        // Top bar: avatar + notificación
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
@@ -94,33 +91,27 @@ fun HomeScreen(
                                 )
                             }
                         }
-
+                    }
+                    // Barra de búsqueda + filtro
+                    item {
                         Spacer(modifier = Modifier.height(16.dp))
-
-                        // Barra de búsqueda + filtro
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.fillMaxWidth(),
-                        ) {
-                            TextField(
-                                value = "",
-                                onValueChange = {},
-                                placeholder = { Text("Buscar cursos") },
-                                modifier = Modifier.weight(1f),
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            IconButton(onClick = { /* abrir filtros */ }) {
-                                Icon(Icons.Default.FilterList, contentDescription = "Filtros")
-                            }
-                        }
-
+                        HomeSearchBar(
+                            bought,
+                            onSearchItemSelected = { course -> controller.navigate("courseDetail/${course.id}") },
+                            onFilterClick = {
+                                controller.navigate("filters")
+                            },
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 0.dp),
+                        )
+                    }
+                    // Cursos populares
+                    item {
                         Spacer(modifier = Modifier.height(24.dp))
-
                         Text("Populares", style = MaterialTheme.typography.titleMedium)
                         Spacer(modifier = Modifier.height(8.dp))
-                    }
-
-                    item {
                         LazyRow {
                             items(bought) { course ->
                                 CourseCard(course = course, onClick = {
@@ -128,25 +119,23 @@ fun HomeScreen(
                                 })
                             }
                         }
-
+                    }
+                    // Categorías
+                    item {
                         Spacer(modifier = Modifier.height(24.dp))
                         Text("Categorías", style = MaterialTheme.typography.titleMedium)
                         Spacer(modifier = Modifier.height(8.dp))
-                    }
-
-                    item {
                         LazyRow {
                             items(categories) { category ->
                                 CategoryChip(category)
                             }
                         }
-
+                    }
+                    // Cursos mejor valorados
+                    item {
                         Spacer(modifier = Modifier.height(24.dp))
                         Text("Mejor valorados", style = MaterialTheme.typography.titleMedium)
                         Spacer(modifier = Modifier.height(8.dp))
-                    }
-
-                    item {
                         LazyRow {
                             items(rated) { course ->
                                 CourseCard(
