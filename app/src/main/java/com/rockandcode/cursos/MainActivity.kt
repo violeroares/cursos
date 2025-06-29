@@ -25,6 +25,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.rockandcode.cursos.ui.components.BottomBar
 import com.rockandcode.cursos.ui.components.Splash
+import com.rockandcode.cursos.ui.screens.CourseDetailScreen
 import com.rockandcode.cursos.ui.screens.HomeScreen
 import com.rockandcode.cursos.ui.screens.ProfileScreen
 import com.rockandcode.cursos.ui.theme.CursosTheme
@@ -94,6 +95,11 @@ fun MainScreen() {
 
                     composable("profile") {
                         ProfileScreen(controller = controller)
+                    }
+
+                    composable("courseDetail/{courseId}") { backStack ->
+                        val courseId = backStack.arguments?.getString("courseId")?.toIntOrNull() ?: return@composable
+                        CourseDetailScreen(courseId = courseId, onBack = { controller.popBackStack() })
                     }
                 }
             }
