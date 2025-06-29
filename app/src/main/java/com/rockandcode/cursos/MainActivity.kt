@@ -88,7 +88,7 @@ fun MainScreen() {
                     composable("home") {
                         HomeScreen(
                             modifier = Modifier.padding(paddingValue),
-                            // controller = controller,
+                            controller = controller,
                         )
                     }
 
