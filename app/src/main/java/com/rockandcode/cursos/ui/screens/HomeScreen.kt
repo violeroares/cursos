@@ -1,7 +1,9 @@
 package com.rockandcode.cursos.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -14,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.CircularProgressIndicator
@@ -22,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -33,11 +37,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.CategoryChip
+import com.rockandcode.cursos.ui.components.HomeCategoryCard
 import com.rockandcode.cursos.ui.components.HomeCourseCard
+import com.rockandcode.cursos.ui.components.IncompleteCourseCard
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
     controller: NavHostController,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
@@ -45,7 +51,7 @@ fun HomeScreen(
 
     when (val uiState = state) {
         is HomeUiState.Loading -> {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
             }
         }
@@ -59,79 +65,155 @@ fun HomeScreen(
             val bought = uiState.mostBoughtCourses
             val rated = uiState.bestRatedCourses
             val categories = uiState.categories
+
+            val incompleteCourses =
+                user.progressByCourse.mapNotNull { progress ->
+                    val course = user.purchasedCourses.find { it.id == progress.courseId }
+                    if (course != null) {
+                        val percent = progress.percentCompleted(course)
+                        if (percent < 100.0) {
+                            course to percent
+                        } else {
+                            null
+                        }
+                    } else {
+                        null
+                    }
+                }
+
+            val randomIncomplete = incompleteCourses.randomOrNull()
+            val headerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 contentWindowInsets = WindowInsets(0),
             ) { paddingValues ->
                 LazyColumn(
                     modifier =
-                        modifier
-                            .fillMaxSize()
-                            .padding(horizontal = 16.dp),
+                        Modifier
+                            .fillMaxSize(),
+                    // .padding(horizontal = 16.dp),
                     contentPadding = paddingValues,
                 ) {
                     // Top bar: avatar + notificación
                     item {
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween,
+                        Column(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .background(
+                                        color = headerColor,
+                                        shape =
+                                            RoundedCornerShape(
+                                                bottomStart = 24.dp,
+                                                bottomEnd = 24.dp,
+                                            ),
+                                    ).padding(16.dp),
                         ) {
-                            AsyncImage(
-                                model = user.avatarUrl,
-                                contentDescription = "Avatar",
-                                modifier = Modifier.size(48.dp).clip(CircleShape),
-                            )
-                            IconButton(onClick = { /* abrir notificaciones */ }) {
-                                Icon(
-                                    Icons.Default.Notifications,
-                                    contentDescription = "Notificaciones",
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                            ) {
+                                AsyncImage(
+                                    model = user.avatarUrl,
+                                    contentDescription = "Avatar",
+                                    modifier = Modifier.size(48.dp).clip(CircleShape),
                                 )
+                                IconButton(onClick = { /* abrir notificaciones */ }) {
+                                    Icon(
+                                        Icons.Default.Notifications,
+                                        contentDescription = "Notificaciones",
+                                    )
+                                }
                             }
                         }
                     }
-                    // Cursos populares
-                    item {
-                        Spacer(modifier = Modifier.height(24.dp))
-                        Text("Populares", style = MaterialTheme.typography.titleMedium)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        LazyRow {
-                            items(bought) { course ->
-                                HomeCourseCard(course = course, onClick = {
-                                    controller.navigate("courseDetail/${course.id}")
-                                })
-                            }
-                        }
-                    }
-                    // Categorías
-                    item {
-                        Spacer(modifier = Modifier.height(24.dp))
-                        Text("Categorías", style = MaterialTheme.typography.titleMedium)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        LazyRow {
-                            items(categories) { category ->
-                                CategoryChip(category)
-                            }
-                        }
-                    }
-                    // Cursos mejor valorados
-                    item {
-                        Spacer(modifier = Modifier.height(24.dp))
-                        Text("Mejor valorados", style = MaterialTheme.typography.titleMedium)
-                        Spacer(modifier = Modifier.height(8.dp))
-                        LazyRow {
-                            items(rated) { course ->
-                                HomeCourseCard(
+                    // Curso incompleto
+                    randomIncomplete?.let { (course, percent) ->
+                        item {
+                            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                                Spacer(modifier = Modifier.height(24.dp))
+                                Text(
+                                    "¡Seguí aprendiendo!",
+                                    style = MaterialTheme.typography.titleMedium,
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                IncompleteCourseCard(
                                     course = course,
+                                    percent = percent,
                                     onClick = {
                                         controller.navigate("courseDetail/${course.id}")
                                     },
                                 )
                             }
                         }
+                    }
+                    // Categorías preferidas del usuario
+                    if (user.preferredCategories.isNotEmpty()) {
+                        item {
+                            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                                Spacer(modifier = Modifier.height(24.dp))
+                                Text(
+                                    "Categorías recomendadas",
+                                    style = MaterialTheme.typography.titleMedium,
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                LazyRow {
+                                    items(user.preferredCategories) { category ->
+                                        HomeCategoryCard(category)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // Cursos populares
+                    item {
+                        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Text("Cursos populares", style = MaterialTheme.typography.titleMedium)
+                            Spacer(modifier = Modifier.height(8.dp))
+                            LazyRow {
+                                items(bought) { course ->
+                                    HomeCourseCard(course = course, onClick = {
+                                        controller.navigate("courseDetail/${course.id}")
+                                    })
+                                }
+                            }
+                        }
+                    }
+                    // Categorías
+                    item {
+                        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Text("Categorías", style = MaterialTheme.typography.titleMedium)
+                            Spacer(modifier = Modifier.height(8.dp))
+                            LazyRow {
+                                items(categories) { category ->
+                                    CategoryChip(category)
+                                }
+                            }
+                        }
+                    }
+                    // Cursos mejor valorados
+                    item {
+                        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                            Spacer(modifier = Modifier.height(24.dp))
+                            Text("Los más valorados", style = MaterialTheme.typography.titleMedium)
+                            Spacer(modifier = Modifier.height(8.dp))
+                            LazyRow {
+                                items(rated) { course ->
+                                    HomeCourseCard(
+                                        course = course,
+                                        onClick = {
+                                            controller.navigate("courseDetail/${course.id}")
+                                        },
+                                    )
+                                }
+                            }
 
-                        Spacer(modifier = Modifier.height(32.dp))
+                            Spacer(modifier = Modifier.height(120.dp))
+                        }
                     }
                 }
             }

@@ -85,7 +85,7 @@ object MockDataSource {
                 id = 2,
                 name = "C#",
                 imageUrl =
-                    "https://img.icons8.com/?size=100&id=Fycm8TUhWmFU&format=png&color=000000",
+                    "https://tse1.mm.bing.net/th/id/OIP.6uu3Rqk7mBz-QdXn13I3LwHaFm?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
             ),
             CategoryDto(
                 id = 3,
@@ -96,15 +96,14 @@ object MockDataSource {
             CategoryDto(
                 id = 4,
                 name = "Lengua",
-                imageUrl =
-                    "https://media.licdn.com/dms/image/v2/C5603AQHgiNd9G09-7A/profile-" +
-                        "displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/" +
-                        "1516975788273?e=1756339200&v=beta&t=dTJAHsnbk-fdLN3HAodYrenD14vPxwg2OYP0nlIyI3I",
+                imageUrl = "https://i.ytimg.com/vi/EYB_89VS4Ro/maxresdefault.jpg",
             ),
             CategoryDto(
                 id = 5,
                 name = "Desarrollo",
-                imageUrl = "https://.../dev.png",
+                imageUrl =
+                    "https://www.fundaciontelefonica.com/wp-content/" +
+                        "uploads/2016/12/programacion-empleo-digital-730x400.jpg",
             ),
             CategoryDto(
                 id = 6,
@@ -114,17 +113,19 @@ object MockDataSource {
             CategoryDto(
                 id = 7,
                 name = "Música",
-                imageUrl = "https://cibccaracas.wordpress.com/wp-content/uploads/2016/05/musica_y_placer.jpg",
+                imageUrl = "https://tse1.mm.bing.net/th/id/OIP.OktleYl_GzTaQ1Z4jG_FzwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
             ),
             CategoryDto(
                 id = 8,
                 name = "Diseño de interfaces",
-                imageUrl = "https://.../dev.png",
+                imageUrl =
+                    "https://cdn.udax.edu.mx/blog/2025-01-28/" +
+                        "diseno-de-interfaces-para-aplicaciones-de-redes-sociales-principios-y-tendencias_1.jpg",
             ),
             CategoryDto(
                 id = 9,
                 name = "Java",
-                imageUrl = "https://.../dev.png",
+                imageUrl = "https://tse2.mm.bing.net/th/id/OIP.ZCY2oHuX4Pb-8yRkY1xHxwHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
             ),
         )
 
@@ -1432,7 +1433,13 @@ object MockDataSource {
 //            score = 5400,
             progressByCourse = emptyList(),
             score = 0,
-            preferredCategories = categoriesDto.take(2),
+            preferredCategories =
+                listOf(
+                    categoriesDto[0],
+                    categoriesDto[8],
+                    categoriesDto[3],
+                    categoriesDto[7],
+                ),
         )
 
     @Suppress("ktlint:standard:backing-property-naming")
