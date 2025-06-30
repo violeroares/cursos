@@ -41,8 +41,11 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -75,6 +78,17 @@ fun SearchScreen(
     val allCategories by viewModel.categories.collectAsState(initial = emptyList())
     val filteredCourses by viewModel.filteredCourses.collectAsState(initial = emptyList())
     val courseCountByCategory by viewModel.courseCountByCategory.collectAsState()
+
+    val navBackStackEntry = remember { controller.currentBackStackEntry }
+    val categoryIdFromNav = navBackStackEntry?.arguments?.getInt("categoryId")?.takeIf { it != -1 }
+    val appliedCategoryFromNav = remember(categoryIdFromNav) { mutableStateOf(false) }
+
+    LaunchedEffect(categoryIdFromNav) {
+        if (categoryIdFromNav != null && !appliedCategoryFromNav.value) {
+            viewModel.setCategories(setOf(categoryIdFromNav))
+            appliedCategoryFromNav.value = true
+        }
+    }
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
