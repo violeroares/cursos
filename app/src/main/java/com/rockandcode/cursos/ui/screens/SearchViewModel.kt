@@ -2,6 +2,7 @@ package com.rockandcode.cursos.ui.screens
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rockandcode.cursos.domain.models.Category
 import com.rockandcode.cursos.domain.models.Course
 import com.rockandcode.cursos.domain.models.CourseFilter
 import com.rockandcode.cursos.domain.models.OrderBy
@@ -98,6 +99,38 @@ class SearchViewModel
 
                 filtered
             }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+        val categories: StateFlow<List<Category>> =
+            repo
+                .getCourses()
+                .map { courses ->
+                    courses
+                        .flatMap { it.categories }
+                        .distinctBy { it.id }
+                        .sortedBy { it.name }
+                }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+        fun onCategoryToggled(categoryId: Int) {
+            _filter.update { current ->
+                val updated =
+                    if (categoryId in current.categories) {
+                        current.categories - categoryId
+                    } else {
+                        current.categories + categoryId
+                    }
+                current.copy(categories = updated)
+            }
+        }
+
+        val courseCountByCategory: StateFlow<Map<Int, Int>> =
+            repo
+                .getCourses()
+                .map { courses ->
+                    courses
+                        .flatMap { it.categories.map { cat -> cat.id to 1 } }
+                        .groupBy { it.first }
+                        .mapValues { it.value.size }
+                }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyMap())
 
         // Métodos para actualizar los filtros
         fun setSearchQuery(query: String) {

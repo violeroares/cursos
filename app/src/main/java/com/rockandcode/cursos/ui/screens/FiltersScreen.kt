@@ -88,14 +88,14 @@ fun FiltersScreen(
             Spacer(Modifier.height(8.dp))
 
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                allCategories.forEachIndexed { index, category ->
+                allCategories.forEach { category ->
                     FilterChip(
-                        selected = selectedCategories.contains(index),
+                        selected = selectedCategories.contains(category.id),
                         onClick = {
-                            if (selectedCategories.contains(index)) {
-                                selectedCategories.remove(index)
+                            if (selectedCategories.contains(category.id)) {
+                                selectedCategories.remove(category.id)
                             } else {
-                                selectedCategories.add(index)
+                                selectedCategories.add(category.id)
                             }
                         },
                         label = { Text(category.name) },
@@ -119,7 +119,7 @@ fun FiltersScreen(
                         selected = selectedOrder == order,
                         onClick = { setSelectedOrder(order) },
                     )
-                    Text(order.name.lowercase().replaceFirstChar { it.uppercase() })
+                    Text(order.label)
                 }
             }
 

@@ -1,11 +1,5 @@
 package com.rockandcode.cursos.domain.models
 
-// data class CourseFilter(
-//    val categoryId: Int? = null,
-//    val minDuration: Int? = null,
-//    val maxDuration: Int? = null,
-// )
-
 data class CourseFilter(
     val categories: Set<Int> = emptySet(), // ids de categorías seleccionadas
     val orderBy: OrderBy = OrderBy.NONE,
@@ -14,9 +8,11 @@ data class CourseFilter(
     val searchQuery: String = "",
 )
 
-enum class OrderBy {
-    NONE,
-    POPULAR,
-    RATED,
-    TITLE,
+enum class OrderBy(
+    val label: String,
+) {
+    NONE("Ninguno"),
+    POPULAR("Más comprados"),
+    RATED("Mejor calificación"),
+    TITLE("Titulo"),
 }

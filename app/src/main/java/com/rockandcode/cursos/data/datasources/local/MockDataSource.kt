@@ -509,7 +509,7 @@ object MockDataSource {
                     rating = 4.8,
                     price = 250.0,
                     instructors = listOf(instructorsDto[2]),
-                    categories = listOf(categoriesDto[5]),
+                    categories = listOf(categoriesDto[7]),
                     schedule =
                         listOf(
                             ScheduleDto("Miercoles", "19:00", "23:00"),
@@ -646,7 +646,7 @@ object MockDataSource {
                     rating = 5.0,
                     price = 250.0,
                     instructors = listOf(instructorsDto[3]),
-                    categories = listOf(categoriesDto[5]),
+                    categories = listOf(categoriesDto[6]),
                     schedule =
                         listOf(
                             ScheduleDto("Miercoles", "19:00", "23:00"),
@@ -752,7 +752,7 @@ object MockDataSource {
                     rating = 4.7,
                     price = 200.0,
                     instructors = listOf(instructorsDto[4]),
-                    categories = listOf(categoriesDto[3]),
+                    categories = listOf(categoriesDto[2]),
                     schedule =
                         listOf(
                             ScheduleDto("Jueves", "17:00", "19:00"),
@@ -972,7 +972,7 @@ object MockDataSource {
                     rating = 4.2,
                     price = 500.0,
                     instructors = listOf(instructorsDto[2]),
-                    categories = listOf(categoriesDto[4]),
+                    categories = listOf(categoriesDto[3]),
                     schedule =
                         listOf(
                             ScheduleDto("Martes", "20:00", "22:00"),
@@ -1087,7 +1087,7 @@ object MockDataSource {
                     rating = 4.8,
                     price = 800.0,
                     instructors = listOf(instructorsDto[1]),
-                    categories = listOf(categoriesDto[5]),
+                    categories = listOf(categoriesDto[4]),
                     schedule =
                         listOf(
                             ScheduleDto("Lunes", "18:00", "22:00"),
