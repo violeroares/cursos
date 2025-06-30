@@ -161,7 +161,10 @@ fun HomeScreen(
                                 Spacer(modifier = Modifier.height(8.dp))
                                 LazyRow {
                                     items(user.preferredCategories) { category ->
-                                        HomeCategoryCard(category)
+                                        HomeCategoryCard(
+                                            category,
+                                            onClick = { controller.navigate(("search?categoryId=${category.id}")) },
+                                        )
                                     }
                                 }
                             }
@@ -190,7 +193,10 @@ fun HomeScreen(
                             Spacer(modifier = Modifier.height(8.dp))
                             LazyRow {
                                 items(categories) { category ->
-                                    CategoryChip(category)
+                                    CategoryChip(
+                                        category,
+                                        onClick = { controller.navigate(("search?categoryId=${category.id}")) },
+                                    )
                                 }
                             }
                         }

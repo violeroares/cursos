@@ -1,5 +1,6 @@
 package com.rockandcode.cursos.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -21,12 +22,16 @@ import coil.compose.AsyncImage
 import com.rockandcode.cursos.domain.models.Category
 
 @Composable
-fun CategoryChip(category: Category) {
+fun CategoryChip(
+    category: Category,
+    onClick: (Category) -> Unit = {},
+) {
     Card(
         modifier =
             Modifier
                 .padding(end = 8.dp)
-                .height(80.dp),
+                .height(80.dp)
+                .clickable { onClick(category) },
         shape = RoundedCornerShape(16.dp),
     ) {
         Row(

@@ -20,10 +20,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.rockandcode.cursos.ui.components.BottomBar
 import com.rockandcode.cursos.ui.components.Splash
 import com.rockandcode.cursos.ui.screens.CourseDetailScreen
@@ -106,7 +108,16 @@ fun MainScreen() {
                         CourseDetailScreen(courseId = courseId, onBack = { controller.popBackStack() })
                     }
 
-                    composable("search") {
+                    composable(
+                        route = "search?categoryId={categoryId}",
+                        arguments =
+                            listOf(
+                                navArgument("categoryId") {
+                                    type = NavType.IntType
+                                    defaultValue = -1 // -1 como valor por defecto para "sin categoría"
+                                },
+                            ),
+                    ) {
                         SearchScreen(controller)
                     }
 
