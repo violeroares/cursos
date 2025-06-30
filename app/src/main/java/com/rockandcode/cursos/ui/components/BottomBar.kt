@@ -2,8 +2,10 @@ package com.rockandcode.cursos.ui.components
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -30,8 +32,20 @@ fun BottomBar(controller: NavHostController) {
             onClick = { controller.navigate("home") },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Home,
+                    imageVector = Icons.Outlined.Home,
                     contentDescription = "Home",
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            },
+        )
+
+        NavigationBarItem(
+            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "search" } == true,
+            onClick = { controller.navigate("search") },
+            icon = {
+                Icon(
+                    imageVector = Icons.Outlined.Search,
+                    contentDescription = "Search",
                     tint = MaterialTheme.colorScheme.primary,
                 )
             },
@@ -42,7 +56,19 @@ fun BottomBar(controller: NavHostController) {
             onClick = { controller.navigate("profile") },
             icon = {
                 Icon(
-                    imageVector = Icons.Default.Person,
+                    imageVector = Icons.Outlined.FavoriteBorder,
+                    contentDescription = "Profile",
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            },
+        )
+
+        NavigationBarItem(
+            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "profile" } == true,
+            onClick = { controller.navigate("profile") },
+            icon = {
+                Icon(
+                    imageVector = Icons.Outlined.Person,
                     contentDescription = "Profile",
                     tint = MaterialTheme.colorScheme.primary,
                 )

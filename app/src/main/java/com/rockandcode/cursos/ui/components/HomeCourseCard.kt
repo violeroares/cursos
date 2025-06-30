@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -20,14 +21,15 @@ import coil.compose.AsyncImage
 import com.rockandcode.cursos.domain.models.Course
 
 @Composable
-fun CourseCard(
+fun HomeCourseCard(
     course: Course,
     onClick: () -> Unit = {},
 ) {
     Card(
         modifier =
             Modifier
-                .fillMaxWidth()
+                .width(240.dp)
+                .padding(end = 12.dp)
                 .clickable { onClick() },
         shape = RoundedCornerShape(12.dp),
     ) {
