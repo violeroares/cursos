@@ -33,8 +33,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.CategoryChip
-import com.rockandcode.cursos.ui.components.CourseCard
-import com.rockandcode.cursos.ui.components.HomeSearchBar
+import com.rockandcode.cursos.ui.components.HomeCourseCard
 
 @Composable
 fun HomeScreen(
@@ -92,21 +91,6 @@ fun HomeScreen(
                             }
                         }
                     }
-                    // Barra de búsqueda + filtro
-                    item {
-                        Spacer(modifier = Modifier.height(16.dp))
-                        HomeSearchBar(
-                            bought,
-                            onSearchItemSelected = { course -> controller.navigate("courseDetail/${course.id}") },
-                            onFilterClick = {
-                                controller.navigate("filters")
-                            },
-                            modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 0.dp),
-                        )
-                    }
                     // Cursos populares
                     item {
                         Spacer(modifier = Modifier.height(24.dp))
@@ -114,7 +98,7 @@ fun HomeScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         LazyRow {
                             items(bought) { course ->
-                                CourseCard(course = course, onClick = {
+                                HomeCourseCard(course = course, onClick = {
                                     controller.navigate("courseDetail/${course.id}")
                                 })
                             }
@@ -138,7 +122,7 @@ fun HomeScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         LazyRow {
                             items(rated) { course ->
-                                CourseCard(
+                                HomeCourseCard(
                                     course = course,
                                     onClick = {
                                         controller.navigate("courseDetail/${course.id}")

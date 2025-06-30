@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -29,6 +30,8 @@ import com.rockandcode.cursos.ui.screens.CourseDetailScreen
 import com.rockandcode.cursos.ui.screens.FiltersScreen
 import com.rockandcode.cursos.ui.screens.HomeScreen
 import com.rockandcode.cursos.ui.screens.ProfileScreen
+import com.rockandcode.cursos.ui.screens.SearchScreen
+import com.rockandcode.cursos.ui.screens.SearchViewModel
 import com.rockandcode.cursos.ui.theme.CursosTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -61,7 +64,7 @@ fun MainScreen() {
     val isAuthenticated by remember { mutableStateOf(true) }
     val navBackStackEntry = controller.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-    val hideBottomBarRoutes = listOf("profile", "courseDetail")
+    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters")
     val shouldHideBottomBarAndFav =
         hideBottomBarRoutes.any { prefix -> currentRoute?.startsWith(prefix) == true }
 
@@ -103,14 +106,18 @@ fun MainScreen() {
                         CourseDetailScreen(courseId = courseId, onBack = { controller.popBackStack() })
                     }
 
-                    composable("filters") {
-                        FiltersScreen(
-                            onBack = { controller.popBackStack() },
-                            onApplyFilters = { selectedFilter ->
-                                // viewModel.applyFilters(selectedFilter)
-                                controller.popBackStack()
-                            },
-                        )
+                    composable("search") {
+                        SearchScreen(controller)
+                    }
+
+                    composable("filters") { backStackEntry ->
+                        // Importante: obtener el ViewModel **del backStackEntry anterior**
+                        val parentEntry =
+                            remember(backStackEntry) {
+                                controller.getBackStackEntry("search")
+                            }
+                        val searchViewModel: SearchViewModel = hiltViewModel(parentEntry)
+                        FiltersScreen(controller = controller, searchViewModel = searchViewModel)
                     }
                 }
             }
