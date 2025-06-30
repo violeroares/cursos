@@ -44,7 +44,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -81,13 +80,17 @@ fun SearchScreen(
 
     val navBackStackEntry = remember { controller.currentBackStackEntry }
     val categoryIdFromNav = navBackStackEntry?.arguments?.getInt("categoryId")?.takeIf { it != -1 }
-    val appliedCategoryFromNav = remember(categoryIdFromNav) { mutableStateOf(false) }
+    // val appliedCategoryFromNav = remember(categoryIdFromNav) { mutableStateOf(false) }
 
-    LaunchedEffect(categoryIdFromNav) {
-        if (categoryIdFromNav != null && !appliedCategoryFromNav.value) {
-            viewModel.setCategories(setOf(categoryIdFromNav))
-            appliedCategoryFromNav.value = true
-        }
+//    LaunchedEffect(categoryIdFromNav) {
+//        if (categoryIdFromNav != null && !appliedCategoryFromNav.value) {
+//            viewModel.setCategories(setOf(categoryIdFromNav))
+//            appliedCategoryFromNav.value = true
+//        }
+//    }
+
+    LaunchedEffect(Unit) {
+        viewModel.applyInitialCategoryIfNeeded(categoryIdFromNav ?: -1)
     }
 
     Scaffold(
@@ -131,7 +134,7 @@ fun SearchScreen(
                                 )
                             },
                             trailingIcon = {
-                                IconButton(onClick = { controller.navigate("filters") }) {
+                                IconButton(onClick = { controller.navigate("search/filters") }) {
                                     BadgedBox(
                                         badge = {
                                             if (filtersActive > 0) {

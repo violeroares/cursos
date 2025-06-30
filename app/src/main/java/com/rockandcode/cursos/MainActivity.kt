@@ -121,11 +121,20 @@ fun MainScreen() {
                         SearchScreen(controller)
                     }
 
-                    composable("filters") { backStackEntry ->
-                        // Importante: obtener el ViewModel **del backStackEntry anterior**
+//                    composable("filters") { backStackEntry ->
+//                        // Importante: obtener el ViewModel **del backStackEntry anterior**
+//                        val parentEntry =
+//                            remember(backStackEntry) {
+//                                controller.getBackStackEntry("search")
+//                            }
+//                        val searchViewModel: SearchViewModel = hiltViewModel(parentEntry)
+//                        FiltersScreen(controller = controller, searchViewModel = searchViewModel)
+//                    }
+
+                    composable("search/filters") { backStackEntry ->
                         val parentEntry =
                             remember(backStackEntry) {
-                                controller.getBackStackEntry("search")
+                                controller.getBackStackEntry("search?categoryId={categoryId}")
                             }
                         val searchViewModel: SearchViewModel = hiltViewModel(parentEntry)
                         FiltersScreen(controller = controller, searchViewModel = searchViewModel)
