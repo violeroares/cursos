@@ -7,6 +7,7 @@ import com.rockandcode.cursos.domain.models.IncludeType
 data class CourseDto(
     val id: Int,
     val title: String,
+    val subTitle: String,
     val description: String,
     val thumbnailUrl: String,
     val rating: Double,
@@ -21,7 +22,8 @@ data class CourseDto(
     val documents: List<CourseDocumentDto> = emptyList(),
     val level: CourseLevelDto,
     val includes: List<CourseIncludeItemDto>,
-    val requirements: String,
+    val requirements: List<String> = emptyList(),
+    val author: InstructorDto,
     val createdAt: String,
     val updatedAt: String,
     val topics: List<String> = emptyList(),
@@ -31,6 +33,7 @@ data class CourseDto(
         Course(
             id,
             title,
+            subTitle = subTitle,
             description,
             thumbnailUrl,
             rating,
