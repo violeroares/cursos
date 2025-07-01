@@ -36,7 +36,7 @@ fun HomeCourseCard(
                 .width(250.dp)
                 .height(280.dp) // fijo para que la mitad vertical tenga sentido
                 .clickable { onClick() },
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(16.dp),
     ) {
         Column {
             // Imagen sin padding que ocupa la mitad superior
