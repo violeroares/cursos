@@ -1,6 +1,7 @@
 package com.rockandcode.cursos.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -20,6 +22,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -109,7 +112,7 @@ fun HomeScreen(
                                     ).padding(top = 24.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            // LINEA 1: avatar izq, texto centro, notificaciones derecha
+                            // Línea 1: avatar, "Acadexa", notificaciones
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 verticalAlignment = Alignment.CenterVertically,
@@ -129,15 +132,35 @@ fun HomeScreen(
                                     Icon(Icons.Default.Notifications, contentDescription = "Notificaciones")
                                 }
                             }
-                            // LINEA 2: texto centro "Bienvenido user.name" + avatar centro (más grande)
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                modifier = Modifier.fillMaxWidth(),
+
+                            // Línea 2: barra de búsqueda simulada
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Box(
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .height(48.dp)
+                                        .clip(RoundedCornerShape(24.dp))
+                                        .background(MaterialTheme.colorScheme.surface)
+                                        .clickable {
+                                            // Navegá a la pantalla de búsqueda real
+                                            controller.navigate("search")
+                                        }.padding(horizontal = 16.dp),
+                                contentAlignment = Alignment.CenterStart,
                             ) {
-                                Text(
-                                    text = user.name,
-                                    style = MaterialTheme.typography.bodySmall,
-                                )
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(
+                                        Icons.Default.Search,
+                                        contentDescription = "Buscar",
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(
+                                        text = "Buscar cursos...",
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                    )
+                                }
                             }
                         }
                     }
