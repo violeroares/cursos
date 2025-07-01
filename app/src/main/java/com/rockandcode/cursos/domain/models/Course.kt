@@ -6,6 +6,7 @@ data class Course(
     val description: String,
     val thumbnailUrl: String,
     val rating: Double,
+    val ratingCount: Int = 0,
     val price: Double,
     val instructors: List<Instructor>,
     val categories: List<Category>,
@@ -16,4 +17,9 @@ data class Course(
     val level: CourseLevel,
     val includes: List<CourseIncludeItem>,
     val requirements: String,
+    val author: Instructor? = instructors.firstOrNull(),
+    val createdAt: String,
+    val updatedAt: String,
+    val topics: List<String> = emptyList(),
+    val tags: List<String> = emptyList(),
 )

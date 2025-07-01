@@ -9,4 +9,9 @@ data class User(
     val progressByCourse: List<UserCourseProgress>,
     val score: Int,
     val preferredCategories: List<Category>,
+    val birthDate: String,
+    val addressStreet: String,
+    val addressNumber: String,
+    val phoneNumber: String,
+    val gender: String,
 )
