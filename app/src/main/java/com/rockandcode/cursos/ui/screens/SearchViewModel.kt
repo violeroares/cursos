@@ -157,6 +157,12 @@ class SearchViewModel
             _filter.value = CourseFilter()
         }
 
+        fun applyInitialCategoryIfNeeded(categoryId: Int) {
+            if (_filter.value.categories.isEmpty() && categoryId != -1) {
+                _filter.value = _filter.value.copy(categories = setOf(categoryId))
+            }
+        }
+
         // Badge con cantidad de filtros activos
         val activeFiltersCount: StateFlow<Int> =
             filter
