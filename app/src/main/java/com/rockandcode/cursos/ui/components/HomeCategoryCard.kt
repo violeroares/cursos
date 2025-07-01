@@ -32,7 +32,6 @@ fun HomeCategoryCard(
             modifier
                 .width(200.dp)
                 .height(120.dp)
-                .padding(8.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .clickable { onClick(category) },
     ) {

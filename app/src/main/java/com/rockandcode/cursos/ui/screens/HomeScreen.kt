@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -32,6 +33,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -102,14 +105,11 @@ fun HomeScreen(
                                     .fillMaxWidth()
                                     .background(
                                         color = headerColor,
-                                        shape =
-                                            RoundedCornerShape(
-                                                bottomStart = 24.dp,
-                                                bottomEnd = 24.dp,
-                                            ),
-                                    ).padding(16.dp),
+                                        shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
+                                    ).padding(top = 24.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            Spacer(modifier = Modifier.height(16.dp))
+                            // LINEA 1: avatar izq, texto centro, notificaciones derecha
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 verticalAlignment = Alignment.CenterVertically,
@@ -118,14 +118,26 @@ fun HomeScreen(
                                 AsyncImage(
                                     model = user.avatarUrl,
                                     contentDescription = "Avatar",
-                                    modifier = Modifier.size(48.dp).clip(CircleShape),
+                                    modifier = Modifier.size(40.dp).clip(CircleShape),
+                                    contentScale = ContentScale.Crop,
+                                )
+                                Text(
+                                    text = "Acadexa",
+                                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                                 )
                                 IconButton(onClick = { /* abrir notificaciones */ }) {
-                                    Icon(
-                                        Icons.Default.Notifications,
-                                        contentDescription = "Notificaciones",
-                                    )
+                                    Icon(Icons.Default.Notifications, contentDescription = "Notificaciones")
                                 }
+                            }
+                            // LINEA 2: texto centro "Bienvenido user.name" + avatar centro (más grande)
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
+                                Text(
+                                    text = user.name,
+                                    style = MaterialTheme.typography.bodySmall,
+                                )
                             }
                         }
                     }
@@ -152,14 +164,19 @@ fun HomeScreen(
                     // Categorías preferidas del usuario
                     if (user.preferredCategories.isNotEmpty()) {
                         item {
-                            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                            Column {
                                 Spacer(modifier = Modifier.height(24.dp))
                                 Text(
                                     "Categorías recomendadas",
                                     style = MaterialTheme.typography.titleMedium,
+                                    modifier = Modifier.padding(horizontal = 16.dp),
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
-                                LazyRow {
+                                LazyRow(
+                                    contentPadding = PaddingValues(horizontal = 16.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                    modifier = Modifier.fillMaxWidth(),
+                                ) {
                                     items(user.preferredCategories) { category ->
                                         HomeCategoryCard(
                                             category,
@@ -172,26 +189,46 @@ fun HomeScreen(
                     }
                     // Cursos populares
                     item {
-                        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                        Column {
                             Spacer(modifier = Modifier.height(24.dp))
-                            Text("Cursos populares", style = MaterialTheme.typography.titleMedium)
+                            Text(
+                                "Cursos populares",
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                            )
                             Spacer(modifier = Modifier.height(8.dp))
-                            LazyRow {
+                            LazyRow(
+                                contentPadding = PaddingValues(horizontal = 16.dp),
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
                                 items(bought) { course ->
-                                    HomeCourseCard(course = course, onClick = {
-                                        controller.navigate("courseDetail/${course.id}")
-                                    })
+                                    HomeCourseCard(
+                                        course = course,
+                                        onClick = {
+                                            controller.navigate("courseDetail/${course.id}")
+                                        },
+                                        // isPurchased = uiState.purchasedCourseIds.contains(course.id),
+                                    )
                                 }
                             }
                         }
                     }
                     // Categorías
                     item {
-                        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                        Column {
                             Spacer(modifier = Modifier.height(24.dp))
-                            Text("Categorías", style = MaterialTheme.typography.titleMedium)
+                            Text(
+                                "Categorías",
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                            )
                             Spacer(modifier = Modifier.height(8.dp))
-                            LazyRow {
+                            LazyRow(
+                                contentPadding = PaddingValues(horizontal = 16.dp),
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
                                 items(categories) { category ->
                                     CategoryChip(
                                         category,
@@ -203,17 +240,26 @@ fun HomeScreen(
                     }
                     // Cursos mejor valorados
                     item {
-                        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                        Column {
                             Spacer(modifier = Modifier.height(24.dp))
-                            Text("Los más valorados", style = MaterialTheme.typography.titleMedium)
+                            Text(
+                                "Los más valorados",
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                            )
                             Spacer(modifier = Modifier.height(8.dp))
-                            LazyRow {
+                            LazyRow(
+                                contentPadding = PaddingValues(horizontal = 16.dp),
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
                                 items(rated) { course ->
                                     HomeCourseCard(
                                         course = course,
                                         onClick = {
                                             controller.navigate("courseDetail/${course.id}")
                                         },
+                                        // isPurchased = uiState.purchasedCourseIds.contains(course.id),
                                     )
                                 }
                             }

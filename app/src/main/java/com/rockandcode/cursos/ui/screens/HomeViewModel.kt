@@ -26,6 +26,7 @@ sealed interface HomeUiState {
         val mostBoughtCourses: List<Course>,
         val bestRatedCourses: List<Course>,
         val categories: List<Category>,
+        val purchasedCourseIds: Set<Int> = emptySet(),
     ) : HomeUiState
 
     data class Error(
@@ -60,7 +61,15 @@ class HomeViewModel
                     if (user == null) {
                         HomeUiState.Error("Usuario no disponible")
                     } else {
-                        HomeUiState.Success(user, mostBought, bestRated, categories)
+                        val purchasedCourseIds = user.purchasedCourses.map { it.id }.toSet()
+
+                        HomeUiState.Success(
+                            user = user,
+                            mostBoughtCourses = mostBought,
+                            bestRatedCourses = bestRated,
+                            categories = categories,
+                            purchasedCourseIds = purchasedCourseIds,
+                        )
                     }
                 }.catch {
                     _uiState.value = HomeUiState.Error("Error al cargar el Home")
