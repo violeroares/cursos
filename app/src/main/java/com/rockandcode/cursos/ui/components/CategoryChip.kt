@@ -29,7 +29,6 @@ fun CategoryChip(
     Card(
         modifier =
             Modifier
-                .padding(end = 8.dp)
                 .height(80.dp)
                 .clickable { onClick(category) },
         shape = RoundedCornerShape(16.dp),
