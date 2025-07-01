@@ -204,6 +204,7 @@ object MockDataSource {
                     rating = 4.9,
                     ratingCount = 4,
                     price = 250.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[0], categoriesDto[4]),
                     schedule =
@@ -387,6 +388,7 @@ object MockDataSource {
                     rating = 4.1,
                     ratingCount = 24,
                     price = 250.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[5]),
                     schedule =
@@ -537,6 +539,7 @@ object MockDataSource {
                     rating = 5.0,
                     ratingCount = 130,
                     price = 250.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[7]),
                     schedule =
@@ -688,6 +691,7 @@ object MockDataSource {
                     rating = 4.8,
                     ratingCount = 8,
                     price = 250.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[3]),
                     categories = listOf(categoriesDto[6]),
                     schedule =
@@ -812,6 +816,7 @@ object MockDataSource {
                     rating = 4.7,
                     ratingCount = 5,
                     price = 200.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[4]),
                     categories = listOf(categoriesDto[2]),
                     schedule =
@@ -932,6 +937,7 @@ object MockDataSource {
                     rating = 3.2,
                     ratingCount = 4,
                     price = 300.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[5]),
                     schedule =
@@ -1061,6 +1067,7 @@ object MockDataSource {
                     rating = 4.2,
                     ratingCount = 48,
                     price = 500.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[3]),
                     schedule =
@@ -1193,6 +1200,7 @@ object MockDataSource {
                     rating = 4.1,
                     ratingCount = 12,
                     price = 800.0,
+                    isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[4]),
                     schedule =

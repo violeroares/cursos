@@ -8,6 +8,7 @@ data class Course(
     val rating: Double,
     val ratingCount: Int = 0,
     val price: Double,
+    val isFree: Boolean,
     val instructors: List<Instructor>,
     val categories: List<Category>,
     val schedule: List<Schedule>,
