@@ -3,6 +3,7 @@ package com.rockandcode.cursos.domain.models
 data class Course(
     val id: Int,
     val title: String,
+    val subTitle: String,
     val description: String,
     val thumbnailUrl: String,
     val rating: Double,
@@ -17,7 +18,7 @@ data class Course(
     val documents: List<CourseDocument> = emptyList(),
     val level: CourseLevel,
     val includes: List<CourseIncludeItem>,
-    val requirements: String,
+    val requirements: List<String> = emptyList(),
     val author: Instructor? = instructors.firstOrNull(),
     val createdAt: String,
     val updatedAt: String,

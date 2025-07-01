@@ -17,7 +17,7 @@ import com.rockandcode.cursos.data.models.UserProgressDto
 import com.rockandcode.cursos.data.models.VideoItemDto
 
 object MockDataSource {
-    val instructorsDto =
+    private val instructorsDto =
         listOf(
             InstructorDto(
                 id = 1,
@@ -129,7 +129,7 @@ object MockDataSource {
             ),
         )
 
-    val documentTypesDto =
+    private val documentTypesDto =
         listOf(
             DocumentTypeDto(id = 1, name = "Clase", fileExtension = null),
             DocumentTypeDto(id = 2, name = "Ejercicio", fileExtension = null),
@@ -137,7 +137,7 @@ object MockDataSource {
             DocumentTypeDto(id = 4, name = "Word", fileExtension = "docx"),
         )
 
-    val documentsDto =
+    private val documentsDto =
         listOf(
             CourseDocumentDto(
                 id = 1,
@@ -162,7 +162,7 @@ object MockDataSource {
             ),
         )
 
-    val levelsDto =
+    private val levelsDto =
         listOf(
             CourseLevelDto(
                 id = 1,
@@ -193,6 +193,7 @@ object MockDataSource {
                 CourseDto(
                     id = 1,
                     title = "Android Jetpack Compose",
+                    subTitle = "Simplifica y acelera el desarrollo de la interfaz de usuario en Android",
                     description =
                         "Jetpack Compose es el kit de herramientas moderno recomendado " +
                             "por Android para compilar IU nativa. Simplifica y acelera el desarrollo " +
@@ -365,24 +366,27 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    requirements = "Conocimientos básicos de programación en Kotlin",
+                    requirements = listOf("Conocimientos básicos de programación en Kotlin"),
+                    author = instructorsDto[1],
                     createdAt = "30-06-2025",
                     updatedAt = "30-06-2025",
-                    listOf(
-                        "Fundamentos de Kotlin",
-                        "Composables, Estados, Layouts, Componentes, Listas y Cuadrículas, Navegación",
-                        "Arquitectura de Compose",
-                        "Animaciones",
-                        "Tematización (Theming)",
-                        "Accesibilidad",
-                        "Pruebas",
-                        "Gráficos",
-                    ),
+                    topics =
+                        listOf(
+                            "Fundamentos de Kotlin",
+                            "Composables, Estados, Layouts, Componentes, Listas y Cuadrículas, Navegación",
+                            "Arquitectura de Compose",
+                            "Animaciones",
+                            "Tematización (Theming)",
+                            "Accesibilidad",
+                            "Pruebas",
+                            "Gráficos",
+                        ),
                     tags = listOf("Android", "Kotlin"),
                 ),
                 CourseDto(
                     id = 2,
                     title = "SQL Avanzado",
+                    subTitle = "Todo sobre la base de datos relacional SQL",
                     description = "Aprende base de datos relacional...",
                     thumbnailUrl = "https://compraco.com.br/cdn/shop/articles/O-que-e-SQL-Server.jpg?v=1716456631",
                     rating = 4.1,
@@ -513,24 +517,27 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    requirements = "Conocimientos básicos de programación",
+                    requirements = listOf("Conocimientos básicos de programación"),
                     createdAt = "30-06-2025",
                     updatedAt = "30-06-2025",
-                    listOf(
-                        "Pivoteo y Despivotado",
-                        "Consultas Anidadas (Subqueries)",
-                        "Consultas Recursivas",
-                        "Autouniones",
-                        "Procedimientos Almacenados: Creación y ejecución, Parámetros, Manejo de Errores",
-                        "Triggers: Tipos. Creación y Activación",
-                        "PARTITION BY, ORDER BY, FRAME",
-                        "Extensiones de GROUP BY: ROLLUP, CUBE, GROUPING SETS",
-                    ),
+                    author = instructorsDto[1],
+                    topics =
+                        listOf(
+                            "Pivoteo y Despivotado",
+                            "Consultas Anidadas (Subqueries)",
+                            "Consultas Recursivas",
+                            "Autouniones",
+                            "Procedimientos Almacenados: Creación y ejecución, Parámetros, Manejo de Errores",
+                            "Triggers: Tipos. Creación y Activación",
+                            "PARTITION BY, ORDER BY, FRAME",
+                            "Extensiones de GROUP BY: ROLLUP, CUBE, GROUPING SETS",
+                        ),
                     tags = listOf("SQL", "Bases de datos", "MySQL", "Backend"),
                 ),
                 CourseDto(
                     id = 3,
                     title = "Desarrollo de interfaces",
+                    subTitle = "Aprender a crear interfaces digitales atractivas funcionales y fáciles de usar",
                     description =
                         "Este curso de desarrollo de interfaces es una excelente opción " +
                             "para quienes desean aprender a crear interfaces digitales atractivas, " +
@@ -542,6 +549,7 @@ object MockDataSource {
                     isFree = false,
                     instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[7]),
+                    author = instructorsDto[2],
                     schedule =
                         listOf(
                             ScheduleDto("Miercoles", "19:00", "23:00"),
@@ -663,24 +671,26 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    requirements = "No necesitas conocimientos previos",
+                    requirements = listOf("No necesitas conocimientos previos"),
                     createdAt = "30-06-2025",
                     updatedAt = "30-06-2025",
-                    listOf(
-                        "Introducción a la Comunicación Visual",
-                        "Sistemas de Diseño",
-                        "Color",
-                        "Introducción a las Interfaces",
-                        "Interacción Humano Dispositivo",
-                        "Usabilidad y Experiencia de Usuario",
-                        "Evaluación Heurística",
-                        "Prototipado",
-                    ),
+                    topics =
+                        listOf(
+                            "Introducción a la Comunicación Visual",
+                            "Sistemas de Diseño",
+                            "Color",
+                            "Introducción a las Interfaces",
+                            "Interacción Humano Dispositivo",
+                            "Usabilidad y Experiencia de Usuario",
+                            "Evaluación Heurística",
+                            "Prototipado",
+                        ),
                     tags = listOf("UI", "UX", "Frontend", "Material Design"),
                 ),
                 CourseDto(
                     id = 4,
                     title = "Teoría musical",
+                    subTitle = "Lenguaje musical y fundamentos de la música",
                     description =
                         "Fundamentos de la música, teoría musical " +
                             "(notas, acordes, escalas, ritmo), historia de la música, " +
@@ -694,6 +704,7 @@ object MockDataSource {
                     isFree = false,
                     instructors = listOf(instructorsDto[3]),
                     categories = listOf(categoriesDto[6]),
+                    author = instructorsDto[3],
                     schedule =
                         listOf(
                             ScheduleDto("Miercoles", "19:00", "23:00"),
@@ -788,28 +799,30 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    requirements = "No necesitas conocimientos previos",
+                    requirements = listOf("No necesitas conocimientos previos"),
                     createdAt = "30-06-2025",
                     updatedAt = "30-06-2025",
-                    listOf(
-                        "Sonido y sus propiedades",
-                        "Ritmo",
-                        "Melodía",
-                        "Armonía",
-                        "Forma musical",
-                        "Notación musical",
-                        "Escalas y modos",
-                        "Intervalos",
-                        "Composición",
-                        "Acústica musical",
-                        "Función tonal",
-                        "Tonalidad y atonalidad",
-                    ),
+                    topics =
+                        listOf(
+                            "Sonido y sus propiedades",
+                            "Ritmo",
+                            "Melodía",
+                            "Armonía",
+                            "Forma musical",
+                            "Notación musical",
+                            "Escalas y modos",
+                            "Intervalos",
+                            "Composición",
+                            "Acústica musical",
+                            "Función tonal",
+                            "Tonalidad y atonalidad",
+                        ),
                     tags = listOf("Música", "Armonía", "Escalas", "Lenguaje musical"),
                 ),
                 CourseDto(
                     id = 5,
                     title = "Numeración",
+                    subTitle = "Sistema de numeración decimal - Valor posicional - Ubicación en la recta numérica",
                     description =
                         "Sistema de numeración decimal - Valor posicional - Ubicación en la recta numérica",
                     thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiVyh8b7FBPv0486JEWFRHPuji-dRNpvBWw&s",
@@ -819,13 +832,14 @@ object MockDataSource {
                     isFree = false,
                     instructors = listOf(instructorsDto[4]),
                     categories = listOf(categoriesDto[2]),
+                    author = instructorsDto[4],
                     schedule =
                         listOf(
                             ScheduleDto("Jueves", "17:00", "19:00"),
                         ),
                     totalStudents = 250,
                     level = levelsDto[1],
-                    requirements = "No necesitas conocimientos previos",
+                    requirements = listOf("No necesitas conocimientos previos"),
                     items =
                         listOf(
                             VideoItemDto(
@@ -931,6 +945,7 @@ object MockDataSource {
                 CourseDto(
                     id = 6,
                     title = "Base de Datos",
+                    subTitle = "Curso inicial de bases de datos",
                     description =
                         "Curso donde aprenderás cómo armar tablas, insertar datos y hacer consultas",
                     thumbnailUrl = "https://i.sstatic.net/OAcqg.png",
@@ -940,6 +955,7 @@ object MockDataSource {
                     isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[5]),
+                    author = instructorsDto[1],
                     schedule =
                         listOf(
                             ScheduleDto("Lunes", "20:00", "22:00"),
@@ -947,7 +963,7 @@ object MockDataSource {
                         ),
                     totalStudents = 250,
                     level = levelsDto[0],
-                    requirements = "No necesitas conocimientos previos",
+                    requirements = listOf("No necesitas conocimientos previos"),
                     items =
                         listOf(
                             VideoItemDto(
@@ -1061,15 +1077,17 @@ object MockDataSource {
                 CourseDto(
                     id = 7,
                     title = "Literatura clásica",
+                    subTitle = "Una aventura por la historia de la literatura clásica y sus máximos exponentes",
                     description =
                         "Una aventura por la historia de la literatura clásica y sus máximos exponentes",
                     thumbnailUrl = "https://img.freepik.com/vector-premium/libro-viejo-blanco_87946-1711.jpg?w=360",
                     rating = 4.2,
                     ratingCount = 48,
                     price = 500.0,
-                    isFree = false,
+                    isFree = true,
                     instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[3]),
+                    author = instructorsDto[2],
                     schedule =
                         listOf(
                             ScheduleDto("Martes", "20:00", "22:00"),
@@ -1077,7 +1095,7 @@ object MockDataSource {
                         ),
                     totalStudents = 250,
                     level = levelsDto[1],
-                    requirements = "No necesitas conocimientos previos",
+                    requirements = listOf("No necesitas conocimientos previos"),
                     items =
                         listOf(
                             VideoItemDto(
@@ -1194,6 +1212,7 @@ object MockDataSource {
                 CourseDto(
                     id = 8,
                     title = "Diseño de Juegos",
+                    subTitle = "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
                     description =
                         "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
                     thumbnailUrl = "https://www.cokitos.com/wp-content/uploads/2022/12/pixel-art-pintar-ninos.jpg",
@@ -1203,13 +1222,14 @@ object MockDataSource {
                     isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[4]),
+                    author = instructorsDto[1],
                     schedule =
                         listOf(
                             ScheduleDto("Lunes", "18:00", "22:00"),
                         ),
                     totalStudents = 250,
                     level = levelsDto[0],
-                    requirements = "No necesitas conocimientos previos",
+                    requirements = listOf("No necesitas conocimientos previos"),
                     items =
                         listOf(
                             VideoItemDto(
