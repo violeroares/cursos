@@ -11,6 +11,11 @@ data class UserDto(
     val progressByCourse: List<UserCourseProgressDto>,
     val score: Int,
     val preferredCategories: List<CategoryDto>,
+    val birthDate: String,
+    val addressStreet: String,
+    val addressNumber: String,
+    val phoneNumber: String,
+    val gender: String,
 ) {
     fun toDomain() =
         User(
@@ -22,5 +27,10 @@ data class UserDto(
             progressByCourse.map { it.toDomain() },
             score,
             preferredCategories.map { it.toDomain() },
+            birthDate = birthDate,
+            addressStreet = addressStreet,
+            addressNumber = addressNumber,
+            phoneNumber = phoneNumber,
+            gender = gender,
         )
 }

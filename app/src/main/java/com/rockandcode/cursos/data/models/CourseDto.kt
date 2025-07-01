@@ -10,6 +10,7 @@ data class CourseDto(
     val description: String,
     val thumbnailUrl: String,
     val rating: Double,
+    val ratingCount: Int = 0,
     val price: Double,
     val instructors: List<InstructorDto>,
     val categories: List<CategoryDto>,
@@ -20,6 +21,10 @@ data class CourseDto(
     val level: CourseLevelDto,
     val includes: List<CourseIncludeItemDto>,
     val requirements: String,
+    val createdAt: String,
+    val updatedAt: String,
+    val topics: List<String> = emptyList(),
+    val tags: List<String> = emptyList(),
 ) {
     fun toDomain() =
         Course(
@@ -28,6 +33,7 @@ data class CourseDto(
             description,
             thumbnailUrl,
             rating,
+            ratingCount = ratingCount,
             price,
             instructors.map { it.toDomain() },
             categories.map { it.toDomain() },
@@ -49,5 +55,10 @@ data class CourseDto(
                     )
                 },
             requirements = requirements,
+            author = instructors.firstOrNull()?.toDomain(),
+            createdAt = createdAt,
+            updatedAt = updatedAt,
+            topics = topics,
+            tags = tags,
         )
 }
