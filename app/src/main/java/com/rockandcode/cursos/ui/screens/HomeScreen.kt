@@ -196,7 +196,7 @@ fun HomeScreen(
                     if (user.preferredCategories.isNotEmpty()) {
                         item {
                             Column {
-                                Spacer(modifier = Modifier.height(24.dp))
+                                Spacer(modifier = Modifier.height(16.dp))
                                 Text(
                                     "Categorías recomendadas",
                                     style = MaterialTheme.typography.titleMedium,
@@ -221,7 +221,7 @@ fun HomeScreen(
                     // Cursos populares
                     item {
                         Column {
-                            Spacer(modifier = Modifier.height(24.dp))
+                            Spacer(modifier = Modifier.height(16.dp))
                             Text(
                                 "Cursos populares",
                                 style = MaterialTheme.typography.titleMedium,
