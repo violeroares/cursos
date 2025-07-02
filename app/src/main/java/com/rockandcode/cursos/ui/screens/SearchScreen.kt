@@ -275,7 +275,7 @@ fun SearchScreen(
                                 controller.navigate("courseDetail/${course.id}")
                             },
                         )
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
             }

@@ -80,11 +80,31 @@ class SearchViewModel
                 }
 
                 // Filtrar por búsqueda
+//                if (filter.searchQuery.isNotBlank()) {
+//                    filtered =
+//                        filtered.filter {
+//                            it.title.contains(filter.searchQuery, ignoreCase = true) ||
+//                                it.description.contains(filter.searchQuery, ignoreCase = true)
+//                        }
+//                }
+
+                // Filtrar por búsqueda extendida
                 if (filter.searchQuery.isNotBlank()) {
+                    val query = filter.searchQuery.trim().lowercase()
                     filtered =
-                        filtered.filter {
-                            it.title.contains(filter.searchQuery, ignoreCase = true) ||
-                                it.description.contains(filter.searchQuery, ignoreCase = true)
+                        filtered.filter { course ->
+                            val categoryMatches =
+                                course.categories.any { cat ->
+                                    cat.name.contains(query, ignoreCase = true)
+                                }
+
+                            listOfNotNull(
+                                course.title,
+                                course.subTitle,
+                                course.description,
+                                course.author?.name,
+                            ).any { it.contains(query, ignoreCase = true) } ||
+                                categoryMatches
                         }
                 }
 

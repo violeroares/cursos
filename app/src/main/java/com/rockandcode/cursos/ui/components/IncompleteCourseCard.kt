@@ -67,6 +67,12 @@ fun IncompleteCourseCard(
             CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
             ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 12.dp),
+        shape = RoundedCornerShape(16.dp),
+//        colors =
+//            CardDefaults.cardColors(
+//                containerColor = MaterialTheme.colorScheme.surface,
+//            ),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
