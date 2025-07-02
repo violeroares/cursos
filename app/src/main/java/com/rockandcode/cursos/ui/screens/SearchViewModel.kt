@@ -94,7 +94,20 @@ class SearchViewModel
                         OrderBy.POPULAR -> filtered.sortedByDescending { it.totalStudents }
                         OrderBy.RATED -> filtered.sortedByDescending { it.rating }
                         OrderBy.TITLE -> filtered.sortedBy { it.title }
+                        OrderBy.PRICE_ASC -> filtered.sortedBy { it.price }
+                        OrderBy.PRICE_DESC -> filtered.sortedByDescending { it.price }
                         else -> filtered
+                    }
+
+                // Filtrar por tipo de precio
+                filtered =
+                    filtered.filter { course ->
+                        when {
+                            filter.showFree && filter.showPaid -> true // mostrar todos
+                            filter.showFree -> course.isFree == true
+                            filter.showPaid -> course.isFree == false
+                            else -> false // si no se selecciona ninguno
+                        }
                     }
 
                 filtered
@@ -161,6 +174,17 @@ class SearchViewModel
             if (_filter.value.categories.isEmpty() && categoryId != -1) {
                 _filter.value = _filter.value.copy(categories = setOf(categoryId))
             }
+        }
+
+        fun setPriceFilter(
+            showFree: Boolean,
+            showPaid: Boolean,
+        ) {
+            _filter.value =
+                _filter.value.copy(
+                    showFree = showFree,
+                    showPaid = showPaid,
+                )
         }
 
         // Badge con cantidad de filtros activos

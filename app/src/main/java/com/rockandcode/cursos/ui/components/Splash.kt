@@ -48,7 +48,7 @@ fun Splash() {
         ) {
             Image(
                 painterResource(
-                    id = if (isDarkTheme) R.drawable.ic_launcher_foreground else R.drawable.ic_launcher_foreground,
+                    id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_light,
                 ),
                 contentDescription = "logo",
                 Modifier.size(120.dp),

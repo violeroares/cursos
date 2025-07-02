@@ -6,6 +6,8 @@ data class CourseFilter(
     val minDuration: Int? = null,
     val maxDuration: Int? = null,
     val searchQuery: String = "",
+    val showFree: Boolean = true,
+    val showPaid: Boolean = true,
 )
 
 enum class OrderBy(
@@ -15,4 +17,6 @@ enum class OrderBy(
     POPULAR("Más comprados"),
     RATED("Mejor calificación"),
     TITLE("Titulo"),
+    PRICE_ASC("Menor precio"),
+    PRICE_DESC("Mayor precio"),
 }

@@ -1,7 +1,10 @@
 package com.rockandcode.cursos.ui.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,21 +15,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.FilterList
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.ArrowCircleRight
-import androidx.compose.material3.Badge
-import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -34,12 +34,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SearchBar
-import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -48,12 +45,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.rockandcode.cursos.R
+import com.rockandcode.cursos.ui.components.CompactSearchBar
 import com.rockandcode.cursos.ui.components.CourseCard
 
 @OptIn(
@@ -72,7 +71,7 @@ fun SearchScreen(
     val hasFilters = searchQuery.isNotBlank() || selectedCategories.isNotEmpty()
 
     val filtersActive by viewModel.activeFiltersCount.collectAsState()
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    // val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
     val allCategories by viewModel.categories.collectAsState(initial = emptyList())
     val filteredCourses by viewModel.filteredCourses.collectAsState(initial = emptyList())
@@ -80,81 +79,77 @@ fun SearchScreen(
 
     val navBackStackEntry = remember { controller.currentBackStackEntry }
     val categoryIdFromNav = navBackStackEntry?.arguments?.getInt("categoryId")?.takeIf { it != -1 }
-    // val appliedCategoryFromNav = remember(categoryIdFromNav) { mutableStateOf(false) }
-
-//    LaunchedEffect(categoryIdFromNav) {
-//        if (categoryIdFromNav != null && !appliedCategoryFromNav.value) {
-//            viewModel.setCategories(setOf(categoryIdFromNav))
-//            appliedCategoryFromNav.value = true
-//        }
-//    }
 
     LaunchedEffect(Unit) {
         viewModel.applyInitialCategoryIfNeeded(categoryIdFromNav ?: -1)
     }
-
+    val isDarkTheme = isSystemInDarkTheme()
     Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            TopAppBar(
-                title = { Text("Buscar cursos") },
-                navigationIcon = {
+            Column(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .background(
+                            color = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
+                            shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
+                        ).padding(top = 36.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                // Línea 1: avatar, "Acadexa", notificaciones
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
                     IconButton(onClick = { controller.popBackStack() }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
+                        Box(
+                            modifier =
+                                Modifier
+                                    .size(36.dp)
+                                    .background(MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Volver",
+                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            )
+                        }
                     }
-                },
-                scrollBehavior = scrollBehavior,
-            )
+                    Text(
+                        "Buscar en",
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier.padding(start = 12.dp, end = 12.dp),
+                    )
+                    Image(
+                        painterResource(
+                            id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_black,
+                        ),
+                        contentDescription = "logo",
+                        Modifier.height(28.dp),
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                // Línea 2: barra de búsqueda
+                CompactSearchBar(
+                    searchQuery = searchQuery,
+                    filtersActive = filtersActive,
+                    onQueryChange = { viewModel.setSearchQuery(it) },
+                    onFilterClick = { controller.navigate("search/filters") },
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
         },
-        contentWindowInsets = WindowInsets.statusBars,
+        contentWindowInsets = WindowInsets(0),
     ) { paddingValues ->
         LazyColumn(
             modifier =
                 Modifier
                     .fillMaxSize()
                     .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            // verticalArrangement = Arrangement.spacedBy(12.dp),
             contentPadding = paddingValues,
         ) {
-            stickyHeader {
-                SearchBar(
-                    inputField = {
-                        SearchBarDefaults.InputField(
-                            query = searchQuery,
-                            onQueryChange = { viewModel.setSearchQuery(it) },
-                            onSearch = {},
-                            expanded = false,
-                            onExpandedChange = {},
-                            placeholder = { Text("Buscar cursos...") },
-                            leadingIcon = {
-                                Icon(
-                                    imageVector = Icons.Default.Search,
-                                    contentDescription = "Buscar",
-                                    modifier = Modifier.padding(start = 8.dp),
-                                )
-                            },
-                            trailingIcon = {
-                                IconButton(onClick = { controller.navigate("search/filters") }) {
-                                    BadgedBox(
-                                        badge = {
-                                            if (filtersActive > 0) {
-                                                Badge { Text(filtersActive.toString()) }
-                                            }
-                                        },
-                                    ) {
-                                        Icon(Icons.Default.FilterList, contentDescription = "Filtros")
-                                    }
-                                }
-                            },
-                        )
-                    },
-                    expanded = false,
-                    onExpandedChange = {},
-                    modifier = Modifier.fillMaxWidth(),
-                    content = {},
-                )
-            }
-
             // Si no hay filtros activos: mostrar chips + categorías
             if (!hasFilters) {
 //                item {
@@ -176,6 +171,7 @@ fun SearchScreen(
 //                }
                 // Chips de categorías
                 item {
+                    Spacer(modifier = Modifier.height(12.dp))
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         allCategories.forEach { category ->
                             FilterChip(
@@ -279,6 +275,7 @@ fun SearchScreen(
                                 controller.navigate("courseDetail/${course.id}")
                             },
                         )
+                        Spacer(modifier = Modifier.height(12.dp))
                     }
                 }
             }
