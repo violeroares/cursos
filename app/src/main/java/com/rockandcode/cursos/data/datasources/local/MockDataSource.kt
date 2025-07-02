@@ -825,7 +825,9 @@ object MockDataSource {
                     subTitle = "Sistema de numeración decimal - Valor posicional - Ubicación en la recta numérica",
                     description =
                         "Sistema de numeración decimal - Valor posicional - Ubicación en la recta numérica",
-                    thumbnailUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiVyh8b7FBPv0486JEWFRHPuji-dRNpvBWw&s",
+                    thumbnailUrl =
+                        "https://firebasestorage.googleapis.com/v0/b/treiio-213b3.appspot.com" +
+                            "/o/uploads%2Fmatematicas.jpg?alt=media&token=d18e6a41-262a-4501-924a-5a668be3f5fc",
                     rating = 4.7,
                     ratingCount = 5,
                     price = 200.0,
