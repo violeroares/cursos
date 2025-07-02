@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.rockandcode.cursos.ui.components.CustomHeader
+import com.rockandcode.cursos.ui.components.AppHeader
 import com.rockandcode.cursos.ui.components.MedalView
 import com.rockandcode.cursos.utils.getMedalProgress
 
@@ -62,7 +62,13 @@ fun ProfileScreen(
             val user = uiState.user
             val allMedals = uiState.allMedals
             Scaffold(
-                topBar = { CustomHeader(title = "Mi progreso", onBack = { controller.popBackStack() }) },
+                topBar = {
+                    // CustomHeader(title = "Mi progreso", onBack = { controller.popBackStack() })
+                    AppHeader(
+                        title = "Mi progreso",
+                        onBack = { controller.popBackStack() },
+                    )
+                },
                 modifier = Modifier.fillMaxSize(),
                 contentWindowInsets = WindowInsets(0),
             ) { paddingValues ->

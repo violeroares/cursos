@@ -1,7 +1,9 @@
 package com.rockandcode.cursos.ui.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,11 +39,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.rockandcode.cursos.R
 import com.rockandcode.cursos.ui.components.CategoryChip
 import com.rockandcode.cursos.ui.components.HomeCategoryCard
 import com.rockandcode.cursos.ui.components.HomeCourseCard
@@ -54,7 +57,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsState()
-
+    val isDarkTheme = isSystemInDarkTheme()
     when (val uiState = state) {
         is HomeUiState.Loading -> {
             Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -89,6 +92,8 @@ fun HomeScreen(
 
             val randomIncomplete = incompleteCourses.randomOrNull()
             val headerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)
+            // Color(0xFF2B1BBA)
+
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 contentWindowInsets = WindowInsets(0),
@@ -124,9 +129,12 @@ fun HomeScreen(
                                     modifier = Modifier.size(40.dp).clip(CircleShape),
                                     contentScale = ContentScale.Crop,
                                 )
-                                Text(
-                                    text = "Acadexa",
-                                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                                Image(
+                                    painterResource(
+                                        id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_black,
+                                    ),
+                                    contentDescription = "logo",
+                                    Modifier.height(28.dp),
                                 )
                                 IconButton(onClick = { /* abrir notificaciones */ }) {
                                     Icon(Icons.Default.Notifications, contentDescription = "Notificaciones")
