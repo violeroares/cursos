@@ -25,3 +25,13 @@ fun getMedalProgress(
 
     return Triple(previous, current, next)
 }
+
+fun formatDuration(totalSeconds: Int): String {
+    val hours = totalSeconds / 3600
+    val minutes = (totalSeconds % 3600) / 60
+    return when {
+        hours > 0 && minutes > 0 -> "${hours}h ${minutes}m"
+        hours > 0 -> "${hours}h"
+        else -> "${minutes}m"
+    }
+}

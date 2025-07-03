@@ -31,30 +31,6 @@ fun IncompleteCourseCard(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
-//    Card(
-//        modifier =
-//            modifier
-//                .fillMaxWidth()
-//                .padding(vertical = 8.dp)
-//                .clickable { onClick() },
-//        colors = CardDefaults.cardColors(containerColor = Color(0xFFEEF6FD)),
-//        elevation = CardDefaults.cardElevation(4.dp),
-//    ) {
-//        Column(modifier = Modifier.padding(16.dp)) {
-//            Text("¡Seguí aprendiendo!", style = MaterialTheme.typography.titleMedium)
-//            Spacer(modifier = Modifier.height(8.dp))
-//            Text(course.title, style = MaterialTheme.typography.bodyMedium)
-//            Spacer(modifier = Modifier.height(12.dp))
-//            LinearProgressIndicator(
-//                progress = (percent / 100.0).toFloat(),
-//                modifier = Modifier.fillMaxWidth(),
-//                color = Color(0xFF1976D2),
-//            )
-//            Spacer(modifier = Modifier.height(4.dp))
-//            Text("${percent.toInt()}% completado", style = MaterialTheme.typography.labelSmall)
-//        }
-//    }
-
     Card(
         modifier =
             modifier

@@ -1,6 +1,7 @@
 package com.rockandcode.cursos.ui.components
 
 import android.content.Intent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 
@@ -33,7 +35,22 @@ fun CourseCertificateCard(
 ) {
     val context = LocalContext.current
     Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
-        Text("Progreso: %.1f%%".format(progress))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Text(
+                text = "Progreso:",
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                text = "%.1f%%".format(progress),
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleLarge,
+            )
+        }
+
         LinearProgressIndicator(
             progress = { (progress / 100f).toFloat() },
             modifier =

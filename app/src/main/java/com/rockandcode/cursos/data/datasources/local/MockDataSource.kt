@@ -117,7 +117,7 @@ object MockDataSource {
             ),
             CategoryDto(
                 id = 8,
-                name = "Diseño de interfaces",
+                name = "Diseño",
                 imageUrl =
                     "https://cdn.udax.edu.mx/blog/2025-01-28/" +
                         "diseno-de-interfaces-para-aplicaciones-de-redes-sociales-principios-y-tendencias_1.jpg",

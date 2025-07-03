@@ -108,6 +108,7 @@ fun ProfileScreen(
                             Text(
                                 text = "Tu logros",
                                 style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
                             )
                             TextButton(onClick = { /* navegación a pantalla de medallas */ }) {
                                 Text("Ver todas")
@@ -140,6 +141,7 @@ fun ProfileScreen(
                             Text(
                                 text = "Tus cursos",
                                 style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
                             )
                             TextButton(onClick = { /* navegación a pantalla de cursos comprados */ }) {
                                 Text("Ver todos")

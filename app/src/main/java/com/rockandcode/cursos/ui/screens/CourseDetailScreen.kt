@@ -235,6 +235,11 @@ fun CourseDetailScreen(
                         CourseTopics(course = course)
                     }
 
+                    // Progreso y certitifado de curso completado
+                    if (uiState.isPurchased) {
+                        CourseCertificateCard(progress = progress, certificateUrl = certificate?.certificateUrl)
+                    }
+
                     // Videos
                     CourseVideos(
                         course = course,
@@ -253,11 +258,6 @@ fun CourseDetailScreen(
                         CourseDocuments(course)
                     }
 
-                    // Progreso y certitifado de curso completado
-                    if (uiState.isPurchased) {
-                        CourseCertificateCard(progress = progress, certificateUrl = certificate?.certificateUrl)
-                    }
-
                     // Instructor
                     Card(
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 16.dp),
@@ -266,7 +266,7 @@ fun CourseDetailScreen(
                                 containerColor = MaterialTheme.colorScheme.surface,
                             ),
                     ) {
-                        Text("Instructor", style = MaterialTheme.typography.titleMedium)
+                        Text("Instructor", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                         Spacer(Modifier.height(8.dp))
                         course.instructors.forEach { instructor ->
                             Row(
@@ -278,7 +278,7 @@ fun CourseDetailScreen(
                                     contentDescription = instructor.name,
                                     modifier =
                                         Modifier
-                                            .size(40.dp)
+                                            .size(80.dp)
                                             .clip(CircleShape),
                                 )
                                 Spacer(Modifier.width(8.dp))
