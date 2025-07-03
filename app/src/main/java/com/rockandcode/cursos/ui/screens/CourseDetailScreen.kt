@@ -19,6 +19,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.People
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.outlined.SignalCellularAlt
 import androidx.compose.material.icons.outlined.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -39,6 +42,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.CourseCertificateCard
@@ -65,16 +69,6 @@ fun CourseDetailScreen(
     }
 
     Scaffold(
-//        topBar = {
-//            TopAppBar(
-//                title = { Text("Detalle del Curso") },
-//                navigationIcon = {
-//                    IconButton(onClick = onBack) {
-//                        Icon(Icons.Default.ArrowBackIosNew, contentDescription = "Atrás")
-//                    }
-//                },
-//            )
-//        },
         contentWindowInsets = WindowInsets(0),
     ) { paddingValues ->
         when (val uiState = state.uiState) {
@@ -152,34 +146,44 @@ fun CourseDetailScreen(
                     // Title
                     Text(
                         course.title,
-                        style = MaterialTheme.typography.headlineSmall,
+                        style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
+                        modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 4.dp),
                     )
                     // SubTitle
                     Text(
                         course.subTitle,
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 16.dp),
+                        style = MaterialTheme.typography.titleMedium.copy(lineHeight = 22.sp),
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
                     )
 
                     // Author
                     course.author?.let { author ->
                         Row(
-                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Text("Creado por ", style = MaterialTheme.typography.bodyMedium)
-                            Text(author.name, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Text("Creado por: ", style = MaterialTheme.typography.titleMedium, color = Color.Gray)
+                            Text(author.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                         }
                     }
 
                     // Stars
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(horizontal = 16.dp),
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                     ) {
+                        // 1. Rating numérico
+                        Text(
+                            text = "%.1f".format(course.rating),
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(end = 8.dp),
+                            color = Color(0xFFF7C33F),
+                        )
+
+                        // 2. Estrellas
                         repeat(5) { index ->
                             val icon =
                                 if (index < course.rating.toInt()) {
@@ -191,39 +195,75 @@ fun CourseDetailScreen(
                             Icon(
                                 imageVector = icon,
                                 contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
+                                tint = Color(0xFFF7C33F),
                                 modifier = Modifier.size(20.dp),
                             )
                         }
+
+                        // 3. Valoraciones
                         Text(
-                            "${"%.1f".format(course.rating)} (${course.ratingCount} valoraciones)",
+                            text = " (${course.ratingCount} valoraciones)",
                             style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.padding(start = 4.dp),
                         )
                     }
 
-                    Text(
-                        "${course.totalStudents} estudiantes",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.Gray,
+                    // Total students
+                    Row(
                         modifier = Modifier.padding(horizontal = 16.dp),
-                    )
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.People,
+                            contentDescription = null,
+                            tint = Color.Gray,
+                            modifier = Modifier.padding(end = 8.dp),
+                        )
+                        Text(
+                            text = "${course.totalStudents} estudiantes",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = Color.Gray,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
 
                     // Last Update
                     Row(
                         modifier = Modifier.padding(horizontal = 16.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Text("Ultima actualización:", style = MaterialTheme.typography.bodySmall)
-                        Text(course.updatedAt, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Bold)
+                        Icon(
+                            imageVector = Icons.Outlined.Refresh,
+                            contentDescription = null,
+                            tint = Color.Gray,
+                            modifier = Modifier.padding(end = 8.dp),
+                        )
+                        Text(
+                            text = "Ultima actualización: ${course.updatedAt}",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray,
+                        )
                     }
 
                     // Course level:
-                    Text(
-                        text = "Nivel: ${course.level.name}",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp),
-                    )
+                    Row(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.SignalCellularAlt,
+                            contentDescription = null,
+                            tint = Color.Gray,
+                            modifier = Modifier.padding(end = 8.dp),
+                        )
+                        Text(
+                            text = "Nivel: ${course.level.name}",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray,
+                        )
+                    }
 
                     // Boton comprar
                     if (!uiState.isPurchased) {
@@ -263,7 +303,7 @@ fun CourseDetailScreen(
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 16.dp),
                         colors =
                             CardDefaults.cardColors(
-                                containerColor = MaterialTheme.colorScheme.surface,
+                                containerColor = MaterialTheme.colorScheme.background,
                             ),
                     ) {
                         Text("Instructor", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
