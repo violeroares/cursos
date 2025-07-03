@@ -23,11 +23,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -38,8 +36,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -92,7 +92,7 @@ fun HomeScreen(
 
             val randomIncomplete = incompleteCourses.randomOrNull()
             val headerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)
-            // Color(0xFF2B1BBA)
+            val myColor = Color(0xFF2B1BBA)
 
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
@@ -112,9 +112,9 @@ fun HomeScreen(
                                 Modifier
                                     .fillMaxWidth()
                                     .background(
-                                        color = headerColor,
+                                        color = if (isDarkTheme) headerColor else myColor,
                                         shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
-                                    ).padding(top = 24.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
+                                    ).padding(top = 36.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             // Línea 1: avatar, "Acadexa", notificaciones
@@ -123,21 +123,35 @@ fun HomeScreen(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween,
                             ) {
-                                AsyncImage(
-                                    model = user.avatarUrl,
-                                    contentDescription = "Avatar",
-                                    modifier = Modifier.size(40.dp).clip(CircleShape),
-                                    contentScale = ContentScale.Crop,
-                                )
+                                // Logo a la izquierda
                                 Image(
-                                    painterResource(
-                                        id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_black,
-                                    ),
+                                    painter =
+                                        painterResource(
+                                            id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_dark,
+                                        ),
                                     contentDescription = "logo",
-                                    Modifier.height(28.dp),
+                                    modifier = Modifier.height(32.dp),
                                 )
-                                IconButton(onClick = { /* abrir notificaciones */ }) {
-                                    Icon(Icons.Default.Notifications, contentDescription = "Notificaciones")
+
+                                // Notificaciones + Avatar a la derecha
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                ) {
+                                    Text(text = user.name, color = Color.White)
+//                                    IconButton(onClick = { /* abrir notificaciones */ }) {
+//                                        Icon(
+//                                            Icons.Default.Notifications,
+//                                            contentDescription = "Notificaciones",
+//                                            tint = Color.White,
+//                                        )
+//                                    }
+                                    AsyncImage(
+                                        model = user.avatarUrl,
+                                        contentDescription = "Avatar",
+                                        modifier = Modifier.size(40.dp).clip(CircleShape),
+                                        contentScale = ContentScale.Crop,
+                                    )
                                 }
                             }
 
@@ -147,7 +161,7 @@ fun HomeScreen(
                                 modifier =
                                     Modifier
                                         .fillMaxWidth()
-                                        .height(48.dp)
+                                        .height(40.dp)
                                         .clip(RoundedCornerShape(24.dp))
                                         .background(MaterialTheme.colorScheme.surface)
                                         .clickable {
@@ -170,6 +184,7 @@ fun HomeScreen(
                                     )
                                 }
                             }
+                            Spacer(modifier = Modifier.height(8.dp))
                         }
                     }
                     // Curso incompleto
@@ -180,6 +195,8 @@ fun HomeScreen(
                                 Text(
                                     "¡Seguí aprendiendo!",
                                     style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 IncompleteCourseCard(
@@ -192,32 +209,6 @@ fun HomeScreen(
                             }
                         }
                     }
-                    // Categorías preferidas del usuario
-                    if (user.preferredCategories.isNotEmpty()) {
-                        item {
-                            Column {
-                                Spacer(modifier = Modifier.height(16.dp))
-                                Text(
-                                    "Categorías recomendadas",
-                                    style = MaterialTheme.typography.titleMedium,
-                                    modifier = Modifier.padding(horizontal = 16.dp),
-                                )
-                                Spacer(modifier = Modifier.height(8.dp))
-                                LazyRow(
-                                    contentPadding = PaddingValues(horizontal = 16.dp),
-                                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                                    modifier = Modifier.fillMaxWidth(),
-                                ) {
-                                    items(user.preferredCategories) { category ->
-                                        HomeCategoryCard(
-                                            category,
-                                            onClick = { controller.navigate(("search?categoryId=${category.id}")) },
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
                     // Cursos populares
                     item {
                         Column {
@@ -226,6 +217,8 @@ fun HomeScreen(
                                 "Cursos populares",
                                 style = MaterialTheme.typography.titleMedium,
                                 modifier = Modifier.padding(horizontal = 16.dp),
+                                fontWeight = FontWeight.Bold,
+                                color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             LazyRow(
@@ -253,6 +246,8 @@ fun HomeScreen(
                                 "Categorías",
                                 style = MaterialTheme.typography.titleMedium,
                                 modifier = Modifier.padding(horizontal = 16.dp),
+                                fontWeight = FontWeight.Bold,
+                                color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             LazyRow(
@@ -277,6 +272,8 @@ fun HomeScreen(
                                 "Los más valorados",
                                 style = MaterialTheme.typography.titleMedium,
                                 modifier = Modifier.padding(horizontal = 16.dp),
+                                fontWeight = FontWeight.Bold,
+                                color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             LazyRow(
@@ -294,7 +291,34 @@ fun HomeScreen(
                                     )
                                 }
                             }
-
+                        }
+                    }
+                    // Categorías preferidas del usuario
+                    if (user.preferredCategories.isNotEmpty()) {
+                        item {
+                            Column {
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Text(
+                                    "Categorías recomendadas",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    modifier = Modifier.padding(horizontal = 16.dp),
+                                    fontWeight = FontWeight.Bold,
+                                    color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                LazyRow(
+                                    contentPadding = PaddingValues(horizontal = 16.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                    modifier = Modifier.fillMaxWidth(),
+                                ) {
+                                    items(user.preferredCategories) { category ->
+                                        HomeCategoryCard(
+                                            category,
+                                            onClick = { controller.navigate(("search?categoryId=${category.id}")) },
+                                        )
+                                    }
+                                }
+                            }
                             Spacer(modifier = Modifier.height(120.dp))
                         }
                     }

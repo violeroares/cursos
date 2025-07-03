@@ -1,6 +1,7 @@
 package com.rockandcode.cursos.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -33,6 +34,7 @@ fun AppHeader(
     backgroundColor: Color = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
     actions: @Composable () -> Unit = {},
 ) {
+    val isDarkTheme = isSystemInDarkTheme()
     Surface(
         modifier = modifier.fillMaxWidth(),
         color = Color.Transparent, // fondo se da en el Box
@@ -41,8 +43,10 @@ fun AppHeader(
         Box(
             modifier =
                 Modifier
-                    .background(backgroundColor, shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp))
-                    .padding(top = 16.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
+                    .background(
+                        if (!isDarkTheme) Color(0xFF2B1BBA) else backgroundColor,
+                        shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
+                    ).padding(top = 16.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
         ) {
             TopAppBar(
                 title = {
@@ -51,6 +55,7 @@ fun AppHeader(
                         // color = Color.White,
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier.padding(start = 8.dp),
+                        color = Color.White,
                     )
                 },
                 navigationIcon = {
@@ -59,13 +64,16 @@ fun AppHeader(
                             modifier =
                                 Modifier
                                     .size(36.dp)
-                                    .background(MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape),
+                                    .background(
+                                        if (!isDarkTheme) Color(0xFF4F3BC4) else MaterialTheme.colorScheme.secondaryContainer,
+                                        shape = CircleShape,
+                                    ),
                             contentAlignment = Alignment.Center,
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Volver",
-                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                tint = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onSecondaryContainer,
                             )
                         }
                     }

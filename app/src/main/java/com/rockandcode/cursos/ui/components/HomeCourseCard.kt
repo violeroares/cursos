@@ -1,6 +1,7 @@
 package com.rockandcode.cursos.ui.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,6 +32,7 @@ fun HomeCourseCard(
     onClick: () -> Unit = {},
     // isPurchased: Boolean = false,
 ) {
+    val isDarkTheme = isSystemInDarkTheme()
     Card(
         modifier =
             Modifier
@@ -41,7 +43,7 @@ fun HomeCourseCard(
         shape = RoundedCornerShape(16.dp),
         colors =
             CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface,
+                containerColor = if (!isDarkTheme) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.surfaceContainer,
             ),
     ) {
         Column {
@@ -69,6 +71,7 @@ fun HomeCourseCard(
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.Bold,
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))

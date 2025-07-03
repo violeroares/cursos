@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.domain.models.Course
 import com.rockandcode.cursos.domain.models.UserCourseProgress
+import com.rockandcode.cursos.utils.formatDuration
 
 @Composable
 fun CourseVideos(
@@ -40,11 +41,18 @@ fun CourseVideos(
             course.items.filter { it.isPreview }
         }.sortedBy { it.order }
 
+    val totalSeconds = course.items.sumOf { it.durationSeconds }
+    val totalDurationFormatted = formatDuration(totalSeconds)
+
     Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
         Text(
-            "Videos",
+            "Contenido del curso:",
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(horizontal = 16.dp),
+            fontWeight = FontWeight.Bold,
+        )
+        Text(
+            "4 secciones - ${course.items.count()} videos - $totalDurationFormatted de duración",
+            style = MaterialTheme.typography.bodyMedium,
         )
         Spacer(Modifier.height(8.dp))
         videosToShow.forEach { video ->
@@ -89,7 +97,7 @@ fun CourseVideos(
                             maxLines = 2,
                         )
                         Text(
-                            "Duración: ${video.durationSeconds} seg",
+                            "Duración: ${formatDuration(video.durationSeconds)}",
                             style = MaterialTheme.typography.bodySmall,
                         )
 

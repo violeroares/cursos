@@ -45,8 +45,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -84,6 +86,7 @@ fun SearchScreen(
         viewModel.applyInitialCategoryIfNeeded(categoryIdFromNav ?: -1)
     }
     val isDarkTheme = isSystemInDarkTheme()
+    val myColor = Color(0xFF2B1BBA)
     Scaffold(
         topBar = {
             Column(
@@ -91,7 +94,7 @@ fun SearchScreen(
                     Modifier
                         .fillMaxWidth()
                         .background(
-                            color = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
+                            color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
                             shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
                         ).padding(top = 36.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -106,13 +109,16 @@ fun SearchScreen(
                             modifier =
                                 Modifier
                                     .size(36.dp)
-                                    .background(MaterialTheme.colorScheme.secondaryContainer, shape = CircleShape),
+                                    .background(
+                                        if (!isDarkTheme) Color(0xFF4F3BC4) else MaterialTheme.colorScheme.secondaryContainer,
+                                        shape = CircleShape,
+                                    ),
                             contentAlignment = Alignment.Center,
                         ) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Volver",
-                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                tint = Color.White,
                             )
                         }
                     }
@@ -120,10 +126,11 @@ fun SearchScreen(
                         "Buscar en",
                         style = MaterialTheme.typography.titleLarge,
                         modifier = Modifier.padding(start = 12.dp, end = 12.dp),
+                        color = Color.White,
                     )
                     Image(
                         painterResource(
-                            id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_black,
+                            id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_dark,
                         ),
                         contentDescription = "logo",
                         Modifier.height(28.dp),
@@ -138,6 +145,7 @@ fun SearchScreen(
                     onFilterClick = { controller.navigate("search/filters") },
                     modifier = Modifier.padding(top = 8.dp),
                 )
+                Spacer(modifier = Modifier.height(8.dp))
             }
         },
         contentWindowInsets = WindowInsets(0),
@@ -177,7 +185,7 @@ fun SearchScreen(
                             FilterChip(
                                 selected = selectedCategories.contains(category.id),
                                 onClick = { viewModel.onCategoryToggled(category.id) },
-                                label = { Text(category.name) },
+                                label = { Text(text = category.name) },
                             )
                         }
                     }
@@ -196,7 +204,7 @@ fun SearchScreen(
                                 contentScale = ContentScale.Crop,
                             )
                         },
-                        headlineContent = { Text(category.name) },
+                        headlineContent = { Text(category.name, fontWeight = FontWeight.Bold) },
                         supportingContent = { Text("$count curso${if (count != 1) "s" else ""}") },
                         trailingContent = {
                             Icon(
@@ -230,13 +238,14 @@ fun SearchScreen(
                                 1 -> {
                                     val categoryName = allCategories.find { it.id in selectedCategories }?.name
                                     categoryName?.let {
-                                        Text(text = it, style = MaterialTheme.typography.labelLarge)
+                                        Text(text = it, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold)
                                     }
                                 }
                                 else -> {
                                     Text(
                                         text = "${selectedCategories.size} categorías seleccionadas",
                                         style = MaterialTheme.typography.labelLarge,
+                                        fontWeight = FontWeight.Bold,
                                     )
                                 }
                             }

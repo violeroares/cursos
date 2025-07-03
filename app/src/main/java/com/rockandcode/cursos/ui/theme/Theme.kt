@@ -52,7 +52,8 @@ fun CursosTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        // typography = Typography,
+        typography = AppTypography,
         content = content,
     )
 }
