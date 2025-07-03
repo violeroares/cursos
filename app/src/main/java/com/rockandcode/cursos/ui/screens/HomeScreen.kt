@@ -39,7 +39,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -48,6 +47,7 @@ import com.rockandcode.cursos.R
 import com.rockandcode.cursos.ui.components.CategoryChip
 import com.rockandcode.cursos.ui.components.HomeCategoryCard
 import com.rockandcode.cursos.ui.components.HomeCourseCard
+import com.rockandcode.cursos.ui.components.HomeSectionTitle
 import com.rockandcode.cursos.ui.components.IncompleteCourseCard
 
 @Composable
@@ -192,11 +192,10 @@ fun HomeScreen(
                         item {
                             Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                                 Spacer(modifier = Modifier.height(24.dp))
-                                Text(
-                                    "¡Seguí aprendiendo!",
-                                    style = MaterialTheme.typography.titleMedium,
-                                    fontWeight = FontWeight.Bold,
-                                    color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
+                                HomeSectionTitle(
+                                    title = "¡Seguí aprendiendo!",
+                                    onClick = { controller.navigate(("search")) },
+                                    showButton = false,
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 IncompleteCourseCard(
@@ -213,13 +212,13 @@ fun HomeScreen(
                     item {
                         Column {
                             Spacer(modifier = Modifier.height(16.dp))
-                            Text(
-                                "Cursos populares",
-                                style = MaterialTheme.typography.titleMedium,
-                                modifier = Modifier.padding(horizontal = 16.dp),
-                                fontWeight = FontWeight.Bold,
-                                color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
+
+                            HomeSectionTitle(
+                                title = "Cursos populares",
+                                onClick = { controller.navigate("search") },
+                                showButton = true,
                             )
+
                             Spacer(modifier = Modifier.height(8.dp))
                             LazyRow(
                                 contentPadding = PaddingValues(horizontal = 16.dp),
@@ -242,13 +241,12 @@ fun HomeScreen(
                     item {
                         Column {
                             Spacer(modifier = Modifier.height(24.dp))
-                            Text(
-                                "Categorías",
-                                style = MaterialTheme.typography.titleMedium,
-                                modifier = Modifier.padding(horizontal = 16.dp),
-                                fontWeight = FontWeight.Bold,
-                                color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
+                            HomeSectionTitle(
+                                title = "Categorías",
+                                onClick = { controller.navigate(("search")) },
+                                showButton = false,
                             )
+
                             Spacer(modifier = Modifier.height(8.dp))
                             LazyRow(
                                 contentPadding = PaddingValues(horizontal = 16.dp),
@@ -268,12 +266,10 @@ fun HomeScreen(
                     item {
                         Column {
                             Spacer(modifier = Modifier.height(24.dp))
-                            Text(
-                                "Los más valorados",
-                                style = MaterialTheme.typography.titleMedium,
-                                modifier = Modifier.padding(horizontal = 16.dp),
-                                fontWeight = FontWeight.Bold,
-                                color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
+                            HomeSectionTitle(
+                                title = "Los más valorados",
+                                onClick = { controller.navigate(("search")) },
+                                showButton = true,
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             LazyRow(
@@ -298,12 +294,10 @@ fun HomeScreen(
                         item {
                             Column {
                                 Spacer(modifier = Modifier.height(16.dp))
-                                Text(
-                                    "Categorías recomendadas",
-                                    style = MaterialTheme.typography.titleMedium,
-                                    modifier = Modifier.padding(horizontal = 16.dp),
-                                    fontWeight = FontWeight.Bold,
-                                    color = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.onBackground,
+                                HomeSectionTitle(
+                                    title = "Categorías recomendadas",
+                                    onClick = { controller.navigate(("search")) },
+                                    showButton = false,
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 LazyRow(

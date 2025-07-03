@@ -53,6 +53,7 @@ fun CourseVideos(
         Text(
             "4 secciones - ${course.items.count()} videos - $totalDurationFormatted de duración",
             style = MaterialTheme.typography.bodyMedium,
+            color = Color.Gray,
         )
         Spacer(Modifier.height(8.dp))
         videosToShow.forEach { video ->
