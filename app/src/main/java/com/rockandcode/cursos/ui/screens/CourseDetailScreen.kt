@@ -223,7 +223,7 @@ fun CourseDetailScreen(
                             text = "${course.totalStudents} estudiantes",
                             style = MaterialTheme.typography.bodyLarge,
                             color = Color.Gray,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Medium,
                         )
                     }
 
@@ -241,7 +241,7 @@ fun CourseDetailScreen(
                         Text(
                             text = "Ultima actualización: ${course.updatedAt}",
                             style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Medium,
                             color = Color.Gray,
                         )
                     }
@@ -260,7 +260,7 @@ fun CourseDetailScreen(
                         Text(
                             text = "Nivel: ${course.level.name}",
                             style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Medium,
                             color = Color.Gray,
                         )
                     }

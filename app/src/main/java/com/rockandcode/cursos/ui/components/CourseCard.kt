@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -35,31 +36,6 @@ fun CourseCard(
     onClick: () -> Unit = {},
 ) {
     val isDarkTheme = isSystemInDarkTheme()
-//    Card(
-//        modifier =
-//            Modifier
-//                .fillMaxWidth()
-//                .clickable { onClick() },
-//        shape = RoundedCornerShape(12.dp),
-//    ) {
-//        Column(modifier = Modifier.padding(8.dp)) {
-//            AsyncImage(
-//                model = course.thumbnailUrl,
-//                contentDescription = course.title,
-//                modifier =
-//                    Modifier
-//                        .fillMaxWidth()
-//                        .height(120.dp)
-//                        .clip(RoundedCornerShape(8.dp)),
-//                contentScale = ContentScale.Crop,
-//            )
-//            Spacer(modifier = Modifier.height(8.dp))
-//            Text(course.title, maxLines = 2)
-//            Text("⭐ ${course.rating}", style = MaterialTheme.typography.labelSmall)
-//            Text("${course.price} USD", fontWeight = FontWeight.Bold)
-//        }
-//    }
-
     Card(
         modifier =
             Modifier
@@ -85,28 +61,41 @@ fun CourseCard(
                         .clip(RoundedCornerShape(bottomStart = 8.dp, topStart = 8.dp)),
                 contentScale = ContentScale.Crop,
             )
-            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+            Column(modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)) {
                 Text(
                     course.title,
                     style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold,
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
                     course.subTitle,
                     style = MaterialTheme.typography.bodySmall,
                     maxLines = 2,
+                    color = Color.Gray,
                 )
-                Spacer(Modifier.height(4.dp))
+                Spacer(Modifier.height(8.dp))
                 course.author?.let { author ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text("Creado por ", style = MaterialTheme.typography.labelSmall)
                         Text(author.name, style = MaterialTheme.typography.labelSmall, fontWeight = FontWeight.Bold)
                     }
                 }
-
+                Spacer(Modifier.height(8.dp))
+                // Stars
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
+                    // 1. Rating numérico
+                    Text(
+                        text = "%.1f".format(course.rating),
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(end = 6.dp),
+                        color = Color(0xFFF7C33F),
+                    )
+
+                    // 2. Estrellas
                     repeat(5) { index ->
                         val icon =
                             if (index < course.rating.toInt()) {
@@ -118,16 +107,19 @@ fun CourseCard(
                         Icon(
                             imageVector = icon,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary,
+                            tint = Color(0xFFF7C33F),
                             modifier = Modifier.size(16.dp),
                         )
                     }
-                    Spacer(Modifier.width(8.dp))
+
+                    // 3. Valoraciones
                     Text(
-                        "${"%.1f".format(course.rating)} (${course.ratingCount} valoraciones)",
+                        text = " (${course.totalStudents} estudiantes)",
                         style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(start = 4.dp),
                     )
                 }
+
                 Spacer(Modifier.height(4.dp))
                 Text(
                     text = if (!course.isFree) "$${course.price}" else "Gratuito",

@@ -14,7 +14,7 @@ data class Course(
     val categories: List<Category>,
     val schedule: List<Schedule>,
     val totalStudents: Int,
-    val items: List<VideoItem>,
+    val sections: List<CourseSection>,
     val documents: List<CourseDocument> = emptyList(),
     val level: CourseLevel,
     val includes: List<CourseIncludeItem>,
@@ -24,4 +24,5 @@ data class Course(
     val updatedAt: String,
     val topics: List<String> = emptyList(),
     val tags: List<String> = emptyList(),
+    val comments: List<Comment> = emptyList(),
 )

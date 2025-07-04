@@ -45,7 +45,7 @@ fun HomeSectionTitle(
                 modifier =
                     Modifier
                         .background(
-                            color = if (!isDarkTheme) Color(0xFF2B1BBA) else MaterialTheme.colorScheme.primary,
+                            color = if (!isDarkTheme) Color(0xFF2B1BBA) else MaterialTheme.colorScheme.primaryContainer,
                             shape = RoundedCornerShape(24.dp),
                         ).height(32.dp)
                         .defaultMinSize(minHeight = 1.dp, minWidth = 1.dp),
