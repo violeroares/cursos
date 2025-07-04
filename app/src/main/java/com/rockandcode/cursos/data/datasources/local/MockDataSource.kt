@@ -1515,6 +1515,440 @@ object MockDataSource {
                         ),
                     tags = listOf("Videojuegos", "Prototipado", "UX"),
                 ),
+                CourseDto(
+                    id = 9,
+                    title = "Cálculo Mental",
+                    subTitle = "Podrás adquirir un repertorio de cálculos con estrategias para agilizar tu velocidad mental",
+                    description =
+                        "Podrás adquirir un repertorio de cálculos con estrategias para agilizar tu velocidad mental",
+                    thumbnailUrl = "https://i0.wp.com/www.primariamcj.edu.mx/wp-content/uploads/2023/04/image-1.png?fit=483%2C486&ssl=1",
+                    rating = 4.3,
+                    ratingCount = 18,
+                    price = 62050.00,
+                    isFree = false,
+                    instructors = listOf(instructorsDto[4]),
+                    categories = listOf(categoriesDto[2]),
+                    author = instructorsDto[4],
+                    schedule =
+                        listOf(
+                            ScheduleDto("Martes", "19:00", "21:30"),
+                        ),
+                    totalStudents = 250,
+                    level = levelsDto[1],
+                    requirements = listOf("4 operaciones básicas"),
+                    comments = emptyList(),
+                    sections =
+                        listOf(
+                            CourseSectionDto(
+                                id = 25,
+                                title = "Presentación",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 56,
+                                            title = "Repertorios de cálculos",
+                                            description = "Cuentas que ya conocemos.",
+                                            durationSeconds = 500,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 26,
+                                title = "Sumas mentales",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 57,
+                                            title = "Sumas que dan 10",
+                                            description = "",
+                                            durationSeconds = 300,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 58,
+                                            title = "Sumas de números redondos",
+                                            description = "",
+                                            durationSeconds = 800,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 27,
+                                title = "Multiplicaciones mentales",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 59,
+                                            title = "Unidad seguida de ceros",
+                                            description = "",
+                                            durationSeconds = 900,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 60,
+                                            title = "Descomposición de tablas",
+                                            description = "",
+                                            durationSeconds = 450,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                    ),
+                            ),
+                        ),
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
+                    topics =
+                        listOf(
+                            "Cálculos",
+                            "Velocidad mental",
+                            "Sumas",
+                            "Multiplicaciones",
+                            "Extra: División método frances",
+                        ),
+                    tags = listOf("Cálculo", "Suma", "Multiplicación"),
+                ),
+                CourseDto(
+                    id = 10,
+                    title = "Historia del Rock Argentino",
+                    subTitle = "Un recorrido por las bandas de rock Argentino que dieron origen a este movimiento popular",
+                    description =
+                        "Un recorrido por las bandas de rock Argentino que dieron origen a este movimiento popular",
+                    thumbnailUrl = "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84594349ddaa2c81ce07d3ce0e",
+                    rating = 4.9,
+                    ratingCount = 23,
+                    price = 30500.00,
+                    isFree = false,
+                    instructors = listOf(instructorsDto[3]),
+                    categories = listOf(categoriesDto[6]),
+                    author = instructorsDto[3],
+                    schedule =
+                        listOf(
+                            ScheduleDto("Lunes a Viernes", "16:00", "17:00"),
+                        ),
+                    totalStudents = 50,
+                    level = levelsDto[0],
+                    requirements = listOf("Que te guste la música"),
+                    comments = emptyList(),
+                    sections =
+                        listOf(
+                            CourseSectionDto(
+                                id = 28,
+                                title = "Inicios",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 61,
+                                            title = "Bandas originarias",
+                                            description = "Los pioneros de la música.",
+                                            durationSeconds = 700,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 29,
+                                title = "Orígenes del sonido",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 62,
+                                            title = "Los años '70",
+                                            description = "",
+                                            durationSeconds = 300,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 63,
+                                            title = "Censuras y prohibición",
+                                            description = "",
+                                            durationSeconds = 800,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                        VideoItemDto(
+                                            id = 64,
+                                            title = "Tiempos modernos",
+                                            description = "",
+                                            durationSeconds = 800,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 30,
+                                title = "Artistas reconocidos",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 65,
+                                            title = "Charly, Spinetta y Soda",
+                                            description = "",
+                                            durationSeconds = 900,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                        VideoItemDto(
+                                            id = 66,
+                                            title = "Bandas actuales e influencias",
+                                            description = "",
+                                            durationSeconds = 450,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 5,
+                                        ),
+                                    ),
+                            ),
+                        ),
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
+                    topics =
+                        listOf(
+                            "Rock",
+                            "Música Argentina",
+                            "Temas icónicos",
+                        ),
+                    tags = listOf("Rock", "Música"),
+                ),
+                CourseDto(
+                    id = 11,
+                    title = "Ortografía",
+                    subTitle = "Conocé las reglas ortografía para lograr una mejor redacción",
+                    description =
+                        "Conocé las reglas ortografía para lograr una mejor redacción",
+                    thumbnailUrl =
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROgOqSzQUbbKN4IGN3WqY4IFZ4DbuViKcX6A&s",
+                    rating = 3.9,
+                    ratingCount = 52,
+                    price = 30750.00,
+                    isFree = true,
+                    instructors = listOf(instructorsDto[1]),
+                    categories = listOf(categoriesDto[3]),
+                    author = instructorsDto[1],
+                    schedule =
+                        listOf(
+                            ScheduleDto("Viernes", "10:00", "12:00"),
+                        ),
+                    totalStudents = 50,
+                    level = levelsDto[0],
+                    requirements = listOf("No necesitas conocimientos previos"),
+                    comments = emptyList(),
+                    sections =
+                        listOf(
+                            CourseSectionDto(
+                                id = 31,
+                                title = "Primeros conceptos",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 67,
+                                            title = "Reglas básicas",
+                                            description = "Aprende a redactar.",
+                                            durationSeconds = 800,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 32,
+                                title = "Reglas ortográficas",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 68,
+                                            title = "MB-NV",
+                                            description = "",
+                                            durationSeconds = 1100,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 69,
+                                            title = "MP",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 33,
+                                title = "Coherencia y cohesión",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 70,
+                                            title = "Terminadas en Z y plurales",
+                                            description = "",
+                                            durationSeconds = 500,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 71,
+                                            title = "Uso de la diéresis",
+                                            description = "",
+                                            durationSeconds = 700,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                    ),
+                            ),
+                        ),
+                    includes =
+                        listOf(
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 1,
+                                        name = "Video",
+                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                    ),
+                                description = "10 horas de video bajo demanda",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 2,
+                                        name = "Documento",
+                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                    ),
+                                description = "Material descargable (PDFs, guías)",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 3,
+                                        name = "Certificado",
+                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
+                                    ),
+                                description = "Certificado de finalización",
+                            ),
+                            CourseIncludeItemDto(
+                                type =
+                                    IncludeTypeDto(
+                                        id = 4,
+                                        name = "Acceso de por vida",
+                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
+                                    ),
+                                description = "Acceso de por vida al contenido",
+                            ),
+                        ),
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
+                    topics =
+                        listOf(
+                            "Textos",
+                            "Artículos y pronombres",
+                            "Repetición y omisión de palabras",
+                            "Cómo escribir correctamente",
+                            "Reglas ortográficas",
+                        ),
+                    tags = listOf("Lengua", "Redacción"),
+                ),
             )
 
     val medalsDto =
