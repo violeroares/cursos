@@ -73,10 +73,16 @@ class SearchViewModel
 
                 // Filtrar por duración
                 filter.minDuration?.let { min ->
-                    filtered = filtered.filter { it.items.sumOf { item -> item.durationSeconds } >= min }
+                    filtered =
+                        filtered.filter {
+                            it.sections.flatMap { sec -> sec.videos }.sumOf { v -> v.durationSeconds } >= min
+                        }
                 }
                 filter.maxDuration?.let { max ->
-                    filtered = filtered.filter { it.items.sumOf { item -> item.durationSeconds } <= max }
+                    filtered =
+                        filtered.filter {
+                            it.sections.flatMap { sec -> sec.videos }.sumOf { v -> v.durationSeconds } <= max
+                        }
                 }
 
                 // Filtrar por búsqueda

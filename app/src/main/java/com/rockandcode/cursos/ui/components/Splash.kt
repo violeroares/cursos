@@ -51,7 +51,7 @@ fun Splash() {
                     id = if (isDarkTheme) R.drawable.logo_acadexa_dark else R.drawable.logo_acadexa_light,
                 ),
                 contentDescription = "logo",
-                Modifier.size(120.dp),
+                Modifier.size(180.dp),
             )
         }
     }

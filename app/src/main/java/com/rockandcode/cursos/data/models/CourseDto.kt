@@ -18,7 +18,7 @@ data class CourseDto(
     val categories: List<CategoryDto>,
     val schedule: List<ScheduleDto>,
     val totalStudents: Int,
-    val items: List<VideoItemDto>,
+    val sections: List<CourseSectionDto>,
     val documents: List<CourseDocumentDto> = emptyList(),
     val level: CourseLevelDto,
     val includes: List<CourseIncludeItemDto>,
@@ -28,6 +28,7 @@ data class CourseDto(
     val updatedAt: String,
     val topics: List<String> = emptyList(),
     val tags: List<String> = emptyList(),
+    val comments: List<CommentDto>,
 ) {
     fun toDomain() =
         Course(
@@ -44,7 +45,7 @@ data class CourseDto(
             categories.map { it.toDomain() },
             schedule.map { it.toDomain() },
             totalStudents,
-            items.map { it.toDomain() },
+            sections.map { it.toDomain() },
             documents.map { it.toDomain() },
             level = level.toDomain(),
             includes =
@@ -65,5 +66,6 @@ data class CourseDto(
             updatedAt = updatedAt,
             topics = topics,
             tags = tags,
+            comments.map { it.toDomain() },
         )
 }

@@ -6,6 +6,7 @@ import com.rockandcode.cursos.data.models.CourseDocumentDto
 import com.rockandcode.cursos.data.models.CourseDto
 import com.rockandcode.cursos.data.models.CourseIncludeItemDto
 import com.rockandcode.cursos.data.models.CourseLevelDto
+import com.rockandcode.cursos.data.models.CourseSectionDto
 import com.rockandcode.cursos.data.models.DocumentTypeDto
 import com.rockandcode.cursos.data.models.IncludeTypeDto
 import com.rockandcode.cursos.data.models.InstructorDto
@@ -64,7 +65,9 @@ object MockDataSource {
                 id = 5,
                 name = "Federico Cipeli",
                 avatarUrl =
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZCtiyXTcBj5PVCAy_KeRF26uuwbWpybr_Jw&s",
+                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
                 bio = "Licenciado en Matemática - Desarrollador de Teoremas Físicos y Matemáticos",
                 experience = "Gerente del Laboratorio Matemático de la UnLaM",
                 specialization = "Teoría de Números y Álgebra",
@@ -202,9 +205,9 @@ object MockDataSource {
                     thumbnailUrl =
                         "https://dropinblog.net/cdn-cgi/image/fit=scale-down,width=1400" +
                             "/34249715/files/kotlin-y-jetpack-compose.png",
-                    rating = 4.9,
+                    rating = 4.0,
                     ratingCount = 4,
-                    price = 250.0,
+                    price = 68750.00,
                     isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[0], categoriesDto[4]),
@@ -214,117 +217,6 @@ object MockDataSource {
                             ScheduleDto("Miércoles", "18:00", "20:00"),
                         ),
                     totalStudents = 1000,
-                    items =
-                        listOf(
-                            VideoItemDto(
-                                id = 1,
-                                title = "Introducción a Jetpack Compose",
-                                description = "Conceptos básicos...",
-                                durationSeconds = 300,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 0,
-                            ),
-                            VideoItemDto(
-                                id = 2,
-                                title = "Diseños y Columnas/Filas",
-                                description = "Cómo crear diseños...",
-                                durationSeconds = 1200,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 1,
-                            ),
-                            VideoItemDto(
-                                id = 3,
-                                title = "Estado y Comportamiento",
-                                description = "Manejo del estado...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 2,
-                            ),
-                            VideoItemDto(
-                                id = 4,
-                                title = "Temas y Animaciones",
-                                description = "Personalización...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 3,
-                            ),
-                            VideoItemDto(
-                                id = 5,
-                                title = "Navegación",
-                                description = "Implementación de la navegación...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video5.mp4",
-                                isPreview = false,
-                                order = 4,
-                            ),
-                            VideoItemDto(
-                                id = 6,
-                                title = "Arquitectura",
-                                description = "Conceptos de arquitectura...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video6.mp4",
-                                isPreview = false,
-                                order = 5,
-                            ),
-                            VideoItemDto(
-                                id = 7,
-                                title = "Accesibilidad",
-                                description = "Creación de interfaces accesibles...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video7.mp4",
-                                isPreview = false,
-                                order = 6,
-                            ),
-                            VideoItemDto(
-                                id = 8,
-                                title = "Pruebas",
-                                description = "Pruebas automatizadas para Compose...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video8.mp4",
-                                isPreview = false,
-                                order = 7,
-                            ),
-                            VideoItemDto(
-                                id = 9,
-                                title = "Rendimiento",
-                                description = "Optimización del rendimiento...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video9.mp4",
-                                isPreview = false,
-                                order = 8,
-                            ),
-                            VideoItemDto(
-                                id = 10,
-                                title = "Factores de Forma",
-                                description = "Adaptación de la interfaz...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video10.mp4",
-                                isPreview = false,
-                                order = 9,
-                            ),
-                            VideoItemDto(
-                                11,
-                                title = "Integración con otros componentes",
-                                description = "Uso de APIs de red...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video11.mp4",
-                                isPreview = false,
-                                order = 10,
-                            ),
-                            VideoItemDto(
-                                12,
-                                title = "Patrones de diseño",
-                                description = "Introducción a patrones comunes...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video12.mp4",
-                                isPreview = false,
-                                order = 11,
-                            ),
-                        ),
                     documents = documentsDto,
                     level = levelsDto[0],
                     includes =
@@ -368,8 +260,8 @@ object MockDataSource {
                         ),
                     requirements = listOf("Conocimientos básicos de programación en Kotlin"),
                     author = instructorsDto[1],
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     topics =
                         listOf(
                             "Fundamentos de Kotlin",
@@ -382,6 +274,146 @@ object MockDataSource {
                             "Gráficos",
                         ),
                     tags = listOf("Android", "Kotlin"),
+                    comments = emptyList(),
+                    sections =
+                        listOf(
+                            CourseSectionDto(
+                                id = 1,
+                                title = "Introducción",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 1,
+                                            title = "Introducción a Jetpack Compose",
+                                            description = "Conceptos básicos...",
+                                            durationSeconds = 300,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 2,
+                                title = "Parte 1",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 2,
+                                            title = "Diseños y Columnas/Filas",
+                                            description = "Cómo crear diseños...",
+                                            durationSeconds = 1200,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 3,
+                                            title = "Estado y Comportamiento",
+                                            description = "Manejo del estado...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                        VideoItemDto(
+                                            id = 4,
+                                            title = "Temas y Animaciones",
+                                            description = "Personalización...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 3,
+                                title = "Parte 2",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 5,
+                                            title = "Navegación",
+                                            description = "Implementación de la navegación...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video5.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                        VideoItemDto(
+                                            id = 6,
+                                            title = "Arquitectura",
+                                            description = "Conceptos de arquitectura...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video6.mp4",
+                                            isPreview = false,
+                                            order = 5,
+                                        ),
+                                        VideoItemDto(
+                                            id = 7,
+                                            title = "Accesibilidad",
+                                            description = "Creación de interfaces accesibles...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video7.mp4",
+                                            isPreview = false,
+                                            order = 6,
+                                        ),
+                                    ),
+                            ),
+                            CourseSectionDto(
+                                id = 4,
+                                title = "Parte 3",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 8,
+                                            title = "Pruebas",
+                                            description = "Pruebas automatizadas para Compose...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video8.mp4",
+                                            isPreview = false,
+                                            order = 7,
+                                        ),
+                                        VideoItemDto(
+                                            id = 9,
+                                            title = "Rendimiento",
+                                            description = "Optimización del rendimiento...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video9.mp4",
+                                            isPreview = false,
+                                            order = 8,
+                                        ),
+                                        VideoItemDto(
+                                            id = 10,
+                                            title = "Factores de Forma",
+                                            description = "Adaptación de la interfaz...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video10.mp4",
+                                            isPreview = false,
+                                            order = 9,
+                                        ),
+                                        VideoItemDto(
+                                            11,
+                                            title = "Integración con otros componentes",
+                                            description = "Uso de APIs de red...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video11.mp4",
+                                            isPreview = false,
+                                            order = 10,
+                                        ),
+                                        VideoItemDto(
+                                            12,
+                                            title = "Patrones de diseño",
+                                            description = "Introducción a patrones comunes...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video12.mp4",
+                                            isPreview = false,
+                                            order = 11,
+                                        ),
+                                    ),
+                            ),
+                        ),
                 ),
                 CourseDto(
                     id = 2,
@@ -391,7 +423,7 @@ object MockDataSource {
                     thumbnailUrl = "https://compraco.com.br/cdn/shop/articles/O-que-e-SQL-Server.jpg?v=1716456631",
                     rating = 4.1,
                     ratingCount = 24,
-                    price = 250.0,
+                    price = 81250.00,
                     isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[5]),
@@ -401,79 +433,107 @@ object MockDataSource {
                             ScheduleDto("Miércoles", "18:00", "20:00"),
                         ),
                     totalStudents = 500,
-                    items =
+                    sections =
                         listOf(
-                            VideoItemDto(
-                                id = 13,
-                                title = "¿Qué es SQL y para qué sirve?",
-                                description = "Se explica el concepto...",
-                                durationSeconds = 300,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 1,
+                            CourseSectionDto(
+                                id = 5,
+                                title = "Introducción",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 13,
+                                            title = "¿Qué es SQL y para qué sirve?",
+                                            description = "Se explica el concepto...",
+                                            durationSeconds = 300,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 1,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 14,
+                            CourseSectionDto(
+                                id = 6,
                                 title = "Instalación y configuración",
-                                description = "Se guía sobre cómo instalar...",
-                                durationSeconds = 1200,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 2,
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 14,
+                                            title = "Instalación y configuración",
+                                            description = "Se guía sobre cómo instalar...",
+                                            durationSeconds = 1200,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 15,
-                                title = "Fundamentos de SQL",
-                                description = "Se introducen los tipos de datos...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 3,
+                            CourseSectionDto(
+                                id = 7,
+                                title = "Lenguaje SQL",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 15,
+                                            title = "Fundamentos de SQL",
+                                            description = "Se introducen los tipos de datos...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 16,
+                                            title = "Lenguaje de Definición de Datos (DDL)",
+                                            description = "Se aprenden comandos para crear...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                        VideoItemDto(
+                                            id = 17,
+                                            title = "Lenguaje de Manipulación de Datos (DML)",
+                                            description = "Se aprenden comandos para insertar...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video5.mp4",
+                                            isPreview = false,
+                                            order = 5,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 16,
-                                title = "Lenguaje de Definición de Datos (DDL)",
-                                description = "Se aprenden comandos para crear...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 4,
-                            ),
-                            VideoItemDto(
-                                id = 17,
-                                title = "Lenguaje de Manipulación de Datos (DML)",
-                                description = "Se aprenden comandos para insertar...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video5.mp4",
-                                isPreview = false,
-                                order = 5,
-                            ),
-                            VideoItemDto(
-                                id = 18,
-                                title = "Selección de datos",
-                                description = "Se estudian las cláusulas SELECT...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video6.mp4",
-                                isPreview = false,
-                                order = 6,
-                            ),
-                            VideoItemDto(
-                                id = 19,
-                                title = "Uniones (JOIN)",
-                                description = "Se aprenden diferentes tipos...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video7.mp4",
-                                isPreview = false,
-                                order = 7,
-                            ),
-                            VideoItemDto(
-                                id = 20,
-                                title = "Funciones de Agregación",
-                                description = "Se estudian funciones como COUNT...",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video8.mp4",
-                                isPreview = false,
-                                order = 8,
+                            CourseSectionDto(
+                                id = 8,
+                                title = "Consultas",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 18,
+                                            title = "Selección de datos",
+                                            description = "Se estudian las cláusulas SELECT...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video6.mp4",
+                                            isPreview = false,
+                                            order = 6,
+                                        ),
+                                        VideoItemDto(
+                                            id = 19,
+                                            title = "Uniones (JOIN)",
+                                            description = "Se aprenden diferentes tipos...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video7.mp4",
+                                            isPreview = false,
+                                            order = 7,
+                                        ),
+                                        VideoItemDto(
+                                            id = 20,
+                                            title = "Funciones de Agregación",
+                                            description = "Se estudian funciones como COUNT...",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video8.mp4",
+                                            isPreview = false,
+                                            order = 8,
+                                        ),
+                                    ),
                             ),
                         ),
                     documents = emptyList(),
@@ -518,8 +578,8 @@ object MockDataSource {
                             ),
                         ),
                     requirements = listOf("Conocimientos básicos de programación"),
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     author = instructorsDto[1],
                     topics =
                         listOf(
@@ -533,6 +593,7 @@ object MockDataSource {
                             "Extensiones de GROUP BY: ROLLUP, CUBE, GROUPING SETS",
                         ),
                     tags = listOf("SQL", "Bases de datos", "MySQL", "Backend"),
+                    comments = emptyList(),
                 ),
                 CourseDto(
                     id = 3,
@@ -545,7 +606,7 @@ object MockDataSource {
                     thumbnailUrl = "https://www.fasabri.com/wp-content/uploads/diseno-de-interfaz-de-usuario.jpg",
                     rating = 5.0,
                     ratingCount = 130,
-                    price = 250.0,
+                    price = 74999.00,
                     isFree = false,
                     instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[7]),
@@ -555,79 +616,108 @@ object MockDataSource {
                             ScheduleDto("Miercoles", "19:00", "23:00"),
                         ),
                     totalStudents = 250,
-                    items =
+                    comments = emptyList(),
+                    sections =
                         listOf(
-                            VideoItemDto(
-                                id = 21,
-                                title = "Introducción a la Comunicación Visual",
-                                description = "Elementos del Proceso comunicativo.",
-                                durationSeconds = 300,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 1,
+                            CourseSectionDto(
+                                id = 9,
+                                title = "Introducción",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 21,
+                                            title = "Introducción a la Comunicación Visual",
+                                            description = "Elementos del Proceso comunicativo.",
+                                            durationSeconds = 300,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 1,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 22,
-                                title = "Sistemas de Diseño",
-                                description = "",
-                                durationSeconds = 1200,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = false,
-                                order = 2,
+                            CourseSectionDto(
+                                id = 10,
+                                title = "Parte 1",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 22,
+                                            title = "Sistemas de Diseño",
+                                            description = "",
+                                            durationSeconds = 1200,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                        VideoItemDto(
+                                            id = 23,
+                                            title = "Color",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 23,
-                                title = "Color",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 3,
+                            CourseSectionDto(
+                                id = 11,
+                                title = "Parte 2",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 24,
+                                            title = "Introducción a las Interfaces",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                        VideoItemDto(
+                                            id = 25,
+                                            title = "Interacción Humano Dispositivo",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 5,
+                                        ),
+                                        VideoItemDto(
+                                            id = 26,
+                                            title = "Usabilidad y Experiencia de Usuario",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video5.mp4",
+                                            isPreview = false,
+                                            order = 6,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 24,
-                                title = "Introducción a las Interfaces",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 4,
-                            ),
-                            VideoItemDto(
-                                id = 25,
-                                title = "Interacción Humano Dispositivo",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 5,
-                            ),
-                            VideoItemDto(
-                                id = 26,
-                                title = "Usabilidad y Experiencia de Usuario",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video5.mp4",
-                                isPreview = false,
-                                order = 6,
-                            ),
-                            VideoItemDto(
-                                id = 27,
-                                title = "Evaluación Heurística",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video6.mp4",
-                                isPreview = false,
-                                order = 7,
-                            ),
-                            VideoItemDto(
-                                id = 28,
-                                title = "Prototipado",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video7.mp4",
-                                isPreview = false,
-                                order = 8,
+                            CourseSectionDto(
+                                id = 12,
+                                title = "Parte 3",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 27,
+                                            title = "Evaluación Heurística",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video6.mp4",
+                                            isPreview = false,
+                                            order = 7,
+                                        ),
+                                        VideoItemDto(
+                                            id = 28,
+                                            title = "Prototipado",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video7.mp4",
+                                            isPreview = false,
+                                            order = 8,
+                                        ),
+                                    ),
                             ),
                         ),
                     documents = emptyList(),
@@ -672,8 +762,8 @@ object MockDataSource {
                             ),
                         ),
                     requirements = listOf("No necesitas conocimientos previos"),
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     topics =
                         listOf(
                             "Introducción a la Comunicación Visual",
@@ -700,7 +790,7 @@ object MockDataSource {
                             "/2019/12/solfeo_teoria_musica_III-portada-1.jpg?w=750&ssl=1",
                     rating = 4.8,
                     ratingCount = 8,
-                    price = 250.0,
+                    price = 62499.00,
                     isFree = false,
                     instructors = listOf(instructorsDto[3]),
                     categories = listOf(categoriesDto[6]),
@@ -710,52 +800,66 @@ object MockDataSource {
                             ScheduleDto("Miercoles", "19:00", "23:00"),
                         ),
                     totalStudents = 250,
-                    items =
+                    sections =
                         listOf(
-                            VideoItemDto(
-                                id = 29,
+                            CourseSectionDto(
+                                id = 13,
                                 title = "Introducción",
-                                description = "",
-                                durationSeconds = 1200,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 1,
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 29,
+                                            title = "Introducción",
+                                            description = "",
+                                            durationSeconds = 1200,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 1,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 30,
-                                title = "Teoria musical",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 2,
-                            ),
-                            VideoItemDto(
-                                id = 31,
-                                title = "Producción musical",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 3,
-                            ),
-                            VideoItemDto(
-                                id = 32,
-                                title = "Interpretación musical",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 4,
-                            ),
-                            VideoItemDto(
-                                id = 33,
-                                title = "Otros contenidos",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video5.mp4",
-                                isPreview = false,
-                                order = 5,
+                            CourseSectionDto(
+                                id = 14,
+                                title = "Parte 1",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 30,
+                                            title = "Teoria musical",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                        VideoItemDto(
+                                            id = 31,
+                                            title = "Producción musical",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 32,
+                                            title = "Interpretación musical",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                        VideoItemDto(
+                                            id = 33,
+                                            title = "Otros contenidos",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video5.mp4",
+                                            isPreview = false,
+                                            order = 5,
+                                        ),
+                                    ),
                             ),
                         ),
                     documents = emptyList(),
@@ -800,8 +904,8 @@ object MockDataSource {
                             ),
                         ),
                     requirements = listOf("No necesitas conocimientos previos"),
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     topics =
                         listOf(
                             "Sonido y sus propiedades",
@@ -818,6 +922,7 @@ object MockDataSource {
                             "Tonalidad y atonalidad",
                         ),
                     tags = listOf("Música", "Armonía", "Escalas", "Lenguaje musical"),
+                    comments = emptyList(),
                 ),
                 CourseDto(
                     id = 5,
@@ -830,7 +935,7 @@ object MockDataSource {
                             "/o/uploads%2Fmatematicas.jpg?alt=media&token=d18e6a41-262a-4501-924a-5a668be3f5fc",
                     rating = 4.7,
                     ratingCount = 5,
-                    price = 200.0,
+                    price = 49999.00,
                     isFree = false,
                     instructors = listOf(instructorsDto[4]),
                     categories = listOf(categoriesDto[2]),
@@ -842,52 +947,67 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[1],
                     requirements = listOf("No necesitas conocimientos previos"),
-                    items =
+                    comments = emptyList(),
+                    sections =
                         listOf(
-                            VideoItemDto(
-                                id = 34,
-                                title = "Introducción a la Numeración",
-                                description = "Elementos numéricos.",
-                                durationSeconds = 400,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 0,
+                            CourseSectionDto(
+                                id = 15,
+                                title = "Introducción",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 34,
+                                            title = "Introducción a la Numeración",
+                                            description = "Elementos numéricos.",
+                                            durationSeconds = 400,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 35,
-                                title = "Valor del número de acuerdo a la posición",
-                                description = "",
-                                durationSeconds = 1000,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = false,
-                                order = 1,
-                            ),
-                            VideoItemDto(
-                                id = 36,
-                                title = "Cómo ubicar un número en la recta",
-                                description = "",
-                                durationSeconds = 1200,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 2,
-                            ),
-                            VideoItemDto(
-                                id = 37,
-                                title = "Densidad de la recta numérica",
-                                description = "",
-                                durationSeconds = 1300,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 3,
-                            ),
-                            VideoItemDto(
-                                id = 38,
-                                title = "Operaciones",
-                                description = "",
-                                durationSeconds = 1200,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 4,
+                            CourseSectionDto(
+                                id = 16,
+                                title = "Videos",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 35,
+                                            title = "Valor del número de acuerdo a la posición",
+                                            description = "",
+                                            durationSeconds = 1000,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 36,
+                                            title = "Cómo ubicar un número en la recta",
+                                            description = "",
+                                            durationSeconds = 1200,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                        VideoItemDto(
+                                            id = 37,
+                                            title = "Densidad de la recta numérica",
+                                            description = "",
+                                            durationSeconds = 1300,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 38,
+                                            title = "Operaciones",
+                                            description = "",
+                                            durationSeconds = 1200,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                    ),
                             ),
                         ),
                     includes =
@@ -929,8 +1049,8 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     topics =
                         listOf(
                             "Conceptos y propiedades básicas de los números reales",
@@ -950,10 +1070,12 @@ object MockDataSource {
                     subTitle = "Curso inicial de bases de datos",
                     description =
                         "Curso donde aprenderás cómo armar tablas, insertar datos y hacer consultas",
-                    thumbnailUrl = "https://i.sstatic.net/OAcqg.png",
-                    rating = 3.2,
+                    thumbnailUrl =
+                        "https://st2.depositphotos.com/1536130/48928/v/450/" +
+                            "depositphotos_489282948-stock-illustration-computer-sync-database-shadow-yellow.jpg",
+                    rating = 4.9,
                     ratingCount = 4,
-                    price = 300.0,
+                    price = 24999.00,
                     isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[5]),
@@ -966,61 +1088,76 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[0],
                     requirements = listOf("No necesitas conocimientos previos"),
-                    items =
+                    comments = emptyList(),
+                    sections =
                         listOf(
-                            VideoItemDto(
-                                id = 39,
-                                title = "Introducción a Base de Datos",
-                                description = "Componentes.",
-                                durationSeconds = 700,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 0,
+                            CourseSectionDto(
+                                id = 17,
+                                title = "Introducción",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 39,
+                                            title = "Introducción a Base de Datos",
+                                            description = "Componentes.",
+                                            durationSeconds = 700,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 40,
-                                title = "Qué es una base de datos",
-                                description = "",
-                                durationSeconds = 1100,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = false,
-                                order = 1,
-                            ),
-                            VideoItemDto(
-                                id = 41,
-                                title = "Cómo guardar datos",
-                                description = "",
-                                durationSeconds = 1200,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 2,
-                            ),
-                            VideoItemDto(
-                                id = 42,
-                                title = "Cómo modificar datos",
-                                description = "",
-                                durationSeconds = 900,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 3,
-                            ),
-                            VideoItemDto(
-                                id = 43,
-                                title = "Realizar consultas",
-                                description = "",
-                                durationSeconds = 800,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 4,
-                            ),
-                            VideoItemDto(
-                                id = 44,
-                                title = "Creación de tablas",
-                                description = "",
-                                durationSeconds = 200,
-                                videoUrl = "https://video5.mp4",
-                                isPreview = false,
-                                order = 5,
+                            CourseSectionDto(
+                                id = 18,
+                                title = "Base de datos",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 40,
+                                            title = "Qué es una base de datos",
+                                            description = "",
+                                            durationSeconds = 1100,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 41,
+                                            title = "Cómo guardar datos",
+                                            description = "",
+                                            durationSeconds = 1200,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                        VideoItemDto(
+                                            id = 42,
+                                            title = "Cómo modificar datos",
+                                            description = "",
+                                            durationSeconds = 900,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 43,
+                                            title = "Realizar consultas",
+                                            description = "",
+                                            durationSeconds = 800,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                        VideoItemDto(
+                                            id = 44,
+                                            title = "Creación de tablas",
+                                            description = "",
+                                            durationSeconds = 200,
+                                            videoUrl = "https://video5.mp4",
+                                            isPreview = false,
+                                            order = 5,
+                                        ),
+                                    ),
                             ),
                         ),
                     includes =
@@ -1062,8 +1199,8 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     topics =
                         listOf(
                             "Tipos de bases de datos",
@@ -1082,10 +1219,13 @@ object MockDataSource {
                     subTitle = "Una aventura por la historia de la literatura clásica y sus máximos exponentes",
                     description =
                         "Una aventura por la historia de la literatura clásica y sus máximos exponentes",
-                    thumbnailUrl = "https://img.freepik.com/vector-premium/libro-viejo-blanco_87946-1711.jpg?w=360",
+                    thumbnailUrl =
+                        "https://marketplace.canva.com/EAGHu4whP4U/2/0/1600w/" +
+                            "canva-presentaci%C3%B3n-de-literatura-libros-papel-antiguo-ilustrado-" +
+                            "beige-marr%C3%B3n-gvB7eUtyD9Y.jpg",
                     rating = 4.2,
                     ratingCount = 48,
-                    price = 500.0,
+                    price = 68750.00,
                     isFree = true,
                     instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[3]),
@@ -1098,61 +1238,83 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[1],
                     requirements = listOf("No necesitas conocimientos previos"),
-                    items =
+                    comments = emptyList(),
+                    sections =
                         listOf(
-                            VideoItemDto(
-                                id = 45,
-                                title = "Los comienzos de la escrituras",
-                                description = "Primeros registros escritos.",
-                                durationSeconds = 800,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 0,
+                            CourseSectionDto(
+                                id = 19,
+                                title = "Introducción",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 45,
+                                            title = "Los comienzos de la escrituras",
+                                            description = "Primeros registros escritos.",
+                                            durationSeconds = 800,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 46,
-                                title = "Recorrido por grandes obras",
-                                description = "",
-                                durationSeconds = 1100,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = false,
-                                order = 1,
+                            CourseSectionDto(
+                                id = 20,
+                                title = "Clase 1",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 46,
+                                            title = "Recorrido por grandes obras",
+                                            description = "",
+                                            durationSeconds = 1100,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 47,
+                                            title = "Autores influyentes",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 47,
-                                title = "Autores influyentes",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 2,
-                            ),
-                            VideoItemDto(
-                                id = 48,
-                                title = "Herramientas y tips para una buena redacción",
-                                description = "",
-                                durationSeconds = 500,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 3,
-                            ),
-                            VideoItemDto(
-                                id = 49,
-                                title = "El Quijote",
-                                description = "",
-                                durationSeconds = 700,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 4,
-                            ),
-                            VideoItemDto(
-                                id = 50,
-                                title = "Capítulos y prólogos.",
-                                description = "",
-                                durationSeconds = 500,
-                                videoUrl = "https://video5.mp4",
-                                isPreview = false,
-                                order = 5,
+                            CourseSectionDto(
+                                id = 21,
+                                title = "Clase 2",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 48,
+                                            title = "Herramientas y tips para una buena redacción",
+                                            description = "",
+                                            durationSeconds = 500,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 49,
+                                            title = "El Quijote",
+                                            description = "",
+                                            durationSeconds = 700,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                        VideoItemDto(
+                                            id = 50,
+                                            title = "Capítulos y prólogos.",
+                                            description = "",
+                                            durationSeconds = 500,
+                                            videoUrl = "https://video5.mp4",
+                                            isPreview = false,
+                                            order = 5,
+                                        ),
+                                    ),
                             ),
                         ),
                     includes =
@@ -1194,8 +1356,8 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     topics =
                         listOf(
                             "El amor",
@@ -1217,10 +1379,10 @@ object MockDataSource {
                     subTitle = "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
                     description =
                         "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
-                    thumbnailUrl = "https://www.cokitos.com/wp-content/uploads/2022/12/pixel-art-pintar-ninos.jpg",
+                    thumbnailUrl = "https://assets.justinmind.com/wp-content/uploads/2025/02/game-ui-design-768x492.png",
                     rating = 4.1,
                     ratingCount = 12,
-                    price = 800.0,
+                    price = 56250.00,
                     isFree = false,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[4]),
@@ -1232,52 +1394,74 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[0],
                     requirements = listOf("No necesitas conocimientos previos"),
-                    items =
+                    comments = emptyList(),
+                    sections =
                         listOf(
-                            VideoItemDto(
-                                id = 51,
-                                title = "Juegos clásicos",
-                                description = "Primeros registros escritos.",
-                                durationSeconds = 700,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = true,
-                                order = 0,
+                            CourseSectionDto(
+                                id = 22,
+                                title = "Introducción",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 51,
+                                            title = "Juegos clásicos",
+                                            description = "Primeros registros escritos.",
+                                            durationSeconds = 700,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = true,
+                                            order = 0,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 52,
-                                title = "Cómo crear un personaje",
-                                description = "",
-                                durationSeconds = 500,
-                                videoUrl = "https://video1.mp4",
-                                isPreview = false,
-                                order = 1,
+                            CourseSectionDto(
+                                id = 23,
+                                title = "Parte 1",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 52,
+                                            title = "Cómo crear un personaje",
+                                            description = "",
+                                            durationSeconds = 500,
+                                            videoUrl = "https://video1.mp4",
+                                            isPreview = false,
+                                            order = 1,
+                                        ),
+                                        VideoItemDto(
+                                            id = 53,
+                                            title = "Pantallas y escenarios",
+                                            description = "",
+                                            durationSeconds = 1500,
+                                            videoUrl = "https://video2.mp4",
+                                            isPreview = false,
+                                            order = 2,
+                                        ),
+                                    ),
                             ),
-                            VideoItemDto(
-                                id = 53,
-                                title = "Pantallas y escenarios",
-                                description = "",
-                                durationSeconds = 1500,
-                                videoUrl = "https://video2.mp4",
-                                isPreview = false,
-                                order = 2,
-                            ),
-                            VideoItemDto(
-                                id = 54,
-                                title = "Crea una historia con una trama",
-                                description = "",
-                                durationSeconds = 900,
-                                videoUrl = "https://video3.mp4",
-                                isPreview = false,
-                                order = 3,
-                            ),
-                            VideoItemDto(
-                                id = 55,
-                                title = "Cómo subir tu juego",
-                                description = "",
-                                durationSeconds = 450,
-                                videoUrl = "https://video4.mp4",
-                                isPreview = false,
-                                order = 4,
+                            CourseSectionDto(
+                                id = 24,
+                                title = "Parte 2",
+                                videos =
+                                    listOf(
+                                        VideoItemDto(
+                                            id = 54,
+                                            title = "Crea una historia con una trama",
+                                            description = "",
+                                            durationSeconds = 900,
+                                            videoUrl = "https://video3.mp4",
+                                            isPreview = false,
+                                            order = 3,
+                                        ),
+                                        VideoItemDto(
+                                            id = 55,
+                                            title = "Cómo subir tu juego",
+                                            description = "",
+                                            durationSeconds = 450,
+                                            videoUrl = "https://video4.mp4",
+                                            isPreview = false,
+                                            order = 4,
+                                        ),
+                                    ),
                             ),
                         ),
                     includes =
@@ -1319,8 +1503,8 @@ object MockDataSource {
                                 description = "Acceso de por vida al contenido",
                             ),
                         ),
-                    createdAt = "30-06-2025",
-                    updatedAt = "30-06-2025",
+                    createdAt = "30/06/2025",
+                    updatedAt = "30/06/2025",
                     topics =
                         listOf(
                             "Géneros y Estilos",
@@ -1635,8 +1819,19 @@ object MockDataSource {
         courseId: Int,
         videoId: Int,
     ) {
-        val videoList = coursesDto.find { it.id == courseId }?.items ?: return
-        val videoDuration = videoList.find { it.id == videoId }?.durationSeconds ?: return
+        // 🔍 Buscar el curso
+        val sections = coursesDto.find { it.id == courseId }?.sections ?: return
+
+        // 🔍 Buscar el video dentro de las secciones
+        val video =
+            sections
+                .flatMap { it.videos }
+                .firstOrNull { it.id == videoId } ?: return
+
+        val videoDuration = video.durationSeconds
+
+//        val videoList = coursesDto.find { it.id == courseId }?.items ?: return
+//        val videoDuration = videoList.find { it.id == videoId }?.durationSeconds ?: return
 
         val progressList = pprogressByCourse.getOrPut(courseId) { mutableListOf() }
         val existingIndex = progressList.indexOfFirst { it.videoId == videoId }

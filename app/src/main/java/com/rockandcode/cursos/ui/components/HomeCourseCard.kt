@@ -138,7 +138,7 @@ fun HomeCourseCard(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "$ ${course.price}",
+                    text = if (!course.isFree) "$${course.price}" else "Gratuito",
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                 )
             }
