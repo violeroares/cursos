@@ -37,7 +37,8 @@ fun CommentCard(
         modifier =
             modifier
                 .width(280.dp)
-                .padding(horizontal = 8.dp, vertical = 4.dp),
+                .height(145.dp)
+                .padding(horizontal = 0.dp, vertical = 4.dp),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {

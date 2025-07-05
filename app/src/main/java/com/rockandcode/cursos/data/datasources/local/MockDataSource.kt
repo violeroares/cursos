@@ -2,6 +2,7 @@ package com.rockandcode.cursos.data.datasources.local
 
 import com.rockandcode.cursos.data.models.CategoryDto
 import com.rockandcode.cursos.data.models.CertificateDto
+import com.rockandcode.cursos.data.models.CommentDto
 import com.rockandcode.cursos.data.models.CourseDocumentDto
 import com.rockandcode.cursos.data.models.CourseDto
 import com.rockandcode.cursos.data.models.CourseFeatureItemDto
@@ -262,7 +263,40 @@ object MockDataSource {
                             "Gráficos",
                         ),
                     tags = listOf("Android", "Kotlin"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Andrea Lopez",
+                                text = "Muy buen curso de Android. Quizas podrían agregar mas contenidos",
+                                avatarUrl =
+                                    "https://i.pinimg.com/736x/ca/ee/2a/caee2a0f06b406ebb920e4bf25965e18.jpg",
+                                date = "05/07/2025",
+                                rating = 3,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Mario Perez",
+                                text = "Hice todos los ejercicios del curso y termine creando una App!. Lo recomiendo",
+                                avatarUrl =
+                                    "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=" +
+                                        "800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxz" +
+                                        "ZWFyY2h8Mnx8YXZhdGFyJTIwZGUlMjBob21icmV8ZW58MHx8MHx8fDA%3D",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Franco Lupo",
+                                text = "Muy buen curso!. Recomendado a los amantes de Android",
+                                avatarUrl =
+                                    "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=" +
+                                        "800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3" +
+                                        "fDB8MHxzZWFyY2h8M3x8YXZhdGFyJTIwZGUlMjBob21icmV8ZW58MHx8MHx8fDA%3D",
+                                date = "05/07/2025",
+                                rating = 4,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -571,7 +605,41 @@ object MockDataSource {
                             "Extensiones de GROUP BY: ROLLUP, CUBE, GROUPING SETS",
                         ),
                     tags = listOf("SQL", "Bases de datos", "MySQL"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Francisco Costa",
+                                text = "El curso esta muy bien, lo recomiendo.",
+                                avatarUrl =
+                                    "https://images.unsplash.com/photo-1628157588553-5eeea00af15c?w=" +
+                                        "800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3" +
+                                        "fDB8MHxzZWFyY2h8N3x8YXZhdGFyJTIwZGUlMjBob21icmV8ZW58MHx8MHx8fDA%3D",
+                                date = "05/07/2025",
+                                rating = 4,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Maria Lula",
+                                text = "Me sirvio para enteder todo lo relacionado a consultas SQL.",
+                                avatarUrl =
+                                    "https://images.unsplash.com/photo-1688395195964-305f43f" +
+                                        "9e0dc?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8M" +
+                                        "HxwaG90by1yZWxhdGVkfDM1fHx8ZW58MHx8fHx8",
+                                date = "05/07/2025",
+                                rating = 3,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Amanda Sulky",
+                                text = "Muy buen curso!.",
+                                avatarUrl =
+                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBeb5dnyo" +
+                                        "git5AhfBZ85UUdTjDfvQCswMucQ&s",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     hasCertificate = true,
                     hasLifetimeAccess = true,
                 ),
@@ -596,7 +664,36 @@ object MockDataSource {
                             ScheduleDto("Miercoles", "19:00", "23:00"),
                         ),
                     totalStudents = 250,
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -880,7 +977,36 @@ object MockDataSource {
                             "Tonalidad y atonalidad",
                         ),
                     tags = listOf("Música", "Armonía", "Escalas"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     hasCertificate = true,
                     hasLifetimeAccess = true,
                 ),
@@ -907,7 +1033,36 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[1],
                     requirements = listOf("No requiere conocimientos previos"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -1038,7 +1193,36 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[0],
                     requirements = listOf("No requiere conocimientos previos"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -1178,7 +1362,36 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[1],
                     requirements = listOf("No requiere conocimientos previos"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -1298,7 +1511,36 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[0],
                     requirements = listOf("No requiere conocimientos previos"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -1430,7 +1672,36 @@ object MockDataSource {
                     totalStudents = 250,
                     level = levelsDto[1],
                     requirements = listOf("Conocer las 4 operaciones básicas"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -1562,7 +1833,36 @@ object MockDataSource {
                     totalStudents = 50,
                     level = levelsDto[0],
                     requirements = listOf("Que te guste la música"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
@@ -1702,7 +2002,36 @@ object MockDataSource {
                     totalStudents = 50,
                     level = levelsDto[0],
                     requirements = listOf("No requiere conocimientos previos"),
-                    comments = emptyList(),
+                    comments =
+                        listOf(
+                            CommentDto(
+                                id = 1,
+                                userName = "Luis Enrique Montero",
+                                text = "Muchas gracias!, estoy aprendiendo mucho. Un saludo enorme.",
+                                avatarUrl =
+                                    "https://media.licdn.com/dms/image/v2/D4D03AQFlCSHGer5Mng/profile-displayphoto-" +
+                                        "shrink_200_200/profile-displayphoto-shrink_200_200/0/1694610604805?e=" +
+                                        "2147483647&v=beta&t=8Qv3Gizu2LXy5WFiTvpPIuijsusjo7jRGe-FF4U1xfY",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 2,
+                                userName = "Santiago Sanchez",
+                                text = "El mejor curso de desarrollo de interfaces!.",
+                                avatarUrl = "https://miel.unlam.edu.ar/data2/avatares/34870524.jpg?1586394949",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                            CommentDto(
+                                id = 3,
+                                userName = "Carlos Gimemez",
+                                text = "Muy buen curso!.",
+                                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                                date = "05/07/2025",
+                                rating = 5,
+                            ),
+                        ),
                     sections =
                         listOf(
                             CourseSectionDto(
