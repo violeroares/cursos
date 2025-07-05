@@ -190,7 +190,7 @@ fun HomeScreen(
                     // Curso incompleto
                     randomIncomplete?.let { (course, percent) ->
                         item {
-                            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                            Column {
                                 Spacer(modifier = Modifier.height(24.dp))
                                 HomeSectionTitle(
                                     title = "¡Seguí aprendiendo!",
