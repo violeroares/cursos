@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 fun CourseDescription(description: String) {
     Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
         Text(
-            "Descripción",
+            "Descripción del curso",
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
         )

@@ -17,7 +17,7 @@ data class Course(
     val sections: List<CourseSection>,
     val documents: List<CourseDocument> = emptyList(),
     val level: CourseLevel,
-    val includes: List<CourseIncludeItem>,
+    val features: List<CourseFeatureItem>,
     val requirements: List<String> = emptyList(),
     val author: Instructor? = instructors.firstOrNull(),
     val createdAt: String,
@@ -25,4 +25,6 @@ data class Course(
     val topics: List<String> = emptyList(),
     val tags: List<String> = emptyList(),
     val comments: List<Comment> = emptyList(),
+    val hasCertificate: Boolean,
+    val hasLifetimeAccess: Boolean,
 )

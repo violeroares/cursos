@@ -4,11 +4,11 @@ import com.rockandcode.cursos.data.models.CategoryDto
 import com.rockandcode.cursos.data.models.CertificateDto
 import com.rockandcode.cursos.data.models.CourseDocumentDto
 import com.rockandcode.cursos.data.models.CourseDto
-import com.rockandcode.cursos.data.models.CourseIncludeItemDto
+import com.rockandcode.cursos.data.models.CourseFeatureItemDto
 import com.rockandcode.cursos.data.models.CourseLevelDto
 import com.rockandcode.cursos.data.models.CourseSectionDto
 import com.rockandcode.cursos.data.models.DocumentTypeDto
-import com.rockandcode.cursos.data.models.IncludeTypeDto
+import com.rockandcode.cursos.data.models.FeatureTypeDto
 import com.rockandcode.cursos.data.models.InstructorDto
 import com.rockandcode.cursos.data.models.RangeMedalDto
 import com.rockandcode.cursos.data.models.ScheduleDto
@@ -151,17 +151,17 @@ object MockDataSource {
             ),
             CourseDocumentDto(
                 id = 2,
-                title = "Ejercicio 1",
+                title = "Clase 2 - Introducción\"",
                 description = "",
                 url = "https://.../ejercicio1.docx",
-                documentType = documentTypesDto[1],
+                documentType = documentTypesDto[0],
             ),
             CourseDocumentDto(
                 id = 3,
-                title = "Manual PDF",
+                title = "Ejercicios",
                 description = "",
                 url = "https://.../manual.pdf",
-                documentType = documentTypesDto[2],
+                documentType = documentTypesDto[1],
             ),
         )
 
@@ -219,43 +219,31 @@ object MockDataSource {
                     totalStudents = 1000,
                     documents = documentsDto,
                     level = levelsDto[0],
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "7 horas 52 de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     requirements = listOf("Conocimientos básicos de programación en Kotlin"),
@@ -414,6 +402,8 @@ object MockDataSource {
                                     ),
                             ),
                         ),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 2,
@@ -538,43 +528,31 @@ object MockDataSource {
                         ),
                     documents = emptyList(),
                     level = levelsDto[2],
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     requirements = listOf("Conocimientos básicos de programación"),
@@ -592,8 +570,10 @@ object MockDataSource {
                             "PARTITION BY, ORDER BY, FRAME",
                             "Extensiones de GROUP BY: ROLLUP, CUBE, GROUPING SETS",
                         ),
-                    tags = listOf("SQL", "Bases de datos", "MySQL", "Backend"),
+                    tags = listOf("SQL", "Bases de datos", "MySQL"),
                     comments = emptyList(),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 3,
@@ -722,46 +702,34 @@ object MockDataSource {
                         ),
                     documents = emptyList(),
                     level = levelsDto[0],
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "15 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
-                    requirements = listOf("No necesitas conocimientos previos"),
+                    requirements = listOf("No requiere conocimientos previos"),
                     createdAt = "30/06/2025",
                     updatedAt = "30/06/2025",
                     topics =
@@ -775,7 +743,9 @@ object MockDataSource {
                             "Evaluación Heurística",
                             "Prototipado",
                         ),
-                    tags = listOf("UI", "UX", "Frontend", "Material Design"),
+                    tags = listOf("UI", "UX", "Material Design"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 4,
@@ -864,46 +834,34 @@ object MockDataSource {
                         ),
                     documents = emptyList(),
                     level = levelsDto[0],
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
-                    requirements = listOf("No necesitas conocimientos previos"),
+                    requirements = listOf("No requiere conocimientos previos"),
                     createdAt = "30/06/2025",
                     updatedAt = "30/06/2025",
                     topics =
@@ -921,8 +879,10 @@ object MockDataSource {
                             "Función tonal",
                             "Tonalidad y atonalidad",
                         ),
-                    tags = listOf("Música", "Armonía", "Escalas", "Lenguaje musical"),
+                    tags = listOf("Música", "Armonía", "Escalas"),
                     comments = emptyList(),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 5,
@@ -946,7 +906,7 @@ object MockDataSource {
                         ),
                     totalStudents = 250,
                     level = levelsDto[1],
-                    requirements = listOf("No necesitas conocimientos previos"),
+                    requirements = listOf("No requiere conocimientos previos"),
                     comments = emptyList(),
                     sections =
                         listOf(
@@ -1010,43 +970,31 @@ object MockDataSource {
                                     ),
                             ),
                         ),
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     createdAt = "30/06/2025",
@@ -1063,6 +1011,8 @@ object MockDataSource {
                             "Propiedad trigonométrica y demostraciones",
                         ),
                     tags = listOf("Matemática", "Funciones", "Álgebra"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 6,
@@ -1087,7 +1037,7 @@ object MockDataSource {
                         ),
                     totalStudents = 250,
                     level = levelsDto[0],
-                    requirements = listOf("No necesitas conocimientos previos"),
+                    requirements = listOf("No requiere conocimientos previos"),
                     comments = emptyList(),
                     sections =
                         listOf(
@@ -1160,43 +1110,31 @@ object MockDataSource {
                                     ),
                             ),
                         ),
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     createdAt = "30/06/2025",
@@ -1211,7 +1149,9 @@ object MockDataSource {
                             "Claves primarias",
                             "Relaciones",
                         ),
-                    tags = listOf("SQL", "Bases de datos", "MySQL", "Backend"),
+                    tags = listOf("SQL", "Bases de datos", "MySQL"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 7,
@@ -1237,7 +1177,7 @@ object MockDataSource {
                         ),
                     totalStudents = 250,
                     level = levelsDto[1],
-                    requirements = listOf("No necesitas conocimientos previos"),
+                    requirements = listOf("No requiere conocimientos previos"),
                     comments = emptyList(),
                     sections =
                         listOf(
@@ -1317,45 +1257,7 @@ object MockDataSource {
                                     ),
                             ),
                         ),
-                    includes =
-                        listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
-                                    ),
-                                description = "10 horas de video bajo demanda",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
-                                    ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
-                            ),
-                        ),
+                    features = emptyList(),
                     createdAt = "30/06/2025",
                     updatedAt = "30/06/2025",
                     topics =
@@ -1371,7 +1273,9 @@ object MockDataSource {
                             "La búsqueda de la identidad",
                             "La guerra y sus consecuencias",
                         ),
-                    tags = listOf("Lengua", "Literatura"),
+                    tags = listOf("Lengua", "Literatura", "Arte"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 8,
@@ -1393,7 +1297,7 @@ object MockDataSource {
                         ),
                     totalStudents = 250,
                     level = levelsDto[0],
-                    requirements = listOf("No necesitas conocimientos previos"),
+                    requirements = listOf("No requiere conocimientos previos"),
                     comments = emptyList(),
                     sections =
                         listOf(
@@ -1464,43 +1368,31 @@ object MockDataSource {
                                     ),
                             ),
                         ),
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     createdAt = "30/06/2025",
@@ -1513,7 +1405,9 @@ object MockDataSource {
                             "Herramientas y Lenguajes",
                             "Diseño de Sonido. Diseño Gráfico. Narrativas",
                         ),
-                    tags = listOf("Videojuegos", "Prototipado", "UX"),
+                    tags = listOf("Videojuegos", "Prototipado", "Desarrollo"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 9,
@@ -1535,7 +1429,7 @@ object MockDataSource {
                         ),
                     totalStudents = 250,
                     level = levelsDto[1],
-                    requirements = listOf("4 operaciones básicas"),
+                    requirements = listOf("Conocer las 4 operaciones básicas"),
                     comments = emptyList(),
                     sections =
                         listOf(
@@ -1606,43 +1500,31 @@ object MockDataSource {
                                     ),
                             ),
                         ),
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     createdAt = "30/06/2025",
@@ -1656,6 +1538,8 @@ object MockDataSource {
                             "Extra: División método frances",
                         ),
                     tags = listOf("Cálculo", "Suma", "Multiplicación"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 10,
@@ -1757,43 +1641,31 @@ object MockDataSource {
                                     ),
                             ),
                         ),
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     createdAt = "30/06/2025",
@@ -1805,6 +1677,8 @@ object MockDataSource {
                             "Temas icónicos",
                         ),
                     tags = listOf("Rock", "Música"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
                 CourseDto(
                     id = 11,
@@ -1827,7 +1701,7 @@ object MockDataSource {
                         ),
                     totalStudents = 50,
                     level = levelsDto[0],
-                    requirements = listOf("No necesitas conocimientos previos"),
+                    requirements = listOf("No requiere conocimientos previos"),
                     comments = emptyList(),
                     sections =
                         listOf(
@@ -1898,43 +1772,31 @@ object MockDataSource {
                                     ),
                             ),
                         ),
-                    includes =
+                    features =
                         listOf(
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 1,
-                                        name = "Video",
-                                        iconUrl = "https://cdn.tuapp.com/icons/video.png",
+                                        name = "Certificado de finalización",
+                                        iconKey = "certificate",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 4,
                                     ),
-                                description = "10 horas de video bajo demanda",
+                                value = null,
                             ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
+                            CourseFeatureItemDto(
+                                featureType =
+                                    FeatureTypeDto(
                                         id = 2,
-                                        name = "Documento",
-                                        iconUrl = "https://cdn.tuapp.com/icons/doc.png",
+                                        name = "Acceso de por vida al contenido",
+                                        iconKey = "access",
+                                        showValue = false,
+                                        unitLabel = null,
+                                        displayOrder = 5,
                                     ),
-                                description = "Material descargable (PDFs, guías)",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 3,
-                                        name = "Certificado",
-                                        iconUrl = "https://cdn.tuapp.com/icons/certificate.png",
-                                    ),
-                                description = "Certificado de finalización",
-                            ),
-                            CourseIncludeItemDto(
-                                type =
-                                    IncludeTypeDto(
-                                        id = 4,
-                                        name = "Acceso de por vida",
-                                        iconUrl = "https://cdn.tuapp.com/icons/infinity.png",
-                                    ),
-                                description = "Acceso de por vida al contenido",
+                                value = null,
                             ),
                         ),
                     createdAt = "30/06/2025",
@@ -1947,7 +1809,9 @@ object MockDataSource {
                             "Cómo escribir correctamente",
                             "Reglas ortográficas",
                         ),
-                    tags = listOf("Lengua", "Redacción"),
+                    tags = listOf("Lengua", "Redacción", "Escritura"),
+                    hasCertificate = true,
+                    hasLifetimeAccess = true,
                 ),
             )
 

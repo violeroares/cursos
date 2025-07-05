@@ -20,12 +20,12 @@ fun CourseRequirements(course: Course) {
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
         )
-        course.requirements.forEach { requeriment ->
+        course.requirements.forEach { requirement ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(vertical = 2.dp),
             ) {
-                Text(text = "* $requeriment", style = MaterialTheme.typography.bodyMedium)
+                Text(text = requirement, style = MaterialTheme.typography.bodyMedium)
             }
         }
     }

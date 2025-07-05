@@ -1,8 +1,8 @@
 package com.rockandcode.cursos.data.models
 
 import com.rockandcode.cursos.domain.models.Course
-import com.rockandcode.cursos.domain.models.CourseIncludeItem
-import com.rockandcode.cursos.domain.models.IncludeType
+import com.rockandcode.cursos.domain.models.CourseFeatureItem
+import com.rockandcode.cursos.domain.models.FeatureType
 
 data class CourseDto(
     val id: Int,
@@ -21,7 +21,7 @@ data class CourseDto(
     val sections: List<CourseSectionDto>,
     val documents: List<CourseDocumentDto> = emptyList(),
     val level: CourseLevelDto,
-    val includes: List<CourseIncludeItemDto>,
+    val features: List<CourseFeatureItemDto>,
     val requirements: List<String> = emptyList(),
     val author: InstructorDto,
     val createdAt: String,
@@ -29,6 +29,8 @@ data class CourseDto(
     val topics: List<String> = emptyList(),
     val tags: List<String> = emptyList(),
     val comments: List<CommentDto>,
+    val hasCertificate: Boolean,
+    val hasLifetimeAccess: Boolean,
 ) {
     fun toDomain() =
         Course(
@@ -48,16 +50,19 @@ data class CourseDto(
             sections.map { it.toDomain() },
             documents.map { it.toDomain() },
             level = level.toDomain(),
-            includes =
-                includes.map {
-                    CourseIncludeItem(
-                        type =
-                            IncludeType(
-                                id = it.type.id,
-                                name = it.type.name,
-                                iconUrl = it.type.iconUrl,
+            features =
+                features.map {
+                    CourseFeatureItem(
+                        featureType =
+                            FeatureType(
+                                id = it.featureType.id,
+                                name = it.featureType.name,
+                                iconKey = it.featureType.iconKey,
+                                showValue = it.featureType.showValue,
+                                unitLabel = it.featureType.unitLabel,
+                                displayOrder = it.featureType.displayOrder,
                             ),
-                        description = it.description,
+                        value = it.value,
                     )
                 },
             requirements = requirements,
@@ -67,5 +72,7 @@ data class CourseDto(
             topics = topics,
             tags = tags,
             comments.map { it.toDomain() },
+            hasCertificate = hasCertificate,
+            hasLifetimeAccess = hasLifetimeAccess,
         )
 }
