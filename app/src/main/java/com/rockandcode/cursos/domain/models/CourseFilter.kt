@@ -8,6 +8,8 @@ data class CourseFilter(
     val searchQuery: String = "",
     val showFree: Boolean = true,
     val showPaid: Boolean = true,
+    val minPrice: Int? = null,
+    val maxPrice: Int? = null,
 )
 
 enum class OrderBy(
