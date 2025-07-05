@@ -14,12 +14,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -32,10 +32,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.rockandcode.cursos.domain.models.Course
 import com.rockandcode.cursos.domain.models.UserCourseProgress
 import com.rockandcode.cursos.utils.formatDuration
@@ -162,7 +160,7 @@ fun CourseVideos(
                                             modifier =
                                                 Modifier
                                                     .fillMaxWidth()
-                                                    .padding(vertical = 8.dp)
+                                                    .padding(vertical = 4.dp)
                                                     .clickable(
                                                         enabled = isPurchased,
                                                         onClick = { onClick(course.id, video.id) },
@@ -172,52 +170,78 @@ fun CourseVideos(
                                                 CardDefaults.cardColors(
                                                     containerColor =
                                                         if (isWatched) {
-                                                            MaterialTheme.colorScheme.primaryContainer
+                                                            Color(0xFF2B1BBA)
                                                         } else {
-                                                            MaterialTheme.colorScheme.surfaceVariant
+                                                            MaterialTheme.colorScheme.surface
                                                         },
                                                 ),
                                         ) {
-                                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                                AsyncImage(
-                                                    model = course.thumbnailUrl,
-                                                    contentDescription = course.title,
+                                            Row(
+                                                modifier = Modifier.padding(start = 16.dp),
+                                                verticalAlignment = Alignment.CenterVertically,
+                                            ) {
+//                                                AsyncImage(
+//                                                    model = course.thumbnailUrl,
+//                                                    contentDescription = course.title,
+//                                                    modifier =
+//                                                        Modifier
+//                                                            .width(80.dp)
+//                                                            .height(80.dp),
+//                                                    // .clip(RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp)),
+//                                                    contentScale = ContentScale.Crop,
+//                                                )
+                                                val playIconColor =
+                                                    if (isDarkTheme) {
+                                                        Color.White
+                                                    } else if (isWatched) {
+                                                        Color.White
+                                                    } else {
+                                                        Color.Blue
+                                                    }
+
+                                                Icon(
+                                                    imageVector = Icons.Filled.PlayCircle, // o Icons.Outlined.PlayCircle
+                                                    contentDescription = "Video",
                                                     modifier =
                                                         Modifier
-                                                            .width(129.dp)
-                                                            .height(129.dp),
-                                                    // .clip(RoundedCornerShape(topStart = 8.dp, bottomStart = 8.dp)),
-                                                    contentScale = ContentScale.Crop,
+                                                            .size(36.dp),
+                                                    tint = playIconColor,
                                                 )
                                                 Column(modifier = Modifier.padding(12.dp)) {
                                                     Text(
                                                         video.title,
-                                                        style = MaterialTheme.typography.titleMedium,
+                                                        style = MaterialTheme.typography.titleSmall,
                                                         fontWeight = FontWeight.Bold,
                                                         modifier = Modifier.padding(vertical = 4.dp),
                                                         maxLines = 2,
+                                                        color = if (isWatched) Color.White else MaterialTheme.colorScheme.onSurface,
                                                     )
-                                                    Text(
-                                                        "Duración: ${formatDuration(video.durationSeconds)}",
-                                                        style = MaterialTheme.typography.bodySmall,
-                                                    )
-
-                                                    if (isPurchased && isWatched) {
+                                                    Row(
+                                                        modifier = Modifier.fillMaxWidth(),
+                                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                                        verticalAlignment = Alignment.CenterVertically,
+                                                    ) {
                                                         Text(
-                                                            "✅ Visto",
-                                                            color = Color.Green,
+                                                            "Duración: ${formatDuration(video.durationSeconds)}",
                                                             style = MaterialTheme.typography.bodySmall,
-                                                            modifier = Modifier.padding(vertical = 8.dp),
+                                                            color = if (isWatched) Color.White else MaterialTheme.colorScheme.onSurface,
                                                         )
-                                                    }
 
-                                                    if (!isPurchased && video.isPreview) {
-                                                        Text(
-                                                            "🎬 Vista previa",
-                                                            color = Color.Blue,
-                                                            style = MaterialTheme.typography.bodySmall,
-                                                            modifier = Modifier.padding(top = 8.dp),
-                                                        )
+                                                        if (isPurchased && isWatched) {
+                                                            Text(
+                                                                "✅ Visto",
+                                                                color = Color.Green,
+                                                                style = MaterialTheme.typography.bodySmall,
+                                                            )
+                                                        }
+
+//                                                        if (!isPurchased && video.isPreview) {
+//                                                            Text(
+//                                                                "🎬 Vista previa",
+//                                                                color = Color.Blue,
+//                                                                style = MaterialTheme.typography.bodySmall,
+//                                                            )
+//                                                        }
                                                     }
                                                 }
                                             }

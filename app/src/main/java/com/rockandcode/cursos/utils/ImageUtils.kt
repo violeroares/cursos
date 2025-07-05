@@ -13,3 +13,12 @@ fun decodeBase64ToBitmap(dataUrl: String): Bitmap? =
     } catch (_: Exception) {
         null
     }
+
+// fun getIncludeIcon(key: String): ImageVector =
+//    when (key.lowercase()) {
+//        "video" -> Icons.Outlined.PlayCircle
+//        "document" -> Icons.Outlined.Description
+//        "certificate" -> Icons.Outlined.Verified
+//        "access" -> Icons.Outlined.AccessTime
+//        else -> Icons.Outlined.Info // ícono por defecto
+//    }

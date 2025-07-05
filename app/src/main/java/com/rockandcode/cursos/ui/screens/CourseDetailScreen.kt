@@ -41,6 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -172,39 +173,47 @@ fun CourseDetailScreen(
                     // Stars
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp, vertical = 8.dp),
                     ) {
-                        // 1. Rating numérico
-                        Text(
-                            text = "%.1f".format(course.rating),
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(end = 8.dp),
-                            color = Color(0xFFF7C33F),
-                        )
-
-                        // 2. Estrellas
-                        repeat(5) { index ->
-                            val icon =
-                                if (index < course.rating.toInt()) {
-                                    Icons.Filled.Star
-                                } else {
-                                    Icons.Outlined.StarBorder
-                                }
-
-                            Icon(
-                                imageVector = icon,
-                                contentDescription = null,
-                                tint = Color(0xFFF7C33F),
-                                modifier = Modifier.size(20.dp),
+                        // ⭐ Parte izquierda: número + estrellas
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Text(
+                                text = "%.1f".format(course.rating),
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(end = 8.dp, bottom = 4.dp),
+                                color = Color(0xFFF7C33F),
                             )
+
+                            repeat(5) { index ->
+                                val icon =
+                                    if (index < course.rating.toInt()) {
+                                        Icons.Filled.Star
+                                    } else {
+                                        Icons.Outlined.StarBorder
+                                    }
+
+                                Icon(
+                                    imageVector = icon,
+                                    contentDescription = null,
+                                    tint = Color(0xFFF7C33F),
+                                    modifier = Modifier.size(20.dp),
+                                )
+                            }
                         }
 
-                        // 3. Valoraciones
+                        // 📝 Parte derecha: valoraciones
                         Text(
-                            text = " (${course.ratingCount} valoraciones)",
-                            style = MaterialTheme.typography.bodySmall,
-                            modifier = Modifier.padding(start = 4.dp),
+                            text = "${course.ratingCount} valoraciones",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = Color.Gray,
+                            textAlign = TextAlign.End,
                         )
                     }
 
@@ -275,6 +284,11 @@ fun CourseDetailScreen(
                         CourseTopics(course = course)
                     }
 
+                    // Includes
+                    if (!uiState.isPurchased) {
+                        CourseIncludes(course)
+                    }
+
                     // Progreso y certitifado de curso completado
                     if (uiState.isPurchased) {
                         CourseCertificateCard(progress = progress, certificateUrl = certificate?.certificateUrl)
@@ -292,6 +306,11 @@ fun CourseDetailScreen(
                         },
                         isPurchased = uiState.isPurchased,
                     )
+
+                    // Requeriments
+                    if (!uiState.isPurchased) {
+                        CourseRequirements(course)
+                    }
 
                     // Materiales del curso
                     if (uiState.isPurchased && course.documents.isNotEmpty()) {
@@ -351,12 +370,6 @@ fun CourseDetailScreen(
                                 }
                             }
                         }
-                    }
-
-                    // Includes + Requeriments
-                    if (!uiState.isPurchased) {
-                        CourseIncludes(course)
-                        CourseRequirements(course)
                     }
 
                     // Descripcion
