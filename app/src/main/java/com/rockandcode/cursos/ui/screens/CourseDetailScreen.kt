@@ -1,10 +1,8 @@
 package com.rockandcode.cursos.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -14,8 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -50,7 +46,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.rockandcode.cursos.ui.components.CommentCard
 import com.rockandcode.cursos.ui.components.CourseCertificateCard
 import com.rockandcode.cursos.ui.components.CourseCommentsSection
 import com.rockandcode.cursos.ui.components.CourseDescription
@@ -381,15 +376,7 @@ fun CourseDetailScreen(
                     // Descripcion
                     CourseDescription(course.description)
 
-                    LazyRow(
-                        contentPadding = PaddingValues(horizontal = 16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        items(course.comments) { comment ->
-                            CommentCard(comment)
-                        }
-                    }
-
+                    // Comments
                     CourseCommentsSection(comments = course.comments)
 
                     // Tags
