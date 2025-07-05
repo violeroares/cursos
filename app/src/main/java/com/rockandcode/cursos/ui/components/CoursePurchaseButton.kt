@@ -10,10 +10,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,7 +40,7 @@ fun CoursePurchaseButton(course: Course) {
             )
         }
         Spacer(Modifier.height(12.dp))
-        TextButton(
+        Button(
             onClick = { /* Comprar */ },
             modifier =
                 Modifier
@@ -56,7 +56,7 @@ fun CoursePurchaseButton(course: Course) {
         ) {
             Text(
                 "Inscribirme ahora",
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
             )
         }

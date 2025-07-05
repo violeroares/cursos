@@ -85,6 +85,16 @@ class SearchViewModel
                         }
                 }
 
+                // Filtrar por precio mínimo
+                filter.minPrice?.let { min ->
+                    filtered = filtered.filter { it.price >= min }
+                }
+
+                // Filtrar por precio máximo
+                filter.maxPrice?.let { max ->
+                    filtered = filtered.filter { it.price <= max }
+                }
+
                 // Filtrar por búsqueda
 //                if (filter.searchQuery.isNotBlank()) {
 //                    filtered =
@@ -192,6 +202,14 @@ class SearchViewModel
             _filter.update { it.copy(maxDuration = max) }
         }
 
+        fun setMinPrice(min: Int?) {
+            _filter.update { it.copy(minPrice = min) }
+        }
+
+        fun setMaxPrice(max: Int?) {
+            _filter.update { it.copy(maxPrice = max) }
+        }
+
         fun resetFilters() {
             _filter.value = CourseFilter()
         }
@@ -222,6 +240,8 @@ class SearchViewModel
                     if (filter.searchQuery.isNotBlank()) count++
                     if (filter.minDuration != null) count++
                     if (filter.maxDuration != null) count++
+                    if (filter.minPrice != null) count++
+                    if (filter.maxPrice != null) count++
                     if (filter.orderBy != OrderBy.NONE) count++
                     count
                 }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), 0)
