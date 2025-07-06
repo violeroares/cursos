@@ -203,8 +203,8 @@ object MockDataSource {
                             "de la interfaz de usuario en Android. Dale vida rápidamente a tu app con " +
                             "menos código, herramientas poderosas y API de Kotlin intuitivas.",
                     thumbnailUrl =
-                        "https://dropinblog.net/cdn-cgi/image/fit=scale-down,width=1400" +
-                            "/34249715/files/kotlin-y-jetpack-compose.png",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761012/" +
+                            "jetpack_xvjj0w.jpg",
                     rating = 4.0,
                     ratingCount = 4,
                     price = 68750.00,
@@ -410,7 +410,9 @@ object MockDataSource {
                     title = "SQL Avanzado",
                     subTitle = "Todo sobre la base de datos relacional SQL",
                     description = "Aprende base de datos relacional...",
-                    thumbnailUrl = "https://compraco.com.br/cdn/shop/articles/O-que-e-SQL-Server.jpg?v=1716456631",
+                    thumbnailUrl =
+                        "https://res.cloudinary.com/dznr3eupq/image/" +
+                            "upload/v1751761010/sql_femqyo.jpg",
                     rating = 4.1,
                     ratingCount = 24,
                     price = 81250.00,
@@ -583,7 +585,9 @@ object MockDataSource {
                         "Este curso de desarrollo de interfaces es una excelente opción " +
                             "para quienes desean aprender a crear interfaces digitales atractivas, " +
                             "funcionales y fáciles de usar, ya sea para aplicaciones web, móviles o de escritorio. ",
-                    thumbnailUrl = "https://www.fasabri.com/wp-content/uploads/diseno-de-interfaz-de-usuario.jpg",
+                    thumbnailUrl =
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/" +
+                            "v1751761011/disenio-interfaces_shtddk.jpg",
                     rating = 5.0,
                     ratingCount = 130,
                     price = 74999.00,
@@ -756,8 +760,8 @@ object MockDataSource {
                             "(notas, acordes, escalas, ritmo), historia de la música, " +
                             "entrenamiento vocal, producción musical, y/o aprendizaje de un instrumento",
                     thumbnailUrl =
-                        "https://i0.wp.com/www.artsmusica.net/cursos/wp-content/uploads" +
-                            "/2019/12/solfeo_teoria_musica_III-portada-1.jpg?w=750&ssl=1",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751753235/" +
+                            "musica_olnk0y.jpg",
                     rating = 4.8,
                     ratingCount = 8,
                     price = 62499.00,
@@ -1021,8 +1025,8 @@ object MockDataSource {
                     description =
                         "Curso donde aprenderás cómo armar tablas, insertar datos y hacer consultas",
                     thumbnailUrl =
-                        "https://st2.depositphotos.com/1536130/48928/v/450/" +
-                            "depositphotos_489282948-stock-illustration-computer-sync-database-shadow-yellow.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761013/" +
+                            "base_de_datos_lg3vi0.jpg",
                     rating = 4.9,
                     ratingCount = 4,
                     price = 24999.00,
@@ -1160,9 +1164,8 @@ object MockDataSource {
                     description =
                         "Una aventura por la historia de la literatura clásica y sus máximos exponentes",
                     thumbnailUrl =
-                        "https://marketplace.canva.com/EAGHu4whP4U/2/0/1600w/" +
-                            "canva-presentaci%C3%B3n-de-literatura-libros-papel-antiguo-ilustrado-" +
-                            "beige-marr%C3%B3n-gvB7eUtyD9Y.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751753234/" +
+                            "literatura_fzmgqi.jpg",
                     rating = 4.2,
                     ratingCount = 48,
                     price = 68750.00,
@@ -1283,7 +1286,9 @@ object MockDataSource {
                     subTitle = "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
                     description =
                         "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
-                    thumbnailUrl = "https://assets.justinmind.com/wp-content/uploads/2025/02/game-ui-design-768x492.png",
+                    thumbnailUrl =
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/" +
+                            "v1751761010/disenio-videojuegos_gjorio.jpg",
                     rating = 4.1,
                     ratingCount = 12,
                     price = 56250.00,
@@ -1415,7 +1420,9 @@ object MockDataSource {
                     subTitle = "Podrás adquirir un repertorio de cálculos con estrategias para agilizar tu velocidad mental",
                     description =
                         "Podrás adquirir un repertorio de cálculos con estrategias para agilizar tu velocidad mental",
-                    thumbnailUrl = "https://i0.wp.com/www.primariamcj.edu.mx/wp-content/uploads/2023/04/image-1.png?fit=483%2C486&ssl=1",
+                    thumbnailUrl =
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761010/" +
+                            "calculo-mental_jbdrkx.jpg",
                     rating = 4.3,
                     ratingCount = 18,
                     price = 62050.00,
@@ -1547,7 +1554,9 @@ object MockDataSource {
                     subTitle = "Un recorrido por las bandas de rock Argentino que dieron origen a este movimiento popular",
                     description =
                         "Un recorrido por las bandas de rock Argentino que dieron origen a este movimiento popular",
-                    thumbnailUrl = "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84594349ddaa2c81ce07d3ce0e",
+                    thumbnailUrl =
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751763766/" +
+                            " charly_m0hdrj.jpg",
                     rating = 4.9,
                     ratingCount = 23,
                     price = 30500.00,
@@ -1687,7 +1696,8 @@ object MockDataSource {
                     description =
                         "Conocé las reglas ortografía para lograr una mejor redacción",
                     thumbnailUrl =
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROgOqSzQUbbKN4IGN3WqY4IFZ4DbuViKcX6A&s",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751762668/" +
+                            "ortografia_dopwah.jpg",
                     rating = 3.9,
                     ratingCount = 52,
                     price = 30750.00,
