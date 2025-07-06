@@ -2,10 +2,13 @@ package com.rockandcode.cursos.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -47,15 +50,26 @@ fun CategoryChip(
             elevation = CardDefaults.cardElevation(defaultElevation = 12.dp),
             colors = CardDefaults.cardColors(containerColor = cardColor),
         ) {
-            AsyncImage(
-                model = category.imageUrl,
-                contentDescription = category.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize(),
-            )
+            Column(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(8.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                AsyncImage(
+                    model = category.imageUrl,
+                    contentDescription = category.name,
+                    contentScale = ContentScale.Fit, // fit para mantener proporción
+                    modifier =
+                        Modifier
+                            .size(65.dp),
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = category.name,
