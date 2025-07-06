@@ -1,7 +1,8 @@
 package com.rockandcode.cursos.ui.components
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,44 +23,60 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.rockandcode.cursos.domain.models.Course
+import com.rockandcode.cursos.utils.formatPrice
 
 @Composable
-fun CoursePurchaseButton(course: Course) {
+fun CoursePurchaseButton(
+    course: Course,
+    onPurchase: () -> Unit,
+    onAddToCart: () -> Unit,
+) {
     val isDarkTheme = isSystemInDarkTheme()
     Column(modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)) {
         Row(verticalAlignment = Alignment.Bottom) {
             Text(
+                modifier = Modifier.padding(bottom = 2.dp),
                 text = "Valor del curso",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
             )
-            Spacer(Modifier.width(8.dp))
+            Spacer(Modifier.width(6.dp))
             Text(
-                text = if (!course.isFree) "$${course.price}" else "Gratuito",
+                text = if (!course.isFree) formatPrice(course.price) else "Gratuito",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
             )
         }
-        Spacer(Modifier.height(12.dp))
-        Button(
-            onClick = { /* Comprar */ },
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
-                        shape = RoundedCornerShape(24.dp),
-                    ),
-            colors =
-                ButtonDefaults.textButtonColors(
-                    contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
-                ),
+        Spacer(Modifier.height(4.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            Text(
-                "Inscribirme ahora",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
-            )
+            OutlinedButton(
+                onClick = { onAddToCart() },
+                modifier = Modifier.width(180.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors =
+                    ButtonDefaults.outlinedButtonColors(
+                        contentColor = Color(0xFF7B2FC5),
+                    ),
+                border = BorderStroke(1.dp, Color(0xFF7B2FC5)),
+            ) {
+                Text("Añadir al carrito", fontWeight = FontWeight.SemiBold)
+            }
+            Button(
+                onClick = { onPurchase() },
+                modifier = Modifier.width(180.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                    ),
+            ) {
+                Text("Comprar ahora", fontWeight = FontWeight.SemiBold)
+            }
         }
     }
 }

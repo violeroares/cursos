@@ -30,6 +30,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.rockandcode.cursos.ui.components.BottomBar
 import com.rockandcode.cursos.ui.components.Splash
+import com.rockandcode.cursos.ui.screens.CartScreen
+import com.rockandcode.cursos.ui.screens.CartViewModel
 import com.rockandcode.cursos.ui.screens.CourseDetailScreen
 import com.rockandcode.cursos.ui.screens.FiltersScreen
 import com.rockandcode.cursos.ui.screens.HomeScreen
@@ -74,10 +76,10 @@ fun MainScreen() {
     val isAuthenticated by remember { mutableStateOf(true) }
     val navBackStackEntry = controller.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters")
+    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart")
     val shouldHideBottomBarAndFav =
         hideBottomBarRoutes.any { prefix -> currentRoute?.startsWith(prefix) == true }
-
+    val cartViewModel: CartViewModel = hiltViewModel()
     // Esperamos 3s y decidimos a qué pantalla ir
     LaunchedEffect(isAuthenticated) {
         delay(SPLASH_SCREEN_DELAY_MS)
@@ -113,7 +115,11 @@ fun MainScreen() {
 
                     composable("courseDetail/{courseId}") { backStack ->
                         val courseId = backStack.arguments?.getString("courseId")?.toIntOrNull() ?: return@composable
-                        CourseDetailScreen(courseId = courseId, onBack = { controller.popBackStack() })
+                        CourseDetailScreen(
+                            courseId = courseId,
+                            onBack = { controller.popBackStack() },
+                            cartViewModel = cartViewModel,
+                        )
                     }
 
                     composable(
@@ -136,6 +142,18 @@ fun MainScreen() {
                             }
                         val searchViewModel: SearchViewModel = hiltViewModel(parentEntry)
                         FiltersScreen(controller = controller, searchViewModel = searchViewModel)
+                    }
+
+                    composable("cart") {
+                        CartScreen(
+                            viewModel = cartViewModel,
+                            controller = controller,
+                            onCheckout = {
+                                // lanzar la acción de compra:
+                                // por ejemplo mostrar diálogo o llamar a función ViewModel
+                                // luego volver atrás o a pantalla de confirmación
+                            },
+                        )
                     }
                 }
             }

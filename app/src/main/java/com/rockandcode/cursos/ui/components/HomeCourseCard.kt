@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.domain.models.Course
+import com.rockandcode.cursos.utils.formatPrice
 
 @Composable
 fun HomeCourseCard(
@@ -138,7 +139,7 @@ fun HomeCourseCard(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = if (!course.isFree) "$${course.price}" else "Gratuito",
+                    text = if (!course.isFree) formatPrice(course.price) else "Gratuito",
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                 )
             }
