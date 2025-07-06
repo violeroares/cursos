@@ -81,55 +81,63 @@ object MockDataSource {
                 id = 1,
                 name = "Android",
                 imageUrl =
-                    "https://images.cults3d.com/veaKRfRlS0ejW7ZecLQIAX-712M=/516x516/" +
-                        "filters:no_upscale():format(webp)/https://fbi.cults3d.com/uploaders" +
-                        "/33634176/illustration-file/dfe3e06f-3b35-49c2-babe-e8705e9bdd52/ANDROID-LOGO-1.png",
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "android_pa1cck.png",
             ),
             CategoryDto(
                 id = 2,
                 name = "C#",
                 imageUrl =
-                    "https://tse1.mm.bing.net/th/id/OIP.6uu3Rqk7mBz-QdXn13I3LwHaFm?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/c_qcayux.png",
             ),
             CategoryDto(
                 id = 3,
                 name = "Matemática",
                 imageUrl =
-                    "https://aeac.science/wp-content/uploads/2020/06/matematicas.jpg",
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "matematica_udwuvs.png",
             ),
             CategoryDto(
                 id = 4,
                 name = "Lengua",
-                imageUrl = "https://i.ytimg.com/vi/EYB_89VS4Ro/maxresdefault.jpg",
+                imageUrl =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "lengua_kyqczi.png",
             ),
             CategoryDto(
                 id = 5,
                 name = "Desarrollo",
                 imageUrl =
-                    "https://www.fundaciontelefonica.com/wp-content/" +
-                        "uploads/2016/12/programacion-empleo-digital-730x400.jpg",
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "desarrollo_g0wpec.png",
             ),
             CategoryDto(
                 id = 6,
                 name = "Base de datos",
-                imageUrl = "https://concepto.de/wp-content/uploads/2018/04/base-de-datos-min-e1523470739502.jpg",
+                imageUrl =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "base_de_datos_fh2mgt.png",
             ),
             CategoryDto(
                 id = 7,
                 name = "Música",
-                imageUrl = "https://tse1.mm.bing.net/th/id/OIP.OktleYl_GzTaQ1Z4jG_FzwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+                imageUrl =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "musica_bmadxr.png",
             ),
             CategoryDto(
                 id = 8,
                 name = "Diseño",
                 imageUrl =
-                    "https://cdn.udax.edu.mx/blog/2025-01-28/" +
-                        "diseno-de-interfaces-para-aplicaciones-de-redes-sociales-principios-y-tendencias_1.jpg",
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "diseno_awjmun.png",
             ),
             CategoryDto(
                 id = 9,
                 name = "Java",
-                imageUrl = "https://tse2.mm.bing.net/th/id/OIP.ZCY2oHuX4Pb-8yRkY1xHxwHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+                imageUrl =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751808922/" +
+                        "java_kg9rcu.png",
             ),
         )
 
