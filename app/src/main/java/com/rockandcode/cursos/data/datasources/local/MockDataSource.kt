@@ -2167,211 +2167,451 @@ object MockDataSource {
             RangeMedalDto(
                 id = 1,
                 name = "Nivel 1",
+                number = 1,
                 description = "Completaste hasta 100 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 0,
             ),
             RangeMedalDto(
                 id = 2,
                 name = "Nivel 2",
+                number = 2,
                 description = "Completaste más de 500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 500,
             ),
             RangeMedalDto(
                 id = 3,
                 name = "Nivel 3",
+                number = 3,
                 description = "Completaste más de 1000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 1000,
             ),
             RangeMedalDto(
                 id = 4,
                 name = "Nivel 4",
+                number = 4,
                 description = "Completaste más de 1500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 1500,
             ),
             RangeMedalDto(
                 id = 5,
                 name = "Nivel 5",
+                number = 5,
                 description = "Completaste más de 2000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 2000,
             ),
             RangeMedalDto(
                 id = 6,
                 name = "Nivel 6",
+                number = 6,
                 description = "Completaste más de 2500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 2500,
             ),
             RangeMedalDto(
                 id = 7,
                 name = "Nivel 7",
+                number = 7,
                 description = "Completaste más de 3000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 3000,
             ),
             RangeMedalDto(
                 id = 8,
                 name = "Nivel 8",
+                number = 8,
                 description = "Completaste más de 3500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 3500,
             ),
             RangeMedalDto(
                 id = 9,
                 name = "Nivel 9",
+                number = 9,
                 description = "Completaste más de 4000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 4000,
             ),
             RangeMedalDto(
                 id = 10,
                 name = "Nivel 10",
+                number = 10,
                 description = "Completaste más de 4500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 4500,
             ),
             RangeMedalDto(
                 id = 11,
                 name = "Nivel 11",
+                number = 11,
                 description = "Completaste más de 5000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 5000,
             ),
             RangeMedalDto(
                 id = 121,
                 name = "Nivel 12",
+                number = 12,
                 description = "Completaste más de 5500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 5500,
             ),
             RangeMedalDto(
                 id = 13,
                 name = "Nivel 13",
+                number = 13,
                 description = "Completaste más de 6000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 6000,
             ),
             RangeMedalDto(
                 id = 14,
                 name = "Nivel 14",
+                number = 14,
                 description = "Completaste más de 6500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 6500,
             ),
             RangeMedalDto(
                 id = 15,
                 name = "Nivel 15",
+                number = 15,
                 description = "Completaste más de 7000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 7000,
             ),
             RangeMedalDto(
                 id = 16,
                 name = "Nivel 16",
+                number = 16,
                 description = "Completaste más de 7500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 7500,
             ),
             RangeMedalDto(
                 id = 17,
                 name = "Nivel 17",
+                number = 17,
                 description = "Completaste más de 8000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 8000,
             ),
             RangeMedalDto(
                 id = 18,
                 name = "Nivel 18",
+                number = 18,
                 description = "Completaste más de 8500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 8500,
             ),
             RangeMedalDto(
                 id = 19,
                 name = "Nivel 19",
+                number = 19,
                 description = "Completaste más de 9000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 9000,
             ),
             RangeMedalDto(
                 id = 20,
                 name = "Nivel 20",
+                number = 20,
                 description = "Completaste más de 9500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 9500,
             ),
             RangeMedalDto(
                 id = 21,
                 name = "Nivel 21",
+                number = 21,
                 description = "Completaste más de 10000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 10000,
             ),
             RangeMedalDto(
                 id = 22,
                 name = "Nivel 22",
+                number = 22,
                 description = "Completaste más de 10500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 10500,
             ),
             RangeMedalDto(
                 id = 23,
                 name = "Nivel 23",
+                number = 23,
                 description = "Completaste más de 11000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 11000,
             ),
             RangeMedalDto(
                 id = 24,
                 name = "Nivel 24",
+                number = 24,
                 description = "Completaste más de 11500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 11500,
             ),
             RangeMedalDto(
                 id = 25,
                 name = "Nivel 25",
+                number = 25,
                 description = "Completaste más de 12000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 12000,
             ),
             RangeMedalDto(
                 id = 26,
                 name = "Nivel 26",
+                number = 26,
                 description = "Completaste más de 12500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 12500,
             ),
             RangeMedalDto(
                 id = 27,
                 name = "Nivel 27",
+                number = 27,
                 description = "Completaste más de 13000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 13000,
             ),
             RangeMedalDto(
                 id = 28,
                 name = "Nivel 28",
+                number = 28,
                 description = "Completaste más de 13500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 13500,
             ),
             RangeMedalDto(
                 id = 29,
                 name = "Nivel 29",
+                number = 29,
                 description = "Completaste más de 14000 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 14000,
             ),
             RangeMedalDto(
                 id = 30,
                 name = "Nivel 30",
+                number = 30,
                 description = "Completaste más de 14500 puntos",
-                icon = "🏆",
+                benefits =
+                    listOf(
+                        "3 cuotas sin interés con tarjeta mastercard",
+                        "10% de descuento en cursos de desarrollo",
+                    ),
+                icon =
+                    "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
+                        "medalla_nlx0ny.png",
                 threshold = 14500,
             ),
         )
@@ -2407,9 +2647,9 @@ object MockDataSource {
 //                            ),
 //                    ),
 //                ),
-//            score = 5400,
+            score = 5400,
             progressByCourse = emptyList(),
-            score = 0,
+//            score = 0,
             preferredCategories =
                 listOf(
                     categoriesDto[0],

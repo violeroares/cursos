@@ -35,7 +35,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -70,7 +69,7 @@ fun ProfileScreen(
                 topBar = {
                     // CustomHeader(title = "Mi progreso", onBack = { controller.popBackStack() })
                     AppHeader(
-                        title = "Mi progreso",
+                        title = "Mi aprendizaje",
                         onBack = { controller.popBackStack() },
                     )
                 },
@@ -107,7 +106,7 @@ fun ProfileScreen(
                             Spacer(Modifier.height(4.dp))
                             Text(
                                 text = "Puntaje: ${user.score}",
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.bodyLarge,
                                 textAlign = TextAlign.Center,
                             )
                         }
@@ -123,11 +122,11 @@ fun ProfileScreen(
                             horizontalArrangement = Arrangement.SpaceEvenly,
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            MedalView(medal = prev, label = "Anterior")
-                            MedalView(medal = current, label = "Actual", highlighted = true, size = 150.dp, iconSize = 60.sp)
-                            MedalView(medal = next, label = "Siguiente")
+//                            MedalView(medal = prev, label = "Nivel Anterior")
+                            MedalView(medal = current, label = "Nivel Actual")
+//                            MedalView(medal = next, label = "Nivel Siguiente")
                         }
-                        Spacer(Modifier.height(16.dp))
+                        Spacer(Modifier.height(20.dp))
                     }
 
                     item {
