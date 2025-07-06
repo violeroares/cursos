@@ -1,5 +1,6 @@
 package com.rockandcode.cursos.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -61,11 +63,12 @@ import com.rockandcode.cursos.ui.components.CourseVideos
 fun CourseDetailScreen(
     courseId: Int,
     viewModel: CourseDetailViewModel = hiltViewModel(),
+    cartViewModel: CartViewModel,
     onBack: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsState()
     val certificate by viewModel.certificate.collectAsState()
-
+    val context = LocalContext.current
     LaunchedEffect(courseId) {
         viewModel.loadCourse(courseId)
     }
@@ -277,7 +280,19 @@ fun CourseDetailScreen(
 
                     // Boton comprar
                     if (!uiState.isPurchased) {
-                        CoursePurchaseButton(course)
+                        CoursePurchaseButton(
+                            course = course,
+                            onPurchase = {},
+                            onAddToCart = {
+                                cartViewModel.addItem(course)
+                                Toast
+                                    .makeText(
+                                        context,
+                                        "Curso agregado al carrito",
+                                        Toast.LENGTH_SHORT,
+                                    ).show()
+                            },
+                        )
                     }
 
                     // Topics

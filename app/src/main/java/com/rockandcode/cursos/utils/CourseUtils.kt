@@ -11,6 +11,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.rockandcode.cursos.domain.models.Course
 import com.rockandcode.cursos.domain.models.CourseFeatureItem
 import com.rockandcode.cursos.domain.models.FeatureType
+import java.text.NumberFormat
+import java.util.Locale
 
 // ---------------------------------------------------
 // Extension Function en Course
@@ -155,4 +157,14 @@ fun formatDuration(totalSeconds: Int): String {
         hours > 0 -> "${hours}h"
         else -> "${minutes}m"
     }
+}
+
+fun formatPrice(value: Double): String {
+    val formatter =
+        NumberFormat.getNumberInstance(Locale("es", "AR")).apply {
+            minimumFractionDigits = 2
+            maximumFractionDigits = 2
+            isGroupingUsed = true
+        }
+    return "$${formatter.format(value)}"
 }

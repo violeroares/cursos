@@ -7,6 +7,8 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.SlowMotionVideo
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -20,15 +22,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.rockandcode.cursos.ui.screens.CartViewModel
 
 @Composable
-fun BottomBar(controller: NavHostController) {
+fun BottomBar(
+    controller: NavHostController,
+    cartViewModel: CartViewModel = hiltViewModel(),
+) {
     val navBackStackEntry by controller.currentBackStackEntryAsState()
     val isDarkTheme = isSystemInDarkTheme()
     val myColor = Color(0xFF2B1BBA)
+    val cartItemCount = cartViewModel.items.size
+
     NavigationBar(
         containerColor = if (!isDarkTheme) myColor else MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
         modifier =
@@ -58,14 +67,23 @@ fun BottomBar(controller: NavHostController) {
         )
 
         NavigationBarItem(
-            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "search" } == true,
-            onClick = { controller.navigate("search") },
+            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "cart" } == true,
+            onClick = { controller.navigate("cart") },
             icon = {
-                Icon(
-                    imageVector = Icons.Outlined.ShoppingCart,
-                    contentDescription = "Search",
-                    // tint = MaterialTheme.colorScheme.primary,
-                )
+                BadgedBox(
+                    badge = {
+                        if (cartItemCount > 0) {
+                            Badge {
+                                Text(cartItemCount.toString())
+                            }
+                        }
+                    },
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.ShoppingCart,
+                        contentDescription = "Carrito",
+                    )
+                }
             },
             label = { Text("Carrito") },
             colors =
