@@ -26,8 +26,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.AppHeader
-import com.rockandcode.cursos.ui.screens.FiltersViewModel
-import com.rockandcode.cursos.ui.screens.ProfileInfo
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -45,7 +43,6 @@ fun ProfileScreen(
     var street by remember { mutableStateOf(viewModel.profileInfo.addressStreet) }
     var number by remember { mutableStateOf(viewModel.profileInfo.addressNumber) }
     var gender by remember { mutableStateOf(viewModel.profileInfo.gender) }
-    var preferredCategories by remember { mutableStateOf(viewModel.profileInfo.preferredCategories) }
     var birthDate by remember { mutableStateOf(viewModel.profileInfo.birthDate) }
     val allCategories by categoriesViewModel.categories.collectAsState()
     val selectedCategories = remember { mutableStateListOf<Int>() }
