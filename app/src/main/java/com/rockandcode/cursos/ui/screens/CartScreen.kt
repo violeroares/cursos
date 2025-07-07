@@ -131,15 +131,6 @@ fun CartScreen(
                     checkoutViewModel.setCourses(items.map { it.toCourse() }) // Pasar los cursos al checkout
                     onCheckout()
                 },
-//                onClick = {
-//                    checkoutViewModel.setCourses(viewModel.items.map { it.toCourse() })
-//                    controller.navigate("checkout/user")
-//                },
-//                onClick = {
-//                    val cursosSeleccionados = viewModel.items.map { it.toCourse() }
-//                    checkoutViewModel.setCourses(cursosSeleccionados)
-//                    controller.navigate("checkout/user")
-//                },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = items.isNotEmpty(),
                 shape = RoundedCornerShape(8.dp),

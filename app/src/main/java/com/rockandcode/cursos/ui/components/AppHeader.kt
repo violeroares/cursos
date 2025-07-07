@@ -3,6 +3,7 @@ package com.rockandcode.cursos.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -32,7 +33,7 @@ fun AppHeader(
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp),
-    actions: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     val isDarkTheme = isSystemInDarkTheme()
     Surface(
@@ -80,7 +81,7 @@ fun AppHeader(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
                 modifier = Modifier.fillMaxWidth(),
-                actions = { actions },
+                actions = actions,
             )
         }
     }
