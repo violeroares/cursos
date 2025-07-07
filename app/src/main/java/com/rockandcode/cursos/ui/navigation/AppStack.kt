@@ -25,6 +25,7 @@ import com.rockandcode.cursos.ui.screens.CheckoutViewModel
 import com.rockandcode.cursos.ui.screens.CourseDetailScreen
 import com.rockandcode.cursos.ui.screens.FiltersScreen
 import com.rockandcode.cursos.ui.screens.HomeScreen
+import com.rockandcode.cursos.ui.screens.MedalScreen
 import com.rockandcode.cursos.ui.screens.MyProgressScreen
 import com.rockandcode.cursos.ui.screens.ProfileScreen
 import com.rockandcode.cursos.ui.screens.SearchScreen
@@ -39,7 +40,7 @@ fun AppStack(
 ) {
     val navBackStackEntry = controller.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart", "checkout", "myProgress")
+    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart", "checkout", "myProgress", "medals")
     val shouldHideBottomBarAndFav =
         hideBottomBarRoutes.any { prefix ->
             currentRoute?.startsWith(prefix) == true
@@ -160,6 +161,10 @@ fun AppStack(
 
             composable("myProgress") {
                 MyProgressScreen(controller = controller)
+            }
+
+            composable("medals") {
+                MedalScreen(controller = controller)
             }
         }
     }

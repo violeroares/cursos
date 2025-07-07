@@ -30,16 +30,16 @@ class CheckoutViewModel
     }
 
 data class UserInfo(
-    var name: String = "",
-    var email: String = "",
-    var phoneNumber: String = "",
-    var addressStreet: String = "",
-    var addressNumber: String = "",
+    var name: String = "Natalia Mucci",
+    var email: String = "nataliaemucci@qmail.com",
+    var phoneNumber: String = "1130033007",
+    var addressStreet: String = "Arieta",
+    var addressNumber: String = "250",
 )
 
 data class PaymentInfo(
-    var cardNumber: String = "",
-    var expiry: String = "",
-    var cvv: String = "",
-    var holderName: String = "",
+    var cardNumber: String = "41234123412341234",
+    var expiry: String = "09/26",
+    var cvv: String = "123",
+    var holderName: String = "99999999",
 )

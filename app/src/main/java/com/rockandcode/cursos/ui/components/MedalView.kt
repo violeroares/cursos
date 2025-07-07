@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.outlined.Accessibility
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.Icon
@@ -38,7 +37,7 @@ import com.rockandcode.cursos.domain.models.RangeMedal
 @Composable
 fun MedalView(
     medal: RangeMedal?,
-    label: String,
+    label: String = "",
 ) {
     val isDarkTheme = isSystemInDarkTheme()
     Row(
