@@ -1,42 +1,24 @@
 package com.rockandcode.cursos.ui.screens
 
+import RoundedTextInput
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -44,18 +26,29 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.AppHeader
-import com.rockandcode.cursos.ui.components.HomeSectionTitle
-import com.rockandcode.cursos.ui.components.MedalView
-import com.rockandcode.cursos.utils.getMedalProgress
+import com.rockandcode.cursos.ui.screens.FiltersViewModel
+import com.rockandcode.cursos.ui.screens.ProfileInfo
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel(),
+    categoriesViewModel: FiltersViewModel = hiltViewModel(),
     controller: NavHostController,
     onLogout: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsState()
     val isDarkTheme = isSystemInDarkTheme()
+    var name by remember { mutableStateOf(viewModel.profileInfo.name) }
+    var email by remember { mutableStateOf(viewModel.profileInfo.email) }
+    var phone by remember { mutableStateOf(viewModel.profileInfo.phoneNumber) }
+    var street by remember { mutableStateOf(viewModel.profileInfo.addressStreet) }
+    var number by remember { mutableStateOf(viewModel.profileInfo.addressNumber) }
+    var gender by remember { mutableStateOf(viewModel.profileInfo.gender) }
+    var preferredCategories by remember { mutableStateOf(viewModel.profileInfo.preferredCategories) }
+    var birthDate by remember { mutableStateOf(viewModel.profileInfo.birthDate) }
+    val allCategories by categoriesViewModel.categories.collectAsState()
+    val selectedCategories = remember { mutableStateListOf<Int>() }
 
     when (val uiState = state) {
         is ProfileUiState.Loading -> {
@@ -70,14 +63,22 @@ fun ProfileScreen(
 
         is ProfileUiState.Success -> {
             val user = uiState.user
-            val allMedals = uiState.allMedals
+
             Scaffold(
                 topBar = {
-                    // CustomHeader(title = "Mi progreso", onBack = { controller.popBackStack() })
                     AppHeader(
                         title = "Mi perfil",
                         onBack = { controller.popBackStack() },
                         actions = {
+                            // Ícono para cambiar contraseña
+                            IconButton(onClick = { /* Acción */ }) {
+                                Icon(
+                                    imageVector = Icons.Default.Lock,
+                                    contentDescription = "Cambiar contraseña",
+                                    tint = Color.White,
+                                )
+                            }
+                            // Ícono para cerrar sesión
                             IconButton(onClick = onLogout) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ExitToApp,
@@ -89,128 +90,167 @@ fun ProfileScreen(
                     )
                 },
                 contentWindowInsets = WindowInsets(0),
-            ) { paddingValues ->
-                LazyColumn(
+            ) { innerPadding ->
+                Column(
                     modifier =
                         Modifier
-                            .fillMaxSize(),
-                    contentPadding = paddingValues,
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                            .padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    // Avatar + nombre
-                    item {
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Column(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                        ) {
-                            AsyncImage(
-                                model = user.avatarUrl,
-                                contentDescription = null,
-                                modifier =
-                                    Modifier
-                                        .size(120.dp)
-                                        .clip(CircleShape),
-                            )
-                            Spacer(Modifier.height(8.dp))
-                            Text(
-                                text = user.name,
-                                style = MaterialTheme.typography.titleLarge,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                            )
-                            Spacer(Modifier.height(4.dp))
-                            Text(
-                                text = "Puntaje: ${user.score}",
-                                style = MaterialTheme.typography.bodyLarge,
-                                textAlign = TextAlign.Center,
-                            )
-                        }
-                    }
-                    val (prev, current, next) = getMedalProgress(user.score, allMedals)
-                    item {
-                        Spacer(Modifier.height(16.dp))
-                        HomeSectionTitle(title = "Mis logros", showButton = true, onClick = {})
-                        Spacer(Modifier.height(8.dp))
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-//                            MedalView(medal = prev, label = "Nivel Anterior")
-                            MedalView(medal = current, label = "Nivel Actual")
-//                            MedalView(medal = next, label = "Nivel Siguiente")
-                        }
-                        Spacer(Modifier.height(20.dp))
-                    }
-
-                    item {
-                        // Cursos comprados: LazyColumn continua
-                        HomeSectionTitle(title = "Mis cursos", showButton = false, onClick = {})
-                        Spacer(modifier = Modifier.height(16.dp))
-                    }
-                    items(user.purchasedCourses) { course ->
-                        val progress =
-                            user.progressByCourse
-                                .find { it.courseId == course.id }
-                                ?.percentCompleted(course) ?: 0.0
-                        Card(
+                    Box(
+                        modifier = Modifier.size(120.dp),
+                        contentAlignment = Alignment.BottomEnd,
+                    ) {
+                        AsyncImage(
+                            model = user.avatarUrl,
+                            contentDescription = null,
                             modifier =
                                 Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 16.dp)
-                                    .clickable { controller.navigate("courseDetail/${course.id}") },
-                            elevation = CardDefaults.cardElevation(defaultElevation = 12.dp),
-                            shape = RoundedCornerShape(12.dp),
-                            colors =
-                                CardDefaults.cardColors(
-                                    containerColor =
-                                        if (!isDarkTheme) {
-                                            MaterialTheme.colorScheme.surface
-                                        } else {
-                                            MaterialTheme.colorScheme.surfaceContainer
-                                        },
-                                ),
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                AsyncImage(
-                                    model = course.thumbnailUrl,
-                                    contentDescription = course.title,
-                                    modifier =
-                                        Modifier
-                                            .width(85.dp)
-                                            .height(85.dp)
-                                            .clip(RoundedCornerShape(bottomStart = 8.dp, topStart = 8.dp)),
-                                    contentScale = ContentScale.Crop,
-                                )
+                                    .fillMaxSize()
+                                    .clip(CircleShape),
+                        )
 
-                                Column(modifier = Modifier.padding(12.dp)) {
-                                    Text(course.title, fontWeight = FontWeight.SemiBold)
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                    ) {
-                                        Text(
-                                            text = "Progreso:",
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            fontWeight = FontWeight.Normal,
-                                        )
-                                        Text(
-                                            text = "%.1f%%".format(progress),
-                                            style = MaterialTheme.typography.bodyMedium,
-                                            fontWeight = FontWeight.Bold,
-                                        )
-                                    }
-                                    LinearProgressIndicator(
-                                        progress = { (progress / 100f).toFloat() },
-                                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                                    )
-                                }
-                            }
+                        Box(
+                            modifier =
+                                Modifier
+                                    .size(40.dp)
+                                    .clip(CircleShape)
+                                    .background(MaterialTheme.colorScheme.primary)
+                                    .clickable { /* Acción para editar imagen */ },
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Edit,
+                                contentDescription = "Editar imagen",
+                                tint = Color.White,
+                                modifier = Modifier.size(22.dp),
+                            )
                         }
-                        Spacer(modifier = Modifier.height(16.dp))
                     }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Text(
+                        text = "Hola, ${user.name}!",
+                        style = MaterialTheme.typography.titleLarge,
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold,
+                    )
+
+                    Spacer(Modifier.height(2.dp))
+
+                    Text(
+                        text = user.email,
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Center,
+                    )
+
+                    Spacer(modifier = Modifier.height(18.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Fecha de nac.", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Spacer(Modifier.height(6.dp))
+                            RoundedTextInput(birthDate, { birthDate = it }, "Fecha de nac.", Icons.Default.CalendarMonth, "Editar fecha")
+                        }
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Género", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Spacer(Modifier.height(6.dp))
+                            RoundedTextInput(gender, { gender = it }, "Femenino", Icons.Default.KeyboardArrowDown, "Editar género")
+                        }
+                    }
+
+                    Spacer(Modifier.height(2.dp))
+
+                    Text(
+                        "Teléfono",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    Spacer(Modifier.height(6.dp))
+                    RoundedTextInput(phone, { phone = it }, "Teléfono", Icons.Default.Edit, "Editar teléfono")
+
+                    Spacer(Modifier.height(2.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Calle", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Spacer(Modifier.height(6.dp))
+                            RoundedTextInput(street, { street = it }, "Calle", Icons.Default.Edit, "Editar calle")
+                        }
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Número", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            Spacer(Modifier.height(6.dp))
+                            RoundedTextInput(number, { number = it }, "Número", Icons.Default.Edit, "Editar número")
+                        }
+                    }
+
+                    Spacer(Modifier.height(4.dp))
+
+                    Text(
+                        "Seleccione las categorias de su interés:",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Start,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        allCategories.forEach { category ->
+                            FilterChip(
+                                selected = selectedCategories.contains(category.id),
+                                onClick = {
+                                    if (selectedCategories.contains(category.id)) {
+                                        selectedCategories.remove(category.id)
+                                    } else {
+                                        selectedCategories.add(category.id)
+                                    }
+                                },
+                                label = { Text(category.name) },
+                            )
+                        }
+                    }
+
+                    Spacer(Modifier.height(18.dp))
+
+                    Button(
+                        onClick = {
+                            viewModel.profileInfo =
+                                viewModel.profileInfo.copy(
+                                    name = name,
+                                    email = email,
+                                    phoneNumber = phone,
+                                    addressStreet = street,
+                                    addressNumber = number,
+                                )
+                        },
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .height(40.dp),
+                        enabled = listOf(phone, street, number, gender, birthDate).all { it.isNotBlank() },
+                        shape = RoundedCornerShape(40.dp),
+                        colors =
+                            ButtonDefaults.buttonColors(
+                                containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                                contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                            ),
+                    ) {
+                        Text("Guardar cambios", fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.bodyLarge)
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
