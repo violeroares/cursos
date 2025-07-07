@@ -18,9 +18,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -31,6 +35,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -47,6 +52,7 @@ import com.rockandcode.cursos.utils.getMedalProgress
 fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel(),
     controller: NavHostController,
+    onLogout: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsState()
     val isDarkTheme = isSystemInDarkTheme()
@@ -71,6 +77,15 @@ fun ProfileScreen(
                     AppHeader(
                         title = "Mi perfil",
                         onBack = { controller.popBackStack() },
+                        actions = {
+                            IconButton(onClick = onLogout) {
+                                Icon(
+                                    imageVector = Icons.AutoMirrored.Filled.ExitToApp,
+                                    contentDescription = "Cerrar sesión",
+                                    tint = Color.White,
+                                )
+                            }
+                        },
                     )
                 },
                 contentWindowInsets = WindowInsets(0),
