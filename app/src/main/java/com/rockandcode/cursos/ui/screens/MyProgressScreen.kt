@@ -44,32 +44,31 @@ import com.rockandcode.cursos.ui.components.MedalView
 import com.rockandcode.cursos.utils.getMedalProgress
 
 @Composable
-fun ProfileScreen(
-    viewModel: ProfileViewModel = hiltViewModel(),
+fun MyProgressScreen(
+    viewModel: MyProgressViewModel = hiltViewModel(),
     controller: NavHostController,
 ) {
     val state by viewModel.uiState.collectAsState()
     val isDarkTheme = isSystemInDarkTheme()
 
     when (val uiState = state) {
-        is ProfileUiState.Loading -> {
+        is MyProgressUiState.Loading -> {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
             }
         }
 
-        is ProfileUiState.Error -> {
+        is MyProgressUiState.Error -> {
             Text("Error: ${uiState.message}")
         }
 
-        is ProfileUiState.Success -> {
+        is MyProgressUiState.Success -> {
             val user = uiState.user
             val allMedals = uiState.allMedals
             Scaffold(
                 topBar = {
-                    // CustomHeader(title = "Mi progreso", onBack = { controller.popBackStack() })
                     AppHeader(
-                        title = "Mi perfil",
+                        title = "Mi aprendizaje",
                         onBack = { controller.popBackStack() },
                     )
                 },
