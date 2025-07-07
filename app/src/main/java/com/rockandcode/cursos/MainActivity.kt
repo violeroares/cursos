@@ -35,6 +35,7 @@ import com.rockandcode.cursos.ui.screens.CartViewModel
 import com.rockandcode.cursos.ui.screens.CourseDetailScreen
 import com.rockandcode.cursos.ui.screens.FiltersScreen
 import com.rockandcode.cursos.ui.screens.HomeScreen
+import com.rockandcode.cursos.ui.screens.MyProgressScreen
 import com.rockandcode.cursos.ui.screens.ProfileScreen
 import com.rockandcode.cursos.ui.screens.SearchScreen
 import com.rockandcode.cursos.ui.screens.SearchViewModel
@@ -76,7 +77,7 @@ fun MainScreen() {
     val isAuthenticated by remember { mutableStateOf(true) }
     val navBackStackEntry = controller.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart")
+    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart", "myProgress")
     val shouldHideBottomBarAndFav =
         hideBottomBarRoutes.any { prefix -> currentRoute?.startsWith(prefix) == true }
     val cartViewModel: CartViewModel = hiltViewModel()
@@ -154,6 +155,10 @@ fun MainScreen() {
                                 // luego volver atrás o a pantalla de confirmación
                             },
                         )
+                    }
+
+                    composable("myProgress") {
+                        MyProgressScreen(controller = controller)
                     }
                 }
             }

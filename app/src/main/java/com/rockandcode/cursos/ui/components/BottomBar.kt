@@ -97,12 +97,12 @@ fun BottomBar(
         )
 
         NavigationBarItem(
-            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "profile" } == true,
-            onClick = { controller.navigate("profile") },
+            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "myProgress" } == true,
+            onClick = { controller.navigate("myProgress") },
             icon = {
                 Icon(
                     imageVector = Icons.Outlined.SlowMotionVideo,
-                    contentDescription = "Profile",
+                    contentDescription = "My Progress",
                     // tint = MaterialTheme.colorScheme.primary,
                 )
             },
