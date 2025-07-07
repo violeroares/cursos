@@ -41,9 +41,9 @@ class CartViewModel
             _items.removeAll { it.courseId == courseId }
         }
 
-//        fun clearCart() {
-//            _items.clear()
-//        }
+        fun clearCart() {
+            _items.clear()
+        }
 
         fun totalPrice(): Double = _items.sumOf { it.price }
     }
