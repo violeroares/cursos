@@ -192,7 +192,7 @@ fun ProfileScreen(
                         }
                     }
 
-                    Spacer(Modifier.height(4.dp))
+                    Spacer(Modifier.height(8.dp))
 
                     Text(
                         "Seleccione las categorias de su interés:",
@@ -234,10 +234,9 @@ fun ProfileScreen(
                         },
                         modifier =
                             Modifier
-                                .fillMaxWidth()
-                                .height(40.dp),
+                                .fillMaxWidth(),
                         enabled = listOf(phone, street, number, gender, birthDate).all { it.isNotBlank() },
-                        shape = RoundedCornerShape(40.dp),
+                        shape = RoundedCornerShape(24.dp),
                         colors =
                             ButtonDefaults.buttonColors(
                                 containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
