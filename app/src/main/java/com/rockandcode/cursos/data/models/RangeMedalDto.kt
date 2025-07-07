@@ -7,9 +7,9 @@ data class RangeMedalDto(
     val name: String,
     val number: Int,
     val description: String,
-    val benefits: List<String> = emptyList(),
+    val benefits: List<BenefitDto> = emptyList(),
     val icon: String,
     val threshold: Int,
 ) {
-    fun toDomain() = RangeMedal(id, name, number, description, benefits, icon, threshold)
+    fun toDomain() = RangeMedal(id, name, number, description, benefits.map { it.toDomain() }, icon, threshold)
 }

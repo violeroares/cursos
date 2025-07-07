@@ -1,5 +1,6 @@
 package com.rockandcode.cursos.data.datasources.local
 
+import com.rockandcode.cursos.data.models.BenefitDto
 import com.rockandcode.cursos.data.models.CategoryDto
 import com.rockandcode.cursos.data.models.CertificateDto
 import com.rockandcode.cursos.data.models.CommentDto
@@ -2186,6 +2187,35 @@ object MockDataSource {
                 ),
             )
 
+    val benefitDto =
+        listOf(
+            BenefitDto(
+                id = 1,
+                description = "3 cuotas sin interés",
+                discountPercent = 10.00,
+            ),
+            BenefitDto(
+                id = 2,
+                description = "10% de descuento en cursos",
+                discountPercent = 10.00,
+            ),
+            BenefitDto(
+                id = 3,
+                description = "15% de descuento en cursos",
+                discountPercent = 15.00,
+            ),
+            BenefitDto(
+                id = 4,
+                description = "20% de descuento en cursos",
+                discountPercent = 20.00,
+            ),
+            BenefitDto(
+                id = 5,
+                description = "25% de descuento en cursos",
+                discountPercent = 25.00,
+            ),
+        )
+
     val medalsDto =
         listOf(
             RangeMedalDto(
@@ -2194,10 +2224,7 @@ object MockDataSource {
                 number = 1,
                 description = "Completaste hasta 100 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2209,10 +2236,7 @@ object MockDataSource {
                 number = 2,
                 description = "Completaste más de 500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2224,10 +2248,7 @@ object MockDataSource {
                 number = 3,
                 description = "Completaste más de 1000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2239,10 +2260,7 @@ object MockDataSource {
                 number = 4,
                 description = "Completaste más de 1500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2254,10 +2272,7 @@ object MockDataSource {
                 number = 5,
                 description = "Completaste más de 2000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2269,10 +2284,7 @@ object MockDataSource {
                 number = 6,
                 description = "Completaste más de 2500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2284,10 +2296,7 @@ object MockDataSource {
                 number = 7,
                 description = "Completaste más de 3000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2299,10 +2308,7 @@ object MockDataSource {
                 number = 8,
                 description = "Completaste más de 3500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2314,10 +2320,7 @@ object MockDataSource {
                 number = 9,
                 description = "Completaste más de 4000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2329,10 +2332,7 @@ object MockDataSource {
                 number = 10,
                 description = "Completaste más de 4500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2344,10 +2344,7 @@ object MockDataSource {
                 number = 11,
                 description = "Completaste más de 5000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2359,10 +2356,7 @@ object MockDataSource {
                 number = 12,
                 description = "Completaste más de 5500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2374,10 +2368,7 @@ object MockDataSource {
                 number = 13,
                 description = "Completaste más de 6000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2389,10 +2380,7 @@ object MockDataSource {
                 number = 14,
                 description = "Completaste más de 6500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2404,10 +2392,7 @@ object MockDataSource {
                 number = 15,
                 description = "Completaste más de 7000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2419,10 +2404,7 @@ object MockDataSource {
                 number = 16,
                 description = "Completaste más de 7500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2434,10 +2416,7 @@ object MockDataSource {
                 number = 17,
                 description = "Completaste más de 8000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2449,10 +2428,7 @@ object MockDataSource {
                 number = 18,
                 description = "Completaste más de 8500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2464,10 +2440,7 @@ object MockDataSource {
                 number = 19,
                 description = "Completaste más de 9000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2479,10 +2452,7 @@ object MockDataSource {
                 number = 20,
                 description = "Completaste más de 9500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2494,10 +2464,7 @@ object MockDataSource {
                 number = 21,
                 description = "Completaste más de 10000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2509,10 +2476,7 @@ object MockDataSource {
                 number = 22,
                 description = "Completaste más de 10500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2524,10 +2488,7 @@ object MockDataSource {
                 number = 23,
                 description = "Completaste más de 11000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2539,10 +2500,7 @@ object MockDataSource {
                 number = 24,
                 description = "Completaste más de 11500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2554,10 +2512,7 @@ object MockDataSource {
                 number = 25,
                 description = "Completaste más de 12000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2569,10 +2524,7 @@ object MockDataSource {
                 number = 26,
                 description = "Completaste más de 12500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2584,10 +2536,7 @@ object MockDataSource {
                 number = 27,
                 description = "Completaste más de 13000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2599,10 +2548,7 @@ object MockDataSource {
                 number = 28,
                 description = "Completaste más de 13500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2614,10 +2560,7 @@ object MockDataSource {
                 number = 29,
                 description = "Completaste más de 14000 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
@@ -2629,10 +2572,7 @@ object MockDataSource {
                 number = 30,
                 description = "Completaste más de 14500 puntos",
                 benefits =
-                    listOf(
-                        "3 cuotas sin interés con tarjeta mastercard",
-                        "10% de descuento en cursos de desarrollo",
-                    ),
+                    listOf(benefitDto[0], benefitDto[1]),
                 icon =
                     "https://res.cloudinary.com/dznr3eupq/image/upload/v1751813111/" +
                         "medalla_nlx0ny.png",
