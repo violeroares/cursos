@@ -1,5 +1,6 @@
 package com.rockandcode.cursos.ui.screens
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,7 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -20,6 +24,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.AppHeader
@@ -36,6 +42,7 @@ fun CheckoutPaymentScreen(
     var cvv by remember { mutableStateOf(viewModel.paymentInfo.cvv) }
     var holder by remember { mutableStateOf(viewModel.paymentInfo.holderName) }
     var dni by remember { mutableStateOf("") }
+    val isDarkTheme = isSystemInDarkTheme()
 
     val cardBrandUrl by remember(cardNumber) {
         mutableStateOf(getCardBrandUrl(cardNumber))
@@ -125,8 +132,14 @@ fun CheckoutPaymentScreen(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = listOf(cardNumber, expiry, cvv, holder, dni).all { it.isNotBlank() },
+                shape = RoundedCornerShape(8.dp),
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                    ),
             ) {
-                Text("Continuar al resumen")
+                Text("Continuar al resumen", fontWeight = FontWeight.SemiBold)
             }
 
             TextButton(onClick = onBack) {

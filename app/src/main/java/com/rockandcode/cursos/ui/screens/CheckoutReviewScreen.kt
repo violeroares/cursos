@@ -1,17 +1,22 @@
 package com.rockandcode.cursos.ui.screens
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.rockandcode.cursos.ui.components.AppHeader
@@ -22,6 +27,7 @@ fun CheckoutReviewScreen(
     onConfirm: () -> Unit,
     onBack: () -> Unit,
 ) {
+    val isDarkTheme = isSystemInDarkTheme()
     val total = viewModel.coursesToBuy.sumOf { it.price }
 
     Scaffold(
@@ -54,8 +60,17 @@ fun CheckoutReviewScreen(
             Text("Total: $${"%.2f".format(total)}", fontWeight = FontWeight.Bold)
 
             Spacer(Modifier.height(24.dp))
-            Button(onClick = onConfirm, modifier = Modifier.fillMaxWidth()) {
-                Text("Confirmar compra")
+            Button(
+                onClick = onConfirm,
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(8.dp),
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                    ),
+            ) {
+                Text("Confirmar compra", fontWeight = FontWeight.SemiBold)
             }
 
             TextButton(onClick = onBack) {

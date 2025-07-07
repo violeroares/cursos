@@ -114,7 +114,7 @@ fun HomeScreen(
                                     .background(
                                         color = if (isDarkTheme) headerColor else myColor,
                                         shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp),
-                                    ).padding(top = 36.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
+                                    ).padding(top = 48.dp, bottom = 8.dp, start = 16.dp, end = 16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             // Línea 1: avatar, "Acadexa", notificaciones

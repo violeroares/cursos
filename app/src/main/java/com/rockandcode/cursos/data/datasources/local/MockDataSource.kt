@@ -2589,7 +2589,7 @@ object MockDataSource {
                 "https://media.licdn.com/dms/image/v2/C5603AQHgiNd9G09-7A/profile-" +
                     "displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/" +
                     "1516975788273?e=1756339200&v=beta&t=dTJAHsnbk-fdLN3HAodYrenD14vPxwg2OYP0nlIyI3I",
-            purchasedCourses = coursesDto.take(4),
+            purchasedCourses = coursesDto.take(2),
 //            progressByCourse =
 //                listOf(
 //                    UserCourseProgressDto(

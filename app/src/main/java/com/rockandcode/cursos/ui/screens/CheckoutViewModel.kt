@@ -25,6 +25,8 @@ class CheckoutViewModel
             paymentInfo = PaymentInfo()
             coursesToBuy = emptyList()
         }
+
+        fun isOnlyFreeCourses(): Boolean = coursesToBuy.isNotEmpty() && coursesToBuy.all { it.price == 0.0 }
     }
 
 data class UserInfo(

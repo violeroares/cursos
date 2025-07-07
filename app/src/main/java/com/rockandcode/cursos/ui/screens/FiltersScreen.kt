@@ -2,6 +2,7 @@ package com.rockandcode.cursos.ui.screens
 
 import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -13,8 +14,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
@@ -33,6 +36,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -47,6 +52,7 @@ fun FiltersScreen(
     searchViewModel: SearchViewModel,
     categoriesViewModel: FiltersViewModel = hiltViewModel(), // ya tenías esto
 ) {
+    val isDarkTheme = isSystemInDarkTheme()
     val allCategories by categoriesViewModel.categories.collectAsState()
     val currentFilter by searchViewModel.filter.collectAsState()
 
@@ -79,7 +85,11 @@ fun FiltersScreen(
                     .padding(paddingValues)
                     .padding(16.dp),
         ) {
-            Text("Categorías", style = MaterialTheme.typography.titleMedium)
+            Text(
+                "Categorías",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
             Spacer(Modifier.height(8.dp))
 
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -99,7 +109,11 @@ fun FiltersScreen(
             }
 
             Spacer(Modifier.height(16.dp))
-            Text("Filtrar por precio", style = MaterialTheme.typography.titleMedium)
+            Text(
+                "Filtrar por precio",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
 
             val (showFree, setShowFree) = remember { mutableStateOf(currentFilter.showFree) }
             val (showPaid, setShowPaid) = remember { mutableStateOf(currentFilter.showPaid) }
@@ -135,7 +149,11 @@ fun FiltersScreen(
 //            }
 
             Spacer(Modifier.height(16.dp))
-            Text("Ordenar por relevancia", style = MaterialTheme.typography.titleMedium)
+            Text(
+                "Ordenar por relevancia",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
 
             Column {
                 listOf(OrderBy.TITLE, OrderBy.POPULAR, OrderBy.RATED).forEach { order ->
@@ -176,7 +194,7 @@ fun FiltersScreen(
 //            }
 
             Spacer(Modifier.height(12.dp))
-            Text("Precio (ARS)", style = MaterialTheme.typography.titleMedium)
+            Text("Precio (ARS)", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(8.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
@@ -220,8 +238,14 @@ fun FiltersScreen(
                     controller.popBackStack() // volver a SearchScreen
                 },
                 modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(8.dp),
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                    ),
             ) {
-                Text("Aplicar filtros")
+                Text("Aplicar filtros", fontWeight = FontWeight.SemiBold)
             }
         }
     }
