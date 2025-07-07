@@ -172,7 +172,14 @@ fun MainScreen() {
                         CheckoutUserInfoScreen(
                             viewModel = checkoutViewModel,
                             onBack = { controller.popBackStack() },
-                            onNext = { controller.navigate("checkout/payment") },
+//                            onNext = { controller.navigate("checkout/payment") },
+                            onNext = {
+                                if (checkoutViewModel.isOnlyFreeCourses()) {
+                                    controller.navigate("checkout/review")
+                                } else {
+                                    controller.navigate("checkout/payment")
+                                }
+                            },
                         )
                     }
 

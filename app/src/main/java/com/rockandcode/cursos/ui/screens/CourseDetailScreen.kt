@@ -172,7 +172,7 @@ fun CourseDetailScreen(
                                 modifier =
                                     Modifier
                                         .align(Alignment.TopStart)
-                                        .padding(top = 32.dp, start = 16.dp)
+                                        .padding(top = 48.dp, start = 16.dp)
                                         .background(
                                             color = Color.Black.copy(alpha = 0.4f),
                                             shape = CircleShape,

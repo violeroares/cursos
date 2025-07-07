@@ -1,5 +1,6 @@
 package com.rockandcode.cursos.ui.screens
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,7 +9,10 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -18,6 +22,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.rockandcode.cursos.ui.components.AppHeader
 
@@ -32,6 +38,7 @@ fun CheckoutUserInfoScreen(
     var phone by remember { mutableStateOf(viewModel.userInfo.phoneNumber) }
     var street by remember { mutableStateOf(viewModel.userInfo.addressStreet) }
     var number by remember { mutableStateOf(viewModel.userInfo.addressNumber) }
+    val isDarkTheme = isSystemInDarkTheme()
 
     Scaffold(
         topBar = {
@@ -107,8 +114,14 @@ fun CheckoutUserInfoScreen(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = listOf(name, email, phone, street, number).all { it.isNotBlank() },
+                shape = RoundedCornerShape(8.dp),
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                    ),
             ) {
-                Text("Continuar al pago")
+                Text("Continuar al pago", fontWeight = FontWeight.SemiBold)
             }
         }
     }
