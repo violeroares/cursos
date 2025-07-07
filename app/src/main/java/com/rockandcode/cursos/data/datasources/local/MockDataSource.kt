@@ -212,8 +212,7 @@ object MockDataSource {
                             "de la interfaz de usuario en Android. Dale vida rápidamente a tu app con " +
                             "menos código, herramientas poderosas y API de Kotlin intuitivas.",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761012/" +
-                            "jetpack_xvjj0w.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761012/jetpack_xvjj0w.jpg",
                     rating = 4.0,
                     ratingCount = 4,
                     price = 68750.00,
@@ -310,6 +309,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 1,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -326,6 +326,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 2,
                                 title = "Parte 1",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -360,6 +361,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 3,
                                 title = "Parte 2",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -394,6 +396,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 4,
                                 title = "Parte 3",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -453,8 +456,7 @@ object MockDataSource {
                     subTitle = "Todo sobre la base de datos relacional SQL",
                     description = "Aprende base de datos relacional...",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/" +
-                            "upload/v1751761010/sql_femqyo.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761010/sql_femqyo.jpg",
                     rating = 4.1,
                     ratingCount = 24,
                     price = 81250.00,
@@ -472,6 +474,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 5,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -488,6 +491,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 6,
                                 title = "Instalación y configuración",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -504,6 +508,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 7,
                                 title = "Lenguaje SQL",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -538,6 +543,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 8,
                                 title = "Consultas",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -662,8 +668,7 @@ object MockDataSource {
                             "para quienes desean aprender a crear interfaces digitales atractivas, " +
                             "funcionales y fáciles de usar, ya sea para aplicaciones web, móviles o de escritorio. ",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/" +
-                            "v1751761011/disenio-interfaces_shtddk.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761011/disenio-interfaces_shtddk.jpg",
                     rating = 5.0,
                     ratingCount = 130,
                     price = 74999.00,
@@ -711,6 +716,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 9,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -727,6 +733,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 10,
                                 title = "Parte 1",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -752,6 +759,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 11,
                                 title = "Parte 2",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -786,6 +794,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 12,
                                 title = "Parte 3",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -865,8 +874,7 @@ object MockDataSource {
                             "(notas, acordes, escalas, ritmo), historia de la música, " +
                             "entrenamiento vocal, producción musical, y/o aprendizaje de un instrumento",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751753235/" +
-                            "musica_olnk0y.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751753235/musica_olnk0y.jpg",
                     rating = 4.8,
                     ratingCount = 8,
                     price = 62499.00,
@@ -884,6 +892,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 13,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -900,6 +909,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 14,
                                 title = "Parte 1",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1080,6 +1090,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 15,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1096,6 +1107,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 16,
                                 title = "Videos",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1240,6 +1252,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 17,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1256,6 +1269,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 18,
                                 title = "Base de datos",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1356,11 +1370,10 @@ object MockDataSource {
                     description =
                         "Una aventura por la historia de la literatura clásica y sus máximos exponentes",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751753234/" +
-                            "literatura_fzmgqi.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751753234/literatura_fzmgqi.jpg",
                     rating = 4.2,
                     ratingCount = 48,
-                    price = 68750.00,
+                    price = 0.00,
                     isFree = true,
                     instructors = listOf(instructorsDto[2]),
                     categories = listOf(categoriesDto[3]),
@@ -1408,6 +1421,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 19,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1424,6 +1438,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 20,
                                 title = "Clase 1",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1449,6 +1464,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 21,
                                 title = "Clase 2",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1508,8 +1524,7 @@ object MockDataSource {
                     description =
                         "En este curso aprenderás a crear personajes, escenarios e historias para tus juegos",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/" +
-                            "v1751761010/disenio-videojuegos_gjorio.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761010/disenio-videojuegos_gjorio.jpg",
                     rating = 4.1,
                     ratingCount = 12,
                     price = 56250.00,
@@ -1559,6 +1574,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 22,
                                 title = "Introducción",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1575,6 +1591,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 23,
                                 title = "Parte 1",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1600,6 +1617,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 24,
                                 title = "Parte 2",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1671,8 +1689,7 @@ object MockDataSource {
                     description =
                         "Podrás adquirir un repertorio de cálculos con estrategias para agilizar tu velocidad mental",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761010/" +
-                            "calculo-mental_jbdrkx.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751761010/calculo-mental_jbdrkx.jpg",
                     rating = 4.3,
                     ratingCount = 18,
                     price = 62050.00,
@@ -1722,6 +1739,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 25,
                                 title = "Presentación",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1738,6 +1756,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 26,
                                 title = "Sumas mentales",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1763,6 +1782,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 27,
                                 title = "Multiplicaciones mentales",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1834,8 +1854,7 @@ object MockDataSource {
                     description =
                         "Un recorrido por las bandas de rock Argentino que dieron origen a este movimiento popular",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751763766/" +
-                            " charly_m0hdrj.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751763766/charly_m0hdrj.jpg",
                     rating = 4.9,
                     ratingCount = 23,
                     price = 30500.00,
@@ -1885,6 +1904,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 28,
                                 title = "Inicios",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1901,6 +1921,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 29,
                                 title = "Orígenes del sonido",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -1935,6 +1956,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 30,
                                 title = "Artistas reconocidos",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -2004,11 +2026,10 @@ object MockDataSource {
                     description =
                         "Conocé las reglas ortografía para lograr una mejor redacción",
                     thumbnailUrl =
-                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751762668/" +
-                            "ortografia_dopwah.jpg",
+                        "https://res.cloudinary.com/dznr3eupq/image/upload/v1751762668/ortografia_dopwah.jpg",
                     rating = 3.9,
                     ratingCount = 52,
-                    price = 30750.00,
+                    price = 0.00,
                     isFree = true,
                     instructors = listOf(instructorsDto[1]),
                     categories = listOf(categoriesDto[3]),
@@ -2055,6 +2076,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 31,
                                 title = "Primeros conceptos",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -2071,6 +2093,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 32,
                                 title = "Reglas ortográficas",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -2096,6 +2119,7 @@ object MockDataSource {
                             CourseSectionDto(
                                 id = 33,
                                 title = "Coherencia y cohesión",
+                                description = "",
                                 videos =
                                     listOf(
                                         VideoItemDto(
@@ -2330,7 +2354,7 @@ object MockDataSource {
                 threshold = 5000,
             ),
             RangeMedalDto(
-                id = 121,
+                id = 12,
                 name = "Nivel 12",
                 number = 12,
                 description = "Completaste más de 5500 puntos",
@@ -2625,7 +2649,7 @@ object MockDataSource {
                 "https://media.licdn.com/dms/image/v2/C5603AQHgiNd9G09-7A/profile-" +
                     "displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/" +
                     "1516975788273?e=1756339200&v=beta&t=dTJAHsnbk-fdLN3HAodYrenD14vPxwg2OYP0nlIyI3I",
-            purchasedCourses = coursesDto.take(2),
+            purchasedCourses = coursesDto.take(4),
 //            progressByCourse =
 //                listOf(
 //                    UserCourseProgressDto(

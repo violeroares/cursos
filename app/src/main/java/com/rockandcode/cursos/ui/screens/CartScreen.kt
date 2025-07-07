@@ -34,16 +34,19 @@ import androidx.navigation.NavHostController
 import com.rockandcode.cursos.ui.components.AppHeader
 import com.rockandcode.cursos.ui.components.CartItemCard
 import com.rockandcode.cursos.utils.formatPrice
+import com.rockandcode.cursos.utils.toCourse
 
 @Composable
 fun CartScreen(
     viewModel: CartViewModel,
+    checkoutViewModel: CheckoutViewModel,
     onCheckout: () -> Unit,
     controller: NavHostController,
 ) {
     val items = viewModel.items
     val total = viewModel.totalPrice()
     val isDarkTheme = isSystemInDarkTheme()
+
     Scaffold(
         topBar = {
             AppHeader(
@@ -124,7 +127,19 @@ fun CartScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { onCheckout() },
+                onClick = {
+                    checkoutViewModel.setCourses(items.map { it.toCourse() }) // Pasar los cursos al checkout
+                    onCheckout()
+                },
+//                onClick = {
+//                    checkoutViewModel.setCourses(viewModel.items.map { it.toCourse() })
+//                    controller.navigate("checkout/user")
+//                },
+//                onClick = {
+//                    val cursosSeleccionados = viewModel.items.map { it.toCourse() }
+//                    checkoutViewModel.setCourses(cursosSeleccionados)
+//                    controller.navigate("checkout/user")
+//                },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = items.isNotEmpty(),
                 shape = RoundedCornerShape(8.dp),

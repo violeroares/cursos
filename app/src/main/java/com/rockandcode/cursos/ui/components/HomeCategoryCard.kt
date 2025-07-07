@@ -1,6 +1,7 @@
 package com.rockandcode.cursos.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +28,13 @@ fun HomeCategoryCard(
     modifier: Modifier = Modifier,
     onClick: (Category) -> Unit = {},
 ) {
+    val isDarkTheme = isSystemInDarkTheme()
+    val cardColor =
+        if (!isDarkTheme) {
+            MaterialTheme.colorScheme.surface
+        } else {
+            MaterialTheme.colorScheme.surfaceContainer
+        }
     Card(
         onClick = { onClick(category) },
         shape = RoundedCornerShape(16.dp),
@@ -35,13 +43,14 @@ fun HomeCategoryCard(
             modifier
                 .width(200.dp)
                 .height(120.dp),
+        colors = CardDefaults.cardColors(containerColor = cardColor),
     ) {
         Box {
             AsyncImage(
                 model = category.imageUrl,
                 contentDescription = category.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.fillMaxSize().padding(8.dp),
             )
 
             // Opcional: overlay con nombre
