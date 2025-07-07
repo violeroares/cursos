@@ -32,6 +32,11 @@ import com.rockandcode.cursos.ui.components.BottomBar
 import com.rockandcode.cursos.ui.components.Splash
 import com.rockandcode.cursos.ui.screens.CartScreen
 import com.rockandcode.cursos.ui.screens.CartViewModel
+import com.rockandcode.cursos.ui.screens.CheckoutPaymentScreen
+import com.rockandcode.cursos.ui.screens.CheckoutReviewScreen
+import com.rockandcode.cursos.ui.screens.CheckoutSuccessScreen
+import com.rockandcode.cursos.ui.screens.CheckoutUserInfoScreen
+import com.rockandcode.cursos.ui.screens.CheckoutViewModel
 import com.rockandcode.cursos.ui.screens.CourseDetailScreen
 import com.rockandcode.cursos.ui.screens.FiltersScreen
 import com.rockandcode.cursos.ui.screens.HomeScreen
@@ -39,6 +44,7 @@ import com.rockandcode.cursos.ui.screens.ProfileScreen
 import com.rockandcode.cursos.ui.screens.SearchScreen
 import com.rockandcode.cursos.ui.screens.SearchViewModel
 import com.rockandcode.cursos.ui.theme.CursosTheme
+import com.rockandcode.cursos.utils.toCourse
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
@@ -76,10 +82,13 @@ fun MainScreen() {
     val isAuthenticated by remember { mutableStateOf(true) }
     val navBackStackEntry = controller.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart")
+    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart", "checkout")
     val shouldHideBottomBarAndFav =
         hideBottomBarRoutes.any { prefix -> currentRoute?.startsWith(prefix) == true }
+
     val cartViewModel: CartViewModel = hiltViewModel()
+    val checkoutViewModel: CheckoutViewModel = hiltViewModel()
+
     // Esperamos 3s y decidimos a qué pantalla ir
     LaunchedEffect(isAuthenticated) {
         delay(SPLASH_SCREEN_DELAY_MS)
@@ -119,6 +128,8 @@ fun MainScreen() {
                             courseId = courseId,
                             onBack = { controller.popBackStack() },
                             cartViewModel = cartViewModel,
+                            checkoutViewModel = checkoutViewModel,
+                            controller = controller,
                         )
                     }
 
@@ -147,11 +158,47 @@ fun MainScreen() {
                     composable("cart") {
                         CartScreen(
                             viewModel = cartViewModel,
+                            checkoutViewModel = checkoutViewModel,
                             controller = controller,
                             onCheckout = {
-                                // lanzar la acción de compra:
-                                // por ejemplo mostrar diálogo o llamar a función ViewModel
-                                // luego volver atrás o a pantalla de confirmación
+                                checkoutViewModel.setCourses(cartViewModel.items.map { it.toCourse() })
+                                controller.navigate("checkout/user")
+                            },
+                        )
+                    }
+
+                    composable("checkout/user") {
+                        CheckoutUserInfoScreen(
+                            viewModel = checkoutViewModel,
+                            onBack = { controller.popBackStack() },
+                            onNext = { controller.navigate("checkout/payment") },
+                        )
+                    }
+
+                    composable("checkout/payment") {
+                        CheckoutPaymentScreen(
+                            viewModel = checkoutViewModel,
+                            onNext = { controller.navigate("checkout/review") },
+                            onBack = { controller.popBackStack() },
+                        )
+                    }
+
+                    composable("checkout/review") {
+                        CheckoutReviewScreen(
+                            viewModel = checkoutViewModel,
+                            onConfirm = {
+                                controller.navigate("checkout/success")
+                                cartViewModel.clearCart()
+                                checkoutViewModel.reset()
+                            },
+                            onBack = { controller.popBackStack() },
+                        )
+                    }
+
+                    composable("checkout/success") {
+                        CheckoutSuccessScreen(
+                            onDone = {
+                                controller.navigate("home")
                             },
                         )
                     }

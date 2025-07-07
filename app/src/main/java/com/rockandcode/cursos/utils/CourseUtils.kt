@@ -8,6 +8,7 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.PlayCircle
 import androidx.compose.material.icons.outlined.Verified
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.rockandcode.cursos.domain.models.CartItem
 import com.rockandcode.cursos.domain.models.Course
 import com.rockandcode.cursos.domain.models.CourseFeatureItem
 import com.rockandcode.cursos.domain.models.FeatureType
@@ -167,4 +168,25 @@ fun formatPrice(value: Double): String {
             isGroupingUsed = true
         }
     return "$${formatter.format(value)}"
+}
+
+fun CartItem.toCourse(): Course = Course(id = courseId, title = title, price = price, thumbnailUrl = imageUrl)
+
+fun getCardBrandUrl(cardNumber: String): String {
+    val cleanNumber = cardNumber.filter { it.isDigit() }
+
+    return when {
+        cleanNumber.startsWith(
+            "4",
+        ) -> "https://w7.pngwing.com/pngs/424/169/png-transparent-credit-card-visa-electron-mastercard-credit-card-text-logo-banner.png"
+        cleanNumber.startsWith(
+            "5",
+        ) -> "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png"
+        cleanNumber.startsWith(
+            "34",
+        ) ||
+            cleanNumber.startsWith("37") -> "https://mejoresopciones.com.mx/wp-content/uploads/2022/11/American-Express-Amex.jpeg"
+        cleanNumber.startsWith("6") -> "https://img.icons8.com/color/512/discover.png"
+        else -> "https://res.cloudinary.com/dznr3eupq/image/upload/v1751844890/tarjeta-visa_eyyufg.png " // genérico
+    }
 }
