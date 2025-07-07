@@ -113,7 +113,7 @@ fun MyProgressScreen(
                     val (prev, current, next) = getMedalProgress(user.score, allMedals)
                     item {
                         Spacer(Modifier.height(16.dp))
-                        HomeSectionTitle(title = "Mis logros", showButton = true, onClick = {})
+                        HomeSectionTitle(title = "Mis logros", showButton = true, onClick = { controller.navigate("medals") })
                         Spacer(Modifier.height(8.dp))
 
                         Row(
