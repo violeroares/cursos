@@ -167,7 +167,7 @@ fun MedalView(
                     )
                     Spacer(Modifier.width(5.dp))
                     Text(
-                        text = benefit,
+                        text = benefit.description,
                         style = MaterialTheme.typography.titleMedium.copy(lineHeight = 18.sp, fontSize = 14.sp),
                         fontWeight = FontWeight.Normal,
                     )
