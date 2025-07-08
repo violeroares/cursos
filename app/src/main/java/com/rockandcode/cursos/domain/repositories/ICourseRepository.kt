@@ -3,6 +3,7 @@ package com.rockandcode.cursos.domain.repositories
 import com.rockandcode.cursos.domain.models.Category
 import com.rockandcode.cursos.domain.models.Certificate
 import com.rockandcode.cursos.domain.models.Course
+import com.rockandcode.cursos.domain.models.Instructor
 import com.rockandcode.cursos.domain.models.RangeMedal
 import kotlinx.coroutines.flow.Flow
 
@@ -23,4 +24,6 @@ interface ICourseRepository {
         userId: Int,
         courseId: Int,
     ): Certificate?
+
+    fun getInstructorById(id: Int): Flow<Instructor?>
 }

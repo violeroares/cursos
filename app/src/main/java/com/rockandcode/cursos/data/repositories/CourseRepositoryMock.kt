@@ -4,6 +4,7 @@ import com.rockandcode.cursos.data.datasources.local.MockDataSource
 import com.rockandcode.cursos.domain.models.Category
 import com.rockandcode.cursos.domain.models.Certificate
 import com.rockandcode.cursos.domain.models.Course
+import com.rockandcode.cursos.domain.models.Instructor
 import com.rockandcode.cursos.domain.models.RangeMedal
 import com.rockandcode.cursos.domain.repositories.ICourseRepository
 import kotlinx.coroutines.flow.Flow
@@ -33,9 +34,5 @@ class CourseRepositoryMock : ICourseRepository {
                 it.userId == userId && it.courseId == courseId
             }?.toDomain()
 
-//    private val _courses = MutableStateFlow(MockDataSource.coursesDto.map { it.toDomain() })
-//
-//    fun refreshCourses() {
-//        _courses.value = MockDataSource.coursesDto.map { it.toDomain() }
-//    }
+    override fun getInstructorById(id: Int): Flow<Instructor?> = flowOf(MockDataSource.instructorsDto.find { it.id == id }?.toDomain())
 }

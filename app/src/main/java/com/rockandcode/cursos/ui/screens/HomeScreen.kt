@@ -102,7 +102,6 @@ fun HomeScreen(
                     modifier =
                         Modifier
                             .fillMaxSize(),
-                    // .padding(horizontal = 16.dp),
                     contentPadding = paddingValues,
                 ) {
                     // Top bar: avatar + notificación

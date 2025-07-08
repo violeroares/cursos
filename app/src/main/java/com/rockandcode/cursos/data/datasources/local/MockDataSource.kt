@@ -20,12 +20,12 @@ import com.rockandcode.cursos.data.models.UserProgressDto
 import com.rockandcode.cursos.data.models.VideoItemDto
 
 object MockDataSource {
-    private val instructorsDto =
+    val instructorsDto =
         listOf(
             InstructorDto(
                 id = 1,
                 name = "Juan Perez",
-                avatarUrl = "https://media.gq.com.mx/photos/5c6c494700f5a75446d1db89/master/w_1600%2Cc_limit/corbata.jpg",
+                avatarUrl = "https://www.livelingua.com/img/profilesTeachers/103/Guillaume-Deneufbourg-Square_Profile_S.jpg",
                 bio = "Licenciado en Maquinarias Electrónicas - Jefe Sector Seguridad en Security Company S.A. - Buenos Aires",
                 experience = "Titular de Cátedra en la UBA. 20 años como jefe del sector de seguridad en una empresa multinacional",
                 specialization = "Técnico en Electrónica",
@@ -218,7 +218,7 @@ object MockDataSource {
                     ratingCount = 4,
                     price = 68750.00,
                     isFree = false,
-                    instructors = listOf(instructorsDto[1]),
+                    instructors = listOf(instructorsDto[1], instructorsDto[0]),
                     categories = listOf(categoriesDto[0], categoriesDto[4]),
                     schedule =
                         listOf(
