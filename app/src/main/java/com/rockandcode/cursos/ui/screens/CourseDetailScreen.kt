@@ -478,7 +478,7 @@ fun ComprarBottomBar(
                 onClick = onAddToCart,
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(8.dp),
-                border = BorderStroke(1.dp, Color(0xFF7B2FC5)),
+                border = BorderStroke(1.dp, if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary),
             ) {
                 Text("Añadir al carrito", fontWeight = FontWeight.SemiBold, maxLines = 1)
             }
