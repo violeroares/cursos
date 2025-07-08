@@ -33,8 +33,6 @@ import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -67,6 +65,7 @@ import com.rockandcode.cursos.ui.components.CourseCommentsSection
 import com.rockandcode.cursos.ui.components.CourseDescription
 import com.rockandcode.cursos.ui.components.CourseDocuments
 import com.rockandcode.cursos.ui.components.CourseIncludes
+import com.rockandcode.cursos.ui.components.CourseInstructors
 import com.rockandcode.cursos.ui.components.CourseRequirements
 import com.rockandcode.cursos.ui.components.CourseTags
 import com.rockandcode.cursos.ui.components.CourseTopics
@@ -389,67 +388,11 @@ fun CourseDetailScreen(
                             CourseDocuments(course)
                         }
 
-                        // Instructor
-                        Card(
-                            modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 16.dp, vertical = 16.dp),
-                            colors =
-                                CardDefaults.cardColors(
-                                    containerColor = MaterialTheme.colorScheme.background,
-                                ),
-                        ) {
-                            Text(
-                                "Instructor",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                            )
-                            Spacer(Modifier.height(8.dp))
-                            course.instructors.forEach { instructor ->
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier.padding(vertical = 4.dp),
-                                ) {
-                                    AsyncImage(
-                                        model = instructor.avatarUrl,
-                                        contentDescription = instructor.name,
-                                        modifier =
-                                            Modifier
-                                                .size(80.dp)
-                                                .clip(CircleShape),
-                                    )
-                                    Spacer(Modifier.width(8.dp))
-                                    Column {
-                                        Text(
-                                            instructor.name,
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            fontWeight = FontWeight.Bold,
-                                        )
-                                        if (!instructor.bio.isNullOrEmpty()) {
-                                            Text(
-                                                instructor.bio,
-                                                style = MaterialTheme.typography.bodySmall,
-                                                color = Color.Gray,
-                                            )
-                                        } else {
-                                            Text(
-                                                "Instructor experto",
-                                                style = MaterialTheme.typography.bodySmall,
-                                                color = Color.Gray,
-                                            )
-                                        }
-                                        instructor.specialization?.let {
-                                            Text(
-                                                it,
-                                                style = MaterialTheme.typography.labelSmall,
-                                                color = MaterialTheme.colorScheme.primary,
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        // Instructor/es
+                        CourseInstructors(
+                            course = course,
+                            onClick = { instructorId -> controller.navigate("instructor/$instructorId") },
+                        )
 
                         // Descripcion
                         CourseDescription(course.description)
@@ -469,177 +412,6 @@ fun CourseDetailScreen(
         }
     }
 }
-
-// @Composable
-// fun ComprarBottomBar(
-//    course: Course,
-//    isDarkTheme: Boolean,
-//    cartItemCount: Int,
-//    onAddToCart: () -> Unit,
-//    onBuyNow: () -> Unit,
-//    onCartClick: () -> Unit,
-// ) {
-//    Column {
-//        // Precio
-//        Row(
-//            verticalAlignment = Alignment.Bottom,
-//            modifier = Modifier.padding(start = 16.dp),
-//        ) {
-//            Text("Valor del curso", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-//            Spacer(Modifier.width(6.dp))
-//            Text(
-//                text = if (!course.isFree) formatPrice(course.price) else "Gratuito",
-//                style = MaterialTheme.typography.headlineMedium,
-//                fontWeight = FontWeight.Bold,
-//            )
-//        }
-//
-//        // Botones de acción + carrito
-//        Row(
-//            modifier = Modifier.fillMaxWidth().padding(16.dp),
-//            horizontalArrangement = Arrangement.spacedBy(12.dp),
-//            verticalAlignment = Alignment.CenterVertically,
-//        ) {
-//            OutlinedButton(
-//                onClick = onAddToCart,
-//                modifier = Modifier.weight(1f),
-//                shape = RoundedCornerShape(8.dp),
-//                border = BorderStroke(1.dp, Color(0xFF7B2FC5)),
-//            ) {
-//                Text("Añadir al carrito", fontWeight = FontWeight.SemiBold)
-//            }
-//
-//            Button(
-//                onClick = onBuyNow,
-//                modifier = Modifier.weight(1f),
-//                shape = RoundedCornerShape(8.dp),
-//                colors =
-//                    ButtonDefaults.buttonColors(
-//                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
-//                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
-//                    ),
-//            ) {
-//                Text("Comprar ahora", fontWeight = FontWeight.SemiBold)
-//            }
-//
-//            // 🛒 Carrito (solo si hay al menos un item)
-//            if (cartItemCount > 0) {
-//                IconButton(
-//                    onClick = onCartClick,
-//                    modifier =
-//                        Modifier
-//                            .size(48.dp),
-//                ) {
-//                    BadgedBox(
-//                        badge = {
-//                            Badge {
-//                                Text(
-//                                    text = cartItemCount.toString(),
-//                                    style = MaterialTheme.typography.labelSmall,
-//                                )
-//                            }
-//                        },
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.Outlined.ShoppingCart,
-//                            contentDescription = "Ir al carrito",
-//                            tint = MaterialTheme.colorScheme.primary,
-//                        )
-//                    }
-//                }
-//            }
-//        }
-//    }
-// }
-
-// Opción 2: ícono del carrito arriba a la derecha
-// @Composable
-// fun ComprarBottomBar(
-//    course: Course,
-//    isDarkTheme: Boolean,
-//    onAddToCart: () -> Unit,
-//    onBuyNow: () -> Unit,
-//    cartItemCount: Int,
-//    onCartClick: () -> Unit,
-// ) {
-//    Column {
-//        // Icono del carrito con badge (si hay items)
-//        if (cartItemCount > 0) {
-//            Row(
-//                modifier =
-//                    Modifier
-//                        .fillMaxWidth()
-//                        .padding(horizontal = 16.dp),
-//                horizontalArrangement = Arrangement.End,
-//            ) {
-//                IconButton(onClick = onCartClick) {
-//                    BadgedBox(
-//                        badge = {
-//                            Badge {
-//                                Text(
-//                                    cartItemCount.toString(),
-//                                    style = MaterialTheme.typography.labelSmall,
-//                                )
-//                            }
-//                        },
-//                    ) {
-//                        Icon(
-//                            imageVector = Icons.Outlined.ShoppingCart,
-//                            contentDescription = "Ir al carrito",
-//                            tint = MaterialTheme.colorScheme.primary,
-//                        )
-//                    }
-//                }
-//            }
-//        }
-//
-//        // Precio del curso
-//        Row(
-//            verticalAlignment = Alignment.Bottom,
-//            modifier = Modifier.padding(start = 16.dp),
-//        ) {
-//            Text("Valor del curso", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-//            Spacer(Modifier.width(6.dp))
-//            Text(
-//                text = if (!course.isFree) formatPrice(course.price) else "Gratuito",
-//                style = MaterialTheme.typography.headlineMedium,
-//                fontWeight = FontWeight.Bold,
-//            )
-//        }
-//
-//        // Botones de acción
-//        Row(
-//            modifier =
-//                Modifier
-//                    .fillMaxWidth()
-//                    .padding(16.dp),
-//            horizontalArrangement = Arrangement.spacedBy(12.dp),
-//            verticalAlignment = Alignment.CenterVertically,
-//        ) {
-//            OutlinedButton(
-//                onClick = onAddToCart,
-//                modifier = Modifier.weight(1f),
-//                shape = RoundedCornerShape(8.dp),
-//                border = BorderStroke(1.dp, Color(0xFF7B2FC5)),
-//            ) {
-//                Text("Añadir al carrito", fontWeight = FontWeight.SemiBold, maxLines = 1)
-//            }
-//
-//            Button(
-//                onClick = onBuyNow,
-//                modifier = Modifier.weight(1f),
-//                shape = RoundedCornerShape(8.dp),
-//                colors =
-//                    ButtonDefaults.buttonColors(
-//                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
-//                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
-//                    ),
-//            ) {
-//                Text("Comprar ahora", fontWeight = FontWeight.SemiBold, maxLines = 1)
-//            }
-//        }
-//    }
-// }
 
 @Composable
 fun ComprarBottomBar(

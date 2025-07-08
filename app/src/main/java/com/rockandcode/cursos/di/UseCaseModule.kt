@@ -8,6 +8,7 @@ import com.rockandcode.cursos.domain.usecases.GetBestRatedCoursesUseCase
 import com.rockandcode.cursos.domain.usecases.GetCertificateUseCase
 import com.rockandcode.cursos.domain.usecases.GetCourseByIdUseCase
 import com.rockandcode.cursos.domain.usecases.GetCurrentUserUseCase
+import com.rockandcode.cursos.domain.usecases.GetInstructorByIdUseCase
 import com.rockandcode.cursos.domain.usecases.GetMostBoughtCoursesUseCase
 import com.rockandcode.cursos.domain.usecases.GetUserCourseProgressUseCase
 import com.rockandcode.cursos.domain.usecases.IsCoursePurchasedUseCase
@@ -60,4 +61,8 @@ object UseCaseModule {
 
     @Provides
     fun provideGetCertificateUseCase(courseRepository: ICourseRepository): GetCertificateUseCase = GetCertificateUseCase(courseRepository)
+
+    @Provides
+    fun provideGetInstructorByIdUseCase(courseRepository: ICourseRepository): GetInstructorByIdUseCase =
+        GetInstructorByIdUseCase(courseRepository)
 }

@@ -25,6 +25,7 @@ import com.rockandcode.cursos.ui.screens.CheckoutViewModel
 import com.rockandcode.cursos.ui.screens.CourseDetailScreen
 import com.rockandcode.cursos.ui.screens.FiltersScreen
 import com.rockandcode.cursos.ui.screens.HomeScreen
+import com.rockandcode.cursos.ui.screens.InstructorScreen
 import com.rockandcode.cursos.ui.screens.MedalScreen
 import com.rockandcode.cursos.ui.screens.MyProgressScreen
 import com.rockandcode.cursos.ui.screens.ProfileScreen
@@ -40,7 +41,18 @@ fun AppStack(
 ) {
     val navBackStackEntry = controller.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry.value?.destination?.route
-    val hideBottomBarRoutes = listOf("profile", "courseDetail", "search", "filters", "cart", "checkout", "myProgress", "medals")
+    val hideBottomBarRoutes =
+        listOf(
+            "profile",
+            "courseDetail",
+            "search",
+            "filters",
+            "cart",
+            "checkout",
+            "myProgress",
+            "medals",
+            "instructor",
+        )
     val shouldHideBottomBarAndFav =
         hideBottomBarRoutes.any { prefix ->
             currentRoute?.startsWith(prefix) == true
@@ -165,6 +177,14 @@ fun AppStack(
 
             composable("medals") {
                 MedalScreen(controller = controller)
+            }
+
+            composable(
+                "instructor/{instructorId}",
+                arguments = listOf(navArgument("instructorId") { type = NavType.IntType }),
+            ) { backStackEntry ->
+                val instructorId = backStackEntry.arguments?.getInt("instructorId") ?: 0
+                InstructorScreen(instructorId = instructorId, controller = controller)
             }
         }
     }
