@@ -201,7 +201,7 @@ fun SearchScreen(
                                     Modifier
                                         .size(48.dp)
                                         .clip(RoundedCornerShape(8.dp)),
-                                contentScale = ContentScale.Crop,
+                                contentScale = ContentScale.Fit, // fit para mantener proporción
                             )
                         },
                         headlineContent = { Text(category.name, fontWeight = FontWeight.Bold) },

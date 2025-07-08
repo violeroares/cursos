@@ -130,16 +130,18 @@ fun CheckoutPaymentScreen(
                     viewModel.paymentInfo = PaymentInfo(cardNumber, expiry, cvv, holder)
                     onNext()
                 },
-                modifier = Modifier.fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
                 enabled = listOf(cardNumber, expiry, cvv, holder, dni).all { it.isNotBlank() },
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(24.dp),
                 colors =
                     ButtonDefaults.buttonColors(
                         containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
                         contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
                     ),
             ) {
-                Text("Continuar al resumen", fontWeight = FontWeight.SemiBold)
+                Text("Continuar al resumen", fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.bodyLarge)
             }
 
             TextButton(onClick = onBack) {
