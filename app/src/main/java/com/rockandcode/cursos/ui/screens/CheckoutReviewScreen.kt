@@ -147,15 +147,17 @@ fun CheckoutReviewScreen(
             )
             Button(
                 onClick = onConfirm,
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(8.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
+                shape = RoundedCornerShape(24.dp),
                 colors =
                     ButtonDefaults.buttonColors(
                         containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
                         contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
                     ),
             ) {
-                Text("Confirmar compra", fontWeight = FontWeight.SemiBold)
+                Text("Confirmar compra", fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.bodyLarge)
             }
 
             TextButton(onClick = onBack) {

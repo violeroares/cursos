@@ -112,16 +112,18 @@ fun CheckoutUserInfoScreen(
                         )
                     onNext()
                 },
-                modifier = Modifier.fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
                 enabled = listOf(name, email, phone, street, number).all { it.isNotBlank() },
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(24.dp),
                 colors =
                     ButtonDefaults.buttonColors(
                         containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
                         contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
                     ),
             ) {
-                Text("Continuar al pago", fontWeight = FontWeight.SemiBold)
+                Text("Continuar al pago", fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.bodyLarge)
             }
         }
     }

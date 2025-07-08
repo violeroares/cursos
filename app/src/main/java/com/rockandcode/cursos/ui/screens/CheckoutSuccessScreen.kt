@@ -91,15 +91,17 @@ fun CheckoutSuccessScreen(onDone: () -> Unit) {
         ) {
             Button(
                 onClick = onDone,
-                modifier = Modifier.weight(1f),
-                shape = RoundedCornerShape(8.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
+                shape = RoundedCornerShape(24.dp),
                 colors =
                     ButtonDefaults.buttonColors(
                         containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
                         contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
                     ),
             ) {
-                Text("Ir a inicio", fontWeight = FontWeight.SemiBold, maxLines = 1)
+                Text("Ir a inicio", fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.bodyLarge)
             }
         }
     }

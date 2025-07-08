@@ -131,16 +131,18 @@ fun CartScreen(
                     checkoutViewModel.setCourses(items.map { it.toCourse() }) // Pasar los cursos al checkout
                     onCheckout()
                 },
-                modifier = Modifier.fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
                 enabled = items.isNotEmpty(),
-                shape = RoundedCornerShape(8.dp),
+                shape = RoundedCornerShape(24.dp),
                 colors =
                     ButtonDefaults.buttonColors(
                         containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
                         contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
                     ),
             ) {
-                Text("Confirmar compra", fontWeight = FontWeight.SemiBold)
+                Text("Confirmar compra", fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.bodyLarge)
             }
 
             Spacer(modifier = Modifier.height(48.dp))
