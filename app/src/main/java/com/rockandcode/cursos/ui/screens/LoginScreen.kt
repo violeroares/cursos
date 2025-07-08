@@ -47,7 +47,8 @@ fun LoginScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val isDarkTheme = isSystemInDarkTheme()
-    var isFocused by remember { mutableStateOf(false) }
+    var isFocusedEmail by remember { mutableStateOf(false) }
+    var isFocusedPassword by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         logoVisible = true
@@ -162,7 +163,7 @@ fun LoginScreen(
                         .background(Color.White, shape = RoundedCornerShape(50))
                         .border(
                             width = 1.dp,
-                            color = if (isFocused) Color(0xFF7B2FC5) else Color.LightGray,
+                            color = if (isFocusedEmail) Color(0xFF7B2FC5) else Color.LightGray,
                             shape = RoundedCornerShape(50),
                         ).padding(horizontal = 14.dp, vertical = 10.dp),
             ) {
@@ -199,7 +200,7 @@ fun LoginScreen(
                         modifier =
                             Modifier
                                 .weight(1f)
-                                .onFocusChanged { isFocused = it.isFocused },
+                                .onFocusChanged { isFocusedEmail = it.isFocused },
                         decorationBox = { innerTextField ->
                             if (email.isEmpty()) {
                                 Text(
@@ -224,7 +225,7 @@ fun LoginScreen(
                         .background(Color.White, shape = RoundedCornerShape(50))
                         .border(
                             width = 1.dp,
-                            color = if (isFocused) Color(0xFF7B2FC5) else Color.LightGray,
+                            color = if (isFocusedPassword) Color(0xFF7B2FC5) else Color.LightGray,
                             shape = RoundedCornerShape(50),
                         ).padding(horizontal = 14.dp, vertical = 10.dp),
             ) {
@@ -263,7 +264,7 @@ fun LoginScreen(
                         modifier =
                             Modifier
                                 .weight(1f)
-                                .onFocusChanged { isFocused = it.isFocused },
+                                .onFocusChanged { isFocusedPassword = it.isFocused },
                         decorationBox = { innerTextField ->
                             if (password.isEmpty()) {
                                 Text(
