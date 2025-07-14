@@ -1,5 +1,6 @@
 package com.rockandcode.cursos.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,9 +17,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -145,23 +146,35 @@ fun CheckoutReviewScreen(
                 color = if (isDarkTheme) Color.LightGray else Color.DarkGray,
                 modifier = Modifier.padding(bottom = 16.dp),
             )
-            Button(
-                onClick = onConfirm,
-                modifier =
-                    Modifier
-                        .fillMaxWidth(),
-                shape = RoundedCornerShape(24.dp),
-                colors =
-                    ButtonDefaults.buttonColors(
-                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
-                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
-                    ),
-            ) {
-                Text("Confirmar compra", fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.bodyLarge)
-            }
 
-            TextButton(onClick = onBack) {
-                Text("Volver")
+            //  Botones
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                OutlinedButton(
+                    onClick = onBack,
+                    modifier = Modifier.weight(1f),
+                    shape = RoundedCornerShape(24.dp),
+                    border = BorderStroke(1.dp, if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary),
+                ) {
+                    Text("Volver", fontWeight = FontWeight.SemiBold, maxLines = 1)
+                }
+
+                Button(
+                    onClick = onConfirm,
+                    modifier = Modifier.weight(1f),
+                    shape = RoundedCornerShape(24.dp),
+                    colors =
+                        ButtonDefaults.buttonColors(
+                            containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                            contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                        ),
+                ) {
+                    Text("Confirmar compra", fontWeight = FontWeight.SemiBold, maxLines = 1)
+                }
+                Spacer(modifier = Modifier.height(24.dp))
             }
         }
     }

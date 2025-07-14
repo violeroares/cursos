@@ -1,6 +1,5 @@
 package com.rockandcode.cursos.ui.screens
 
-import RoundedTextInput
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -26,6 +25,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.rockandcode.cursos.ui.components.AppHeader
+import com.rockandcode.cursos.ui.components.RoundedTextInput
+import com.rockandcode.cursos.ui.components.TextInput
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -121,7 +122,7 @@ fun ProfileScreen(
                             Icon(
                                 imageVector = Icons.Default.Edit,
                                 contentDescription = "Editar imagen",
-                                tint = Color.White,
+                                tint = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
                                 modifier = Modifier.size(22.dp),
                             )
                         }
@@ -151,12 +152,12 @@ fun ProfileScreen(
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("Fecha de nac.", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            TextInput(title = "Fecha de nacimiento")
                             Spacer(Modifier.height(6.dp))
                             RoundedTextInput(birthDate, { birthDate = it }, "Fecha de nac.", Icons.Default.CalendarMonth, "Editar fecha")
                         }
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("Género", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            TextInput(title = "Género")
                             Spacer(Modifier.height(6.dp))
                             RoundedTextInput(gender, { gender = it }, "Femenino", Icons.Default.KeyboardArrowDown, "Editar género")
                         }
@@ -164,13 +165,7 @@ fun ProfileScreen(
 
                     Spacer(Modifier.height(2.dp))
 
-                    Text(
-                        "Teléfono",
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Start,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
+                    TextInput(title = "Teléfono")
                     Spacer(Modifier.height(6.dp))
                     RoundedTextInput(phone, { phone = it }, "Teléfono", Icons.Default.Edit, "Editar teléfono")
 
@@ -181,12 +176,12 @@ fun ProfileScreen(
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("Calle", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            TextInput(title = "Calle")
                             Spacer(Modifier.height(6.dp))
                             RoundedTextInput(street, { street = it }, "Calle", Icons.Default.Edit, "Editar calle")
                         }
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("Número", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+                            TextInput(title = "Número")
                             Spacer(Modifier.height(6.dp))
                             RoundedTextInput(number, { number = it }, "Número", Icons.Default.Edit, "Editar número")
                         }
@@ -194,13 +189,7 @@ fun ProfileScreen(
 
                     Spacer(Modifier.height(8.dp))
 
-                    Text(
-                        "Seleccione las categorias de su interés:",
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Start,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
+                    TextInput(title = "Seleccione las categorias de su interés:")
                     Spacer(modifier = Modifier.height(6.dp))
 
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
