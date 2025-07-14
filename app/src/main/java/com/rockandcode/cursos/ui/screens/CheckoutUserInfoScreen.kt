@@ -10,10 +10,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.rockandcode.cursos.ui.components.AppHeader
+import com.rockandcode.cursos.ui.components.RoundedTextInput
+import com.rockandcode.cursos.ui.components.TextInput
 
 @Composable
 fun CheckoutUserInfoScreen(
@@ -57,45 +60,38 @@ fun CheckoutUserInfoScreen(
         ) {
             Spacer(Modifier.height(16.dp))
 
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text("Nombre completo") },
-                modifier = Modifier.fillMaxWidth(),
-            )
+            TextInput(title = "Nombre")
+            Spacer(Modifier.height(6.dp))
+            RoundedTextInput(name, { name = it }, "Nombre completo")
 
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("Correo electrónico") },
-                modifier = Modifier.fillMaxWidth(),
-            )
+            Spacer(Modifier.height(2.dp))
 
-            OutlinedTextField(
-                value = phone,
-                onValueChange = { phone = it },
-                label = { Text("Teléfono") },
-                placeholder = { Text("Ej.: 11 1234 5678") },
-                modifier = Modifier.fillMaxWidth(),
-            )
+            TextInput(title = "Email")
+            Spacer(Modifier.height(6.dp))
+            RoundedTextInput(email, { email = it }, "Email")
+
+            Spacer(Modifier.height(2.dp))
+
+            TextInput(title = "Teléfono")
+            Spacer(Modifier.height(6.dp))
+            RoundedTextInput(phone, { phone = it }, "Teléfono", Icons.Default.Edit, "Editar teléfono")
+
+            Spacer(Modifier.height(2.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                OutlinedTextField(
-                    value = street,
-                    onValueChange = { street = it },
-                    label = { Text("Calle") },
-                    modifier = Modifier.weight(1f),
-                )
-
-                OutlinedTextField(
-                    value = number,
-                    onValueChange = { number = it },
-                    label = { Text("Número") },
-                    modifier = Modifier.weight(1f),
-                )
+                Column(modifier = Modifier.weight(1f)) {
+                    TextInput(title = "Calle")
+                    Spacer(Modifier.height(6.dp))
+                    RoundedTextInput(street, { street = it }, "Calle", Icons.Default.Edit, "Editar calle")
+                }
+                Column(modifier = Modifier.weight(1f)) {
+                    TextInput(title = "Número")
+                    Spacer(Modifier.height(6.dp))
+                    RoundedTextInput(number, { number = it }, "Número", Icons.Default.Edit, "Editar número")
+                }
             }
 
             Spacer(Modifier.height(24.dp))

@@ -1,12 +1,15 @@
+package com.rockandcode.cursos.ui.components
+
+import android.annotation.SuppressLint
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
@@ -19,35 +22,37 @@ fun RoundedTextInput(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String = "",
-    icon: ImageVector = Icons.Default.Edit, // Cambiá por Icons.Default.Check si querés
+    icon: ImageVector? = null,
     iconDescription: String = "Editar",
     enabled: Boolean = true,
-    modifier: Modifier = Modifier,
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier,
+    trailingContent: @Composable (() -> Unit)? = null, // nuevo slot
 ) {
     var isFocused by remember { mutableStateOf(false) }
+    val isDarkTheme = isSystemInDarkTheme()
+    val colors = MaterialTheme.colorScheme
 
     Box(
         modifier =
             modifier
                 .fillMaxWidth()
                 .shadow(8.dp, shape = RoundedCornerShape(50))
-                .background(Color.White, shape = RoundedCornerShape(50))
+                .background(color = colors.surface, shape = RoundedCornerShape(50))
+                .height(45.dp)
                 .border(
                     width = 1.dp,
-                    color = if (isFocused) Color(0xFF7B2FC5) else Color.LightGray,
+                    color = if (isFocused) Color(0xFF7B2FC5) else colors.outlineVariant,
                     shape = RoundedCornerShape(50),
                 ).padding(horizontal = 16.dp, vertical = 13.dp),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             BasicTextField(
                 value = value,
                 onValueChange = onValueChange,
                 enabled = enabled,
                 textStyle =
                     MaterialTheme.typography.bodyLarge.copy(
-                        color = if (enabled) Color.Black else Color.Gray,
+                        color = if (enabled) colors.onSurface else colors.outline,
                     ),
                 singleLine = true,
                 modifier =
@@ -58,22 +63,34 @@ fun RoundedTextInput(
                     if (value.isEmpty()) {
                         Text(
                             text = placeholder,
-                            style = TextStyle(color = Color.Gray),
+                            style = TextStyle(color = colors.outline),
                         )
                     }
                     innerTextField()
                 },
             )
 
-            Spacer(Modifier.width(8.dp))
+            if (trailingContent != null) {
+                Spacer(Modifier.width(8.dp))
+                trailingContent()
+            }
 
-            Icon(
-                imageVector = icon,
-                contentDescription = iconDescription,
-                tint = if (enabled) Color(0xFF7B2FC5) else Color.Gray,
-                modifier = Modifier.size(20.dp),
-            )
+            if (icon != null) {
+                Spacer(Modifier.width(8.dp))
+                Icon(
+                    imageVector = icon,
+                    contentDescription = iconDescription,
+                    tint =
+                        if (enabled) {
+                            if (isDarkTheme) Color(0xFFD0A8FF) else Color(0xFF7B2FC5)
+                        } else {
+                            colors.outline
+                        },
+                    modifier = Modifier.size(20.dp),
+                )
+            }
         }
     }
+
     Spacer(modifier = Modifier.height(8.dp))
 }
