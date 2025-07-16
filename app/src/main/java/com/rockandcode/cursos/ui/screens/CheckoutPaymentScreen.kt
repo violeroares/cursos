@@ -1,6 +1,5 @@
 package com.rockandcode.cursos.ui.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,7 +16,6 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +23,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -94,7 +91,13 @@ fun CheckoutPaymentScreen(
 
             TextInput(title = "Nombre del titular")
             Spacer(Modifier.height(6.dp))
-            RoundedTextInput(holder, { holder = it }, "Nombre del titular", Icons.Default.Edit, "Nombre del titular")
+            RoundedTextInput(
+                holder,
+                { holder = it },
+                "Nombre del titular",
+                Icons.Default.Edit,
+                "Nombre del titular",
+            )
 
             Spacer(Modifier.height(2.dp))
 
@@ -110,7 +113,13 @@ fun CheckoutPaymentScreen(
                 Column(modifier = Modifier.weight(1f)) {
                     TextInput(title = "Cód. de Seguridad")
                     Spacer(Modifier.height(6.dp))
-                    RoundedTextInput(cvv, { cvv = it }, "Cód. de Seguridad", Icons.Default.Edit, "Editar cód. de Seguridad")
+                    RoundedTextInput(
+                        cvv,
+                        { cvv = it },
+                        "Cód. de Seguridad",
+                        Icons.Default.Edit,
+                        "Editar cód. de Seguridad",
+                    )
                 }
             }
             Spacer(Modifier.height(2.dp))
@@ -121,39 +130,29 @@ fun CheckoutPaymentScreen(
 
             Spacer(Modifier.height(24.dp))
 
-            //  Botones
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalAlignment = Alignment.CenterVertically,
+            Button(
+                onClick = {
+                    viewModel.paymentInfo = PaymentInfo(cardNumber, expiry, cvv, holder)
+                    onNext()
+                },
+                modifier =
+                    Modifier
+                        .fillMaxWidth(),
+                enabled = listOf(cardNumber, expiry, cvv, holder, dni).all { it.isNotBlank() },
+                shape = RoundedCornerShape(24.dp),
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
+                        contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
+                    ),
             ) {
-                OutlinedButton(
-                    onClick = onBack,
-                    modifier = Modifier.weight(1f),
-                    shape = RoundedCornerShape(24.dp),
-                    border = BorderStroke(1.dp, if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary),
-                ) {
-                    Text("Volver", fontWeight = FontWeight.SemiBold, maxLines = 1)
-                }
-
-                Button(
-                    onClick = {
-                        viewModel.paymentInfo = PaymentInfo(cardNumber, expiry, cvv, holder)
-                        onNext()
-                    },
-                    modifier = Modifier.weight(1f),
-                    enabled = listOf(cardNumber, expiry, cvv, holder, dni).all { it.isNotBlank() },
-                    shape = RoundedCornerShape(24.dp),
-                    colors =
-                        ButtonDefaults.buttonColors(
-                            containerColor = if (!isDarkTheme) Color(0xFF7B2FC5) else MaterialTheme.colorScheme.primary,
-                            contentColor = if (!isDarkTheme) Color.White else MaterialTheme.colorScheme.onPrimary,
-                        ),
-                ) {
-                    Text("Continuar", fontWeight = FontWeight.SemiBold, maxLines = 1)
-                }
-                Spacer(modifier = Modifier.height(24.dp))
+                Text(
+                    "Continuar al resumen",
+                    fontWeight = FontWeight.SemiBold,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
             }
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }
